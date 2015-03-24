@@ -1,0 +1,67 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.BaiViet>
+
+@{
+    ViewBag.Title = "Quản lý bài viết";
+}
+
+<br />
+<h3>Quản lý bài viết</h3>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Ngày cập nhật
+        </th>
+        <th>
+            Trạng thái
+        </th>
+        <th>
+            Thích/Không thích
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.Trangthai == 3)
+        {
+            continue;
+        }
+        <tr>
+            <td>
+                @Html.ActionLink(item.TieuDe, "Details", "BaiViets", new { ID = item.ID }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayCapNhat)
+            </td>
+            <td>
+                @switch (item.Trangthai)
+                {
+                    case 0:
+                        <p>Đang đợi xét duyệt</p>
+                        break;
+                    case 1:
+                    <p>Đăng tải</p>
+                        break;
+                    case 2:
+                    <p>Ẩn</p>
+                        break;
+                    case 4:
+                    <p>Bị ẩn bởi Admin</p>
+                        break;
+                }
+            </td>
+            <td>
+                @item.RatePosts.Where(t => t.Like == true).Count() / @item.RatePosts.Where(t => t.Like == false).Count()
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<hr />

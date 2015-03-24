@@ -1,0 +1,67 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.TruongNganh>
+@{
+    int nam1 = DateTime.Now.Year - 1;
+
+    if (Model.Count() != 0)
+    {
+        nam1 = Model.First().NgayCapNhat.Year - 1;
+    }
+}
+<table class="table">
+   
+
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td>Không có dữ liệu</td>
+        </tr>
+    }
+    else
+    {
+         <tr>
+        <th>
+            Ngành
+        </th>
+
+        <th>
+            Khối
+        </th>
+
+        <th>
+            Điểm @nam1
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayCapNhat)
+        </th>
+    </tr>
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Nganh.Ten, "Edit","TruongNganhs", new { MaTruong = item.MaTruong, idnganh = item.MaNganh, idkhoi = item.KhoiThi }, null)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KhoiThi)
+                </td>
+
+                <td>
+                    @if(item.Diem1 == 0)
+                    {
+                        <label>chưa cập nhật</label>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.Diem1);
+                    }                    
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayCapNhat)
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>

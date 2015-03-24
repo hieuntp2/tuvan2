@@ -1,0 +1,42 @@
+﻿@model tuvantuyensinhsv.v2.Models.Question
+
+@{
+    ViewBag.Title = "Đặt câu hỏi";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="panel panel-default col-lg-offset-2 col-lg-8">
+    <div class="panel-body">
+        <h2>Đặt câu hỏi</h2>
+        <hr />
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="form-group">
+                    <input class="form-control" name="TieuDe" placeholder="Tiêu đề" autocomplete="off" />
+                    @Html.ValidationMessageFor(model => model.Tieude)
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Nội dung" name="Noidung"></textarea>
+                    @Html.ValidationMessageFor(model => model.Noidung)
+                </div>
+                <div class="form-group">
+                    <div>
+                        <input type="submit" value="Đặt câu hỏi" class="btn btn-default" />
+                    </div>
+                </div>
+
+                <input name="Tabs" type="hidden" value="" id="_inputsTabs" ng-model="createcontroller.baiviet.tabs" />
+            }
+        </div>        
+    </div>
+
+</div>
+
+<div class="panel panel-default col-lg-offset-2 col-lg-8">
+    <br />
+    @Html.Partial("~/views/tabengineserver/_createtag.cshtml")
+</div>

@@ -1,0 +1,65 @@
+﻿@model tuvantuyensinhsv.v2.Models.MBTI
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+</script>
+
+<h2>Create</h2>
+
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+    <div class="col-lg-6">
+        <h3>Chỉnh sửa Trường</h3>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-8">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="panel-body">
+
+                <input class="form-control" name="idMBTI" />
+                <textarea name="GioiThieu" id="tinymce" style="height:500px;"></textarea>
+                <input type="submit" value="Lưu" />
+                <input name="Tags" type="hidden" value="asdfasd" id="_inputsTabs"/>
+            </div>
+        }
+    </div>
+    <div class="col-lg-4">
+        @Html.Partial("~/views/tabengineserver/_createtag.cshtml")
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

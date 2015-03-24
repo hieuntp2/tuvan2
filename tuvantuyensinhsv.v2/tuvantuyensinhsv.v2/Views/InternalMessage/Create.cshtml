@@ -1,0 +1,59 @@
+﻿@model tuvantuyensinhsv.v2.Models.InternalMessage
+
+<form id="__AjaxAntiForgeryForm" action="#" method="post">@Html.AntiForgeryToken()</form>  
+@using (Html.BeginForm())
+{
+    
+
+    <div class="form-horizontal" id="InternallMessageBox">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Đến</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.To, new { @class = "form-control" ,@id="ToUser"})
+                @Html.ValidationMessageFor(model => model.To)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nội dung</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Mesage, new { @class = "form-control", @style = "height: 100px;", @id = "MessageContent" })
+                @Html.ValidationMessageFor(model => model.Mesage)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input onclick="SendMessage()" value="Gửi" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    AddAntiForgeryToken = function (data) {
+        data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+        return data;
+    };
+
+    function SendMessage() {
+
+        var tou =  $("#ToUser").val();
+        var mess = $("#MessageContent").val();
+        $.ajax({
+            url: "/InternalMessage/Create",
+            type: "POST",
+            data: AddAntiForgeryToken({ 
+                To: tou,
+                Mesage: mess,
+            }),
+            success: function (data) {
+                $('#myModal').modal('hide');
+            }
+        });
+    }
+</script>
+
+

@@ -1,0 +1,69 @@
+﻿@model tuvantuyensinhsv.v2.Models.BaiViet
+
+@{
+    ViewBag.Title = Model.TieuDe;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Content/js/facebook_comment.js"></script>
+
+<div class="box box-danger">
+    <div class="box-header">
+        <h2 class="box-title"><b>@Model.TieuDe</b></h2>
+        <div class="box-tools pull-right">
+            <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <hr />
+    <div class="box-body">
+        @Html.Raw(Model.NoiDung)
+    </div><!-- /.box-body -->
+
+    <div class="box-footer">
+        <div class="row">
+            <div class="col-lg-4">
+                @Html.Partial("_ThongTinBaiViet")
+            </div>
+            <div class="col-lg-4">
+                @Html.Partial("_RatePost_Social", Model)
+            </div>
+            <div class="col-lg-4">
+                @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-4">
+                @if (User.Identity.Name == Model.AspNetUser.UserName)
+                {
+                    Html.RenderPartial("_UserPostControl");
+                }
+            </div>
+            <div class="col-lg-4">
+                @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
+                {
+                    Html.RenderPartial("_AdminControlPost", Model);
+                }
+            </div>
+
+            <div class="col-lg-4">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="box box-danger">
+    <div class="box-header">
+        <h2 class="box-title"><b>Bình luận</b></h2>
+        <div class="box-tools pull-right">
+            <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div>
+    <div class="box-body" id="fb-root">
+    </div>
+</div>
+
+

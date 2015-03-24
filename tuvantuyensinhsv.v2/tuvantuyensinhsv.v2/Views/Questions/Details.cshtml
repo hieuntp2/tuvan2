@@ -1,0 +1,73 @@
+﻿@model tuvantuyensinhsv.v2.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    List<tuvantuyensinhsv.v2.Models.Question> questions = ViewBag.questions;
+}
+<script src="~/Content/js/facebook_comment.js"></script>
+
+
+<div class="col-lg-2">
+    <div class="panel">
+        <div class="panel-body">
+            <h4>Câu hỏi mới</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        @foreach (tuvantuyensinhsv.v2.Models.Question item in questions)
+                        {
+                            <tr onclick="questionclick(@item.id)" style="cursor:pointer;">
+                                <td>@item.Tieude</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-8">
+    <div class="panel panel-default ">
+        <div class="panel-body">
+
+            <h3>Hỏi: @Model.Tieude</h3>
+            <hr />
+            @Model.Noidung
+
+            <hr />
+            <span style="float:left;">@Model.Ngaydang</span>
+            <span style="float:right;">@Model.AspNetUser.UserName</span>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-2">
+    @Html.Partial("~/views/shared/_sharefacebook.cshtml")
+</div>
+
+<div class="col-lg-8">
+    <div class="panel panel-default ">
+        <div class="panel-body">
+            <h4>Comments</h4>
+            <hr />
+            <div class="panel-body">
+                <div id="fb-root"></div>
+                <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="100%" data-numposts="10" data-colorscheme="light"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function questionclick(id) {
+        window.location.href = "/questions/details/" + id;
+    }
+
+    function baivietclick(id) {
+        window.location.href = "/baiviets/details/" + id;
+    }
+    function fmbti() {
+        window.location = "/mbtis/index";
+    }
+</script>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.Truong>
+@{
+    tuvantuyensinhsv.v2.Models.ProjectHEntities db = new tuvantuyensinhsv.v2.Models.ProjectHEntities();
+    int _Countruong = db.Truongs.Count();
+}
+ <!-- /.col-lg-8 -->
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i>  Trường
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                <a href="/Truongs/Index" class="list-group-item">
+                    <i class="fa fa-comment fa-fw"></i> &Sigma; Tổng số Trường: @_Countruong
+                </a>
+                <a href="/Truongs/ThieuWebsite" class="list-group-item">
+                    <i class="fa fa-twitter fa-fw"></i> % Website: @db.Truongs.Where(t => t.Website != null).Count() <span>/</span> @_Countruong
+
+                </a>
+                <a href="/Truongs/ThieuLogo" class="list-group-item">
+                    <i class="fa fa-envelope fa-fw"></i> % Logo: @db.Truongs.Where(t => t.linkLogo != null).Count() <span>/</span> @_Countruong
+                </a>
+                <a href="/Truongs/ThieuAddress" class="list-group-item">
+                    <i class="fa fa-tasks fa-fw"></i> % Tỉnh thành: @db.Truongs.Where(t => t.IDThanhPho == 1).Count() <span>/</span> @_Countruong
+                </a>
+
+                <a href="/Truongs/ThieuTruongNgan" class="list-group-item">
+                    <i class="fa fa-tasks fa-fw"></i> % Trường-Ngành: @db.Truongs.Where(t => t.TruongNganhs.Count() != 0).Count() <span>/</span> @_Countruong
+                </a>
+
+            </div>
+            <!-- /.list-group -->
+            <a href="/Truongs/Index" class="btn btn-default btn-block">Kiểm tra</a>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<!-- /.col-lg-4 -->

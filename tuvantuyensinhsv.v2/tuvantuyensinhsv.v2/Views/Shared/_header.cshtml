@@ -1,0 +1,149 @@
+﻿@*@using Microsoft.AspNet.Identity
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Home/Index">Project H</a>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <ul class="nav navbar-top-links navbar-right" style="width:100%; margin-top: 9px;margin-bottom: 9px;">
+                <div class="input-group custom-search-form">
+                    <input required type="text" value="@ViewBag.Key" class="form-control" style="margin-left:10px;" placeholder="Tìm kiếm trường, ngành, tỉnh thành" id="Search_Input">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" onclick="Layout_SearchButtonClick()" style="margin-right: 10px; margin-bottom: 0px; z-index:100; ">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /.dropdown -->
+            </ul>
+        </div>
+        <div class="col-lg-2" style="float:right;">
+            <ul class="nav navbar-top-links navbar-right">
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="dropdown">
+
+
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="/Manage/Index"><i class="fa fa-user fa-fw"></i> @User.Identity.GetUserName()</a>
+                            </li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a href="/Admin/Index"><i class="fa fa-user fa-fw"></i> Quản lý</a>
+                                </li>
+                            }
+                            <li>
+
+                                <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> Log off</a>
+                                }
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+
+                    </li>
+                }
+                else
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="/Account/Login"><i class="fa fa-user fa-fw"></i> Đăng nhập</a>
+                            </li>
+
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/Account/Register"><i class="fa fa-plus fa-fw"></i> Đăng ký</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                }
+                <!-- /.dropdown -->
+            </ul>
+        </div>
+    </div>
+</nav>*@
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="/Home" class="logo">Project H</a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-custom-menu">
+            <div class="col-md-1">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+            </div>
+            <div class="col-md-8">             
+                    <div class="input-group" style="margin-top:8px">
+                        <input type="@ViewBag.Key" id="Search_Input" autocomplete="off" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button onclick="Layout_SearchButtonClick()" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+            </div>
+            <div class="col-md-3">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <p>
+                                    Alexander Pierce - Web Developer
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Followers</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

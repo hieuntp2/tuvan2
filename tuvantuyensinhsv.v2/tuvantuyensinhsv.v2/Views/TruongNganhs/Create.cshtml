@@ -1,0 +1,163 @@
+﻿@model tuvantuyensinhsv.v2.Models.TruongNganh
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Thêm mới</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TruongNganh</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaTruong, "MaTruong", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="MaTruong" data-provide="typeahead" placeholder="Trường - Tìm nhanh" autocomplete="off" />
+                @Html.DropDownListFor(m => m.MaTruong, null, new { @class = "form-control", @id = "DropboxTruong" })
+                @Html.ValidationMessageFor(model => model.MaTruong)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNganh, "IDNganh", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="IDNganh" data-provide="typeahead" placeholder="Ngành - Tìm nhanh" autocomplete="off" />
+                @Html.DropDownListFor(m => m.MaNganh, null, new { @class = "form-control", @id = "DropboxNganh" })
+                @Html.ValidationMessageFor(model => model.MaNganh)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KhoiThi, "KhoiThi", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="IDKhoithi" data-provide="typeahead" placeholder="Khối - Tìm nhanh" autocomplete="off" />
+                @Html.DropDownListFor(m => m.KhoiThi, null, new { @class = "form-control", @id = "DropboxKhoi" })
+                @Html.ValidationMessageFor(model => model.KhoiThi)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem3, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<script>
+    $("#MaTruong").typeahead({
+        source: function (query, process) {
+            var listruong = [];
+            map = {};
+
+            // This is going to make an HTTP post request to the controller
+            return $.post('/TruongNganhs/LoadTruong', { query: query }, function (data) {
+
+                // Loop through and push to the array
+                $.each(data, function (i, truong) {
+                    map[truong.Ten] = truong;
+                    listruong.push(truong.Ten);
+                });
+
+                // Process the details
+                process(listruong);
+            });
+        },
+        updater: function (item) {
+            // Set the text to our selected id
+            $("#DropboxTruong").val(map[item].ID)
+            return item;
+        }
+    });
+
+    $("#IDNganh").typeahead({
+        source: function (query, process) {
+            var listNganh = [];
+            map = {};
+
+            // This is going to make an HTTP post request to the controller
+            return $.post('/TruongNganhs/LoadNganh', { query: query }, function (data) {
+
+                // Loop through and push to the array
+                $.each(data, function (i, nganh) {
+                    map[nganh.Ten] = nganh;
+                    listNganh.push(nganh.Ten);
+                });
+
+                // Process the details
+                process(listNganh);
+            });
+        },
+        updater: function (item) {
+            // Set the text to our selected id
+            $("#DropboxNganh").val(map[item].ID)
+            return item;
+        }
+    });
+
+    $("#IDKhoithi").typeahead({
+        source: function (query, process) {
+            var listKhoi = [];
+            map = {};
+
+            // This is going to make an HTTP post request to the controller
+            return $.post('/TruongNganhs/LoadKhoi', { query: query }, function (data) {
+
+                // Loop through and push to the array
+                $.each(data, function (i, khoi) {
+                    map[khoi.Ten] = khoi;
+                    listKhoi.push(khoi.Ten);
+                });
+
+                // Process the details
+                process(listKhoi);
+            });
+        },
+        updater: function (item) {
+            // Set the text to our selected id
+            $("#DropboxKhoi").val(map[item].ID)
+            return item;
+        }
+    });
+</script>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

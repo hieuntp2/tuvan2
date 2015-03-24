@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Tư vấn tuyển sinh SV";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row col-lg-12">
+    <div class="col-lg-3"></div>
+    <div class="input-group custom-search-form well col-lg-6" style="top: 40%; margin: 0px 20px 0px 0px; position: fixed;">
+        <input firstname type="text" class="form-control" style="margin-left:10px;" placeholder="Tìm kiếm trường, ngành, tỉnh thành" id="Search_Input">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" onclick="Layout_SearchButtonClick()" style="margin-right:10px; z-index:100;">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+
+<div class="row col-lg-12" style="position:fixed; bottom:50px;">
+    <div class="col-lg-1"></div>
+     <div class="col-lg-3">
+        <div class="panel panel-primary" style="cursor:pointer;" onclick="fmbti()">
+            <div class="panel-body" style="padding: 15px; margin-top: 0px; padding-top: 0px; padding-bottom: 0px;">
+                <p>Phân loại tính cách cùng MBTI</p>
+                <img src="http://i.imgur.com/E71SFDL.jpg" style="width:250px;" />
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+<style>
+    .typeahead {
+        max-height: 300px;
+        width: 100%;
+        overflow-y: auto;
+    }   
+</style>
+<script>
+    function fmbti()
+    {
+        window.location = "/mbtis/index";
+    }
+</script>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.Truong>
+<br />
+
+<h2>Trường</h2>
+<div class="table-responsive col-lg-8">
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Trường
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Website)
+                </th>
+                <th>
+                    <p>Thành phố</p>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Ten, "Details", "Truongs", new { ID = item.MaTruong }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Website)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThanhPho.Ten)
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="AjaxLoadTruongNganh('@item.MaTruong','@item.Ten')">
+                            Ngành
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_RightSideBarTruong")
+
+
+
+<script>
+    function AjaxLoadTruongNganh(ID, truong) {
+        $.ajax({
+            url: "/Home/AjaxLoadTruongNganh",
+            type: "post",
+            data: { ID: ID },
+            success: function (data) {
+                $("#_MessagePopupLable").html(truong)
+                $("#_MessagePopupBody").html(data);
+            }
+        });
+    }
+</script>
+

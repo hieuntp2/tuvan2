@@ -1,0 +1,86 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.AspNetRole>
+
+@{
+    ViewBag.Title = "Phân quyền";
+}
+<br />
+<h2>Phân quyền</h2>
+
+<p>
+    @Html.ActionLink("Thêm người dùng", "Create")
+</p>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+      Thêm người dùng
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <form role="form" action="/Roles/AssignUserToRole" method="post">
+                    <div class="form-group">
+                        <input name="Username" type="text" class="form-control" placeholder="Username/Email" required />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phân quyền</label>
+                        <select class="form-control" name="IDRole">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </form>
+            </div>
+         
+        </div>
+        <!-- /.row (nested) -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+@foreach (var item in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
+            <span style="float:right;">Số lượng: @item.AspNetUsers.Count()</span>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                </table>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            @*<th>Họ tên</th>*@
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var acc in item.AspNetUsers)
+                        {
+
+                            <tr>
+                                <td>@Html.ActionLink(acc.UserName, "Details", "Account", new { IDUser = acc.Id }, null)</td>
+                                @*<td>@acc.HoTen</td>*@
+                                <td><a onclick="return confirm('Bạn có chắc chắn không?')" href="/Roles/RemoveUserFromRole?IDUser=@acc.Id&&IDRole=@item.Id">Xóa</a></td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+}

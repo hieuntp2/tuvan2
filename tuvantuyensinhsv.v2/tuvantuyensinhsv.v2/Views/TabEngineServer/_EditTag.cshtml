@@ -1,0 +1,58 @@
+﻿
+
+
+<div class="chat-panel panel panel-default" ng-controller="TagEngineController as controller" ng-app="ProjectHApp">
+    <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i>
+        Trường, ngành, tỉnh thành được liên quan
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu slidedown">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-refresh fa-fw"></i> Refresh
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-check-circle fa-fw"></i> Available
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-times fa-fw"></i> Busy
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-clock-o fa-fw"></i> Away
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-sign-out fa-fw"></i> Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body" ng-init="controller.loadListTags('@Model.ID')">
+        <div class="list-group">
+            <button ng-repeat="tag in controller.tags" ng-click="controller.RemoveTag(tag.ID)"
+                    class="btn btn-default customTagButton" data-toggle="tooltip" data-placement="left" title="{{tag.Ten}}"
+                    data-original-title="Tooltip on left">
+                {{tag.Ten}} - {{tag.ID}}
+            </button>
+
+            <input class="custominputTag btn btn-default " id="QuickFindInput" ng-model="controller.object.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-keyup="$event.keyCode == 13 && controller.InputTagEnter()" />
+        </div>
+        <!-- /.list-group -->
+    </div>
+    <!-- /.panel-footer -->
+</div>
+
+<script type="text/javascript" src="/Content/js/TabEngineClient.js"></script>

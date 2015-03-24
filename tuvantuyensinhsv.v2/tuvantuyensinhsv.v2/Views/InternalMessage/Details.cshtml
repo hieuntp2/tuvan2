@@ -1,0 +1,48 @@
+﻿@*@model tuvantuyensinhsv.v2.Models.InternalMessage
+<div>
+    <span>Người gửi: </span>
+    @if (Model.AspNetUser.HoTen != null)
+    {
+        <strong>@Model.AspNetUser.HoTen</strong>
+    }
+    else
+    {
+        <strong>@Model.AspNetUser.UserName</strong>
+    }
+    <br />
+    <span>Thời gian: </span>
+    <strong>@Model.DateCreate</strong>
+    <hr />
+
+    <strong>Nội dung: </strong>
+
+    @Html.DisplayFor(model => model.Mesage)
+
+    <hr>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input onclick="ReplyMessage()" value="Trả lời" class="btn btn-primary" style="max-width:100px;" />
+        </div>
+    </div>
+
+    <input type="hidden" id="IDUserFrom" value="@Model.AspNetUser.UserName"/>
+</div>
+
+<script>
+    function ReplyMessage() {
+        $('#myModal').modal('hide');
+        var reciver = $("#IDUserFrom").val();
+        $.ajax({
+            url: "/InternalMessage/Create",
+            type: "GET",
+            data: { To: reciver },
+            success: function (data) {
+                $("#_MessagePopupLable").html("Gửi tin nhắn");
+                $("#_MessagePopupBody").html(data);
+                $('#myModal').modal('show');
+
+            }
+        });
+    }
+</script>*@
+

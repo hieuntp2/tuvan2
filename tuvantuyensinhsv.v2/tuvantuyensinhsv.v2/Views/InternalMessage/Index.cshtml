@@ -1,0 +1,117 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.InternalMessage>
+
+@{
+    ViewBag.Title = "Index";
+    int countid = 0;
+}
+
+<div class="col-lg-12">
+    <div class="col-lg-12">
+        <h3 class="page-header">Tin nhắn</h3>
+    </div>
+
+    <div class="col-lg-9">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-12" id="_imessage_@countid">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> @item.AspNetUser.UserName
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li>
+                                        <a onclick="replymessage('@item.AspNetUser.UserName')">Trả lời</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="deletemessage('@item.From','@item.DateCreate',@countid)">Xóa</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div id="morris-area-chart">
+                            @item.Mesage
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+            countid += 1;
+        }
+        @if (Model.Count() == 0)
+        {
+            <div class="col-lg-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i>
+                        <div class="pull-right">
+
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div id="morris-area-chart">
+                            Không có tin nhắn nào
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <!-- /.col-lg-8 -->
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> Bài viết
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="list-group">
+                    <a class="list-group-item">
+                        <i class="fa fa-tasks fa-fw"></i> &Sigma; Tổng số: @Model.Count()
+                    </a>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+
+<script>
+        function replymessage(touser) {
+            $.ajax({
+                url: "/InternalMessage/Create",
+                type: "GET",
+                data: { To: touser },
+                success: function (data) {
+                    $("#_MessagePopupLable").html("Gửi tin nhắn");
+                    $("#_MessagePopupBody").html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+        }
+
+        function deletemessage(from, date, countid) {
+            $.ajax({
+                url: "/InternalMessage/DeleteConfirmed",
+                type: "POST",
+                data: { from: from, datecreate: date },
+                success: function (data) {
+                    if (data == "OK") {
+                        $("#_imessage_" + countid).remove();
+                    }
+                }
+            });
+        }
+</script>

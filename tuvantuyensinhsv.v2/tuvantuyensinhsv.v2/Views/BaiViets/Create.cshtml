@@ -1,0 +1,64 @@
+﻿@model tuvantuyensinhsv.v2.Models.BaiViet
+
+@{
+    ViewBag.Title = "Bài viết mới";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+</script>
+
+<br />
+<div class="panel panel-default class col-lg-8 col-lg-offset-2">
+    <div class="panel-body">
+        <h3 class="page-header">Đăng bài</h3>
+        <div>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal" ng-controller="TagEngineController as controller">
+
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control", placeholder = "Tiêu đề" })
+                            @Html.ValidationMessageFor(model => model.TieuDe)
+                        </div>
+                        <input type="submit" value="Lưu" class="btn btn-primary" style="min-width:100px;" />
+                    </div>
+
+                    <input name="Tabs" type="hidden" value="" id="_inputsTabs" ng-model="createcontroller.baiviet.tabs" />
+                    <textarea name="NoiDung" id="NoiDungEditor" style="height:500px;"></textarea>
+                </div>
+            }
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+            @Html.Partial("~/views/tabengineserver/_createtag.cshtml")
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

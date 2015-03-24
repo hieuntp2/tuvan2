@@ -1,0 +1,169 @@
+﻿@model tuvantuyensinhsv.v2.Models.Truong
+
+@{
+    Layout = "~/Views/Shared/_LayoutTruong.cshtml";
+    ViewBag.Title = "Edit";
+    List<SelectListItem> listLoaiTruong = new List<SelectListItem>();
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Đại học",
+        Value = "DH"
+    });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Học viện",
+        Value = "HV"
+    });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Cao đẳng",
+        Value = "CD",
+        Selected = true
+    });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Trung cấp",
+        Value = "TC"
+    });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Học nghề",
+        Value = "HN"
+    });
+}
+<script type="text/javascript" src="/Scripts/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+</script>
+
+<div class="row">
+    <div class="col-lg-3">        
+    </div>
+    <div class="col-lg-6">
+        <h3>Chỉnh sửa Trường: @Model.Ten</h3>
+    </div>
+    <div class="col-lg-3">
+        
+    </div>
+</div>
+
+
+<div class="col-lg-2">
+    @Html.Partial("~/Views/Truongs/LogoTruong.cshtml",Model)
+</div>
+
+<div class="col-lg-8">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MaTruong)
+
+        <div class="panel-body">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">Thông tin</a>
+                </li>
+                <li>
+                    <a href="#giotithieu" data-toggle="tab">Giới thiệu</a>
+                </li>
+                <li>
+                    <a href="#deantuyesinh" data-toggle="tab">Đề án tuyển sinh</a>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <input type="submit" value="Lưu" class="btn btn-primary" />
+                    </div>
+                </li>
+            </ul>
+            <br />
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+
+                    <div class="form-group">
+                        <label>Tên trường</label>
+                        @Html.TextBoxFor(model => model.Ten, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Ten)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website</label>
+                        @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Website)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tỉnh/Thành</label>
+                        @Html.DropDownListFor(m => m.IDThanhPho, null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IDThanhPho)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mã trường</label>
+                        <input type="text" disabled="disabled" value="@Model.MaTruong" name="MaTruong" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.MaTruong)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Loại trường</label>
+                        @Html.DropDownListFor(m => m.LoaiTruong, listLoaiTruong, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IDThanhPho)
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logo</label>                        
+                        <input type="text" class="form-control" name="linkLogo" id="_linkLogo" value="@Model.linkLogo" onblur="changeLogo()" autocomplete="off" />
+                        @Html.ValidationMessageFor(model => model.linkLogo)
+                     </div>
+                    
+                </div>
+                <div class="tab-pane fade" id="giotithieu">
+                    <textarea name="GioiThieu" id="tinymce" style="height:500px;">@Model.GioiThieu</textarea>
+                </div>
+                <div class="tab-pane fade" id="deantuyesinh">
+                    <textarea name="DeAnTuyenSInh" id="tinymce" style="height:500px;">@Model.DeAnTuyenSInh</textarea>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="col-lg-2">
+
+</div>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    function changeLogo()
+    {
+        var link = $("#_linkLogo").val();
+        $("#_logoTruong").attr("src",link);
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

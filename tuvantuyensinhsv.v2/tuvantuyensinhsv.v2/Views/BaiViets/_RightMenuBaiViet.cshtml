@@ -1,0 +1,46 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.BaiViet> 
+@{
+    tuvantuyensinhsv.v2.Models.ProjectHEntities db = new tuvantuyensinhsv.v2.Models.ProjectHEntities();
+    int _Countruong = db.Truongs.Count();
+}
+
+  <!-- /.col-lg-8 -->
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> Bài viết
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="list-group">
+                <a href="/BaiViets/ListBaiViet?trangthai=-1" class="list-group-item">
+                    <i class="fa fa-tasks fa-fw"></i> &Sigma; Tổng số: @db.BaiViets.Count()
+                </a>
+
+                <a href="/BaiViets/ListBaiViet?trangthai=1" class="list-group-item">
+                    <i class="fa fa-tasks fa-fw"></i> &Sigma; Đang hoat động: @db.BaiViets.Where(t => t.Trangthai == 1).Count()
+                </a>
+
+                <a href="/BaiViets/ListBaiViet?trangthai=0" class="list-group-item">
+                    <i class="fa fa-upload fa-fw"></i> Yêu cầu đăng: @db.BaiViets.Where(t => t.Trangthai == 0).Count()
+                </a>
+                <a href="/BaiViets/ListBaiViet?trangthai=2" class="list-group-item">
+                    <i class="fa fa-bolt fa-fw"></i> Bài Ẩn bởi ngươi dùng: @db.BaiViets.Where(t => t.Trangthai == 2).Count()
+                </a>
+                <a href="/BaiViets/ListBaiViet?trangthai=3" class="list-group-item">
+                    <i class="fa fa-warning fa-fw"></i> Bài Xóa bởi ngươi dùng: @db.BaiViets.Where(t => t.Trangthai == 3).Count()
+                </a>
+                <a href="/BaiViets/ListBaiViet?trangthai=4" class="list-group-item">
+                    <i class="fa fa-warning fa-fw"></i> Bài Disable: @db.BaiViets.Where(t => t.Trangthai == 4).Count()
+                </a>
+                <a href="/BaiViets/ListBaiViet?trangthai=5" class="list-group-item">
+                    <i class="fa fa-warning fa-fw"></i> Low Rate: @db.BaiViets.Where(t => t.RatePosts.Where(x => x.Like == false).Count() > t.RatePosts.Where(j => j.Like == true).Count()).Count()
+                </a>
+            </div>
+            <!-- /.list-group -->
+            <a href="/Admin/ListBaiViets" class="btn btn-default btn-block">Quản lý</a>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<!-- /.col-lg-4 -->

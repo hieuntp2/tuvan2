@@ -1,0 +1,49 @@
+﻿@model tuvantuyensinhsv.v2.Models.MBTI
+
+@{
+    List<tuvantuyensinhsv.v2.Controllers.TabOject> list = ViewBag.tags;
+}
+
+
+
+
+<h2 class="page-header">
+    Kết quả cho: @Model.idMBTI
+</h2>
+
+<div class="col-lg-4" style="float: right;">
+    <div class="box box-solid box-warning">
+        <div class="box-header">
+            <h3 class="box-title">Một số ngành học liên quan, phù hợp với tính cách này</h3>
+        </div>
+        <div class="box-body">
+            @if (list != null && list.Count != 0)
+            {
+                foreach (tuvantuyensinhsv.v2.Controllers.TabOject item in list)
+                {
+                    <a onclick="_fgetmatch('@item.ID','@item.Ten')" class="btn btn-default" style="color: black;">@item.Ten</a>
+                }
+            }
+            else
+            {
+                <a class="btn btn-default" style="color: black;">Chưa có thông tin</a>
+            }
+        </div>
+    </div>
+</div>
+
+<span>
+    @Html.Raw(Model.GioiThieu)
+</span>
+
+(Nguồn: www.tgm.vn)
+
+<script>
+    function _fgetmatch(idnganh, tennganh) {
+        $("#_mymatchModalHeader").html(tennganh);
+        $("#_match").val(0);
+        $("#_mymatchModalBody").html("");
+        $('#_idmodelnganh').val(idnganh);
+        $('#_mymatchModal').modal('show');
+    }
+</script>

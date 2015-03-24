@@ -1,0 +1,39 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.ThanhPho>
+
+@{
+    ViewBag.Title = "Tỉnh/ Thành phố";
+}
+
+<h2>Danh sách tỉnh/ thành phố</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Ten, "Details", "ThanhPhoes", new { ID = item.ID }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MoTa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+    }
+
+</table>

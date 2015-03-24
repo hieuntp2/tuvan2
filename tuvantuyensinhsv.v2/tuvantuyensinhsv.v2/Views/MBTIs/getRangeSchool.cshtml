@@ -1,0 +1,128 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.TruongNganh>
+
+@{
+    int nam1 = DateTime.Now.Year - 1;
+    int nam2 = DateTime.Now.Year - 2;
+    int nam3 = DateTime.Now.Year - 3;
+    int cout = 0;
+}
+<table class="table">
+    <tr>
+        <th>
+            Trường
+        </th>
+        <th>
+            @nam1
+        </th>
+        <th>
+            @nam2
+        </th>
+        <th>
+            @nam3
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (cout == 0 || cout == 1)
+        {
+            <tr class="danger" onclick="fredirecttoschool('@item.MaTruong')" style="cursor: pointer;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem3)
+                </td>
+            </tr>
+        }
+
+        if (cout == 2 || cout == 3)
+        {
+            <tr class="warning" onclick="fredirecttoschool('@item.MaTruong')" style="cursor: pointer;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem3)
+                </td>
+            </tr>
+        }
+
+        if (cout == 4 || cout == 5)
+        {
+            <tr onclick="fredirecttoschool('@item.MaTruong')" style="cursor: pointer;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem3)
+                </td>
+            </tr>
+        }
+
+        if (cout == 6 || cout == 7)
+        {
+            <tr class="info" onclick="fredirecttoschool('@item.MaTruong')" style="cursor: pointer;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem3)
+                </td>
+            </tr>
+        }
+
+        if (cout == 8 || cout == 9)
+        {
+            <tr class="success" onclick="fredirecttoschool('@item.MaTruong')" style="cursor: pointer;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Truong.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Diem3)
+                </td>
+            </tr>
+        }
+        cout += 1;
+    }
+
+</table>
+
+<script>
+    function fredirecttoschool(idschool)
+    {
+        window.location = "/Truongs/Details/" + idschool;
+    }
+</script>

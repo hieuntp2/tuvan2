@@ -1,0 +1,39 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.KhoiThi>
+
+@{
+    ViewBag.Title = "Khối thi";
+}
+
+<h2>Danh sách khối thi</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(@item.Ten, "Details", "KhoiThis", new { ID = item.ID }, null)
+            </td>
+            <td>
+                @Html.ActionLink(@item.MoTa, "Details", "KhoiThis", new { ID = item.ID }, null)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

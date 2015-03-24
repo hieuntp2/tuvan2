@@ -1,0 +1,62 @@
+﻿@model tuvantuyensinhsv.v2.Models.TruongNganh
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Chỉnh sửa</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>TruongNganh</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.MaTruong)
+
+        @Html.HiddenFor(model => model.MaNganh)
+
+        @Html.HiddenFor(model => model.KhoiThi)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem2, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Diem3, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Diem3, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Diem3)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

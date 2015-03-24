@@ -1,0 +1,18 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace tuvantuyensinhsv.v2.Models
+{
+    [MetadataType(typeof(ThanhPho))]
+    public sealed class MetaDataThanhPho
+    {
+        [Required]
+        [Display(Name = "Tỉnh/Thành phố")]
+        public string Ten { get; set; }
+        public int ID { get; set; }
+
+        [Display(Name = "Mô tả")]
+        public string MoTa { get; set; }
+    
+    }
+}

@@ -1,0 +1,101 @@
+﻿@model tuvantuyensinhsv.v2.Models.Truong
+
+@{
+    ViewBag.Title = "Trường";
+
+    List<SelectListItem> listLoaiTruong = new List<SelectListItem>();
+    listLoaiTruong.Add(new SelectListItem
+            {
+                Text = "Đại học",
+                Value = "DH"
+            });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Học viện",
+        Value = "HV"
+    });
+    listLoaiTruong.Add(new SelectListItem
+            {
+                Text = "Cao đẳng",
+                Value = "CD",
+                Selected = true
+            });
+    listLoaiTruong.Add(new SelectListItem
+            {
+                Text = "Trung cấp",
+                Value = "TC"
+            });
+    listLoaiTruong.Add(new SelectListItem
+    {
+        Text = "Học nghề",
+        Value = "HN"
+    });
+}
+
+<h2>Trường</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Tạo mới</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ten, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Ten, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Ten)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Website, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Website, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Website)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDThanhPho, "Tỉnh/Thành phố", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.IDThanhPho, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDThanhPho)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaTruong, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.MaTruong, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaTruong)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoaiTruong, "Loại trường", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.LoaiTruong, listLoaiTruong, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDThanhPho)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

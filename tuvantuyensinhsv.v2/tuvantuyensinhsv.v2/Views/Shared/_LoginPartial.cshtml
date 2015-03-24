@@ -1,0 +1,188 @@
+﻿@using Microsoft.AspNet.Identity
+@using tuvantuyensinhsv.v2.Models
+@{
+    ProjectHEntities db = new ProjectHEntities();
+    List<tuvantuyensinhsv.v2.Models.InternalMessage> messages = new List<tuvantuyensinhsv.v2.Models.InternalMessage>();
+
+    if (Request.IsAuthenticated)
+    {
+        string username =  User.Identity.GetUserId();
+        AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == username);
+        //messages = user.MessageTo.ToList();
+        if (messages.Count > 0)
+        {
+            messages.OrderBy(t => t.DateCreate);
+        }
+    }
+}
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-top-links navbar-right">
+            <!-- Message -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+
+                    @if (messages.Count() > 0)
+{
+    int count = 0;
+    do
+    {
+        <li onclick="DetailMessage(@count)">
+            <a>
+                <div>
+                    @*@if (messages[count].AspNetUser.HoTen != null)
+                    {
+                        <strong>@messages[count].AspNetUser.HoTen</strong>
+                    }
+                    else
+                    {*@
+                        <strong>@messages[count].AspNetUser.UserName</strong>
+                  //  }
+                    <input type="hidden" id="messFrom_@count" value="@messages[count].From" />
+                    <input type="hidden" id="messDate_@count" value="@messages[count].DateCreate" />
+                    <span class="pull-right text-muted">
+                        <em>@messages[count].DateCreate</em>
+                    </span>
+                </div>
+                @if (messages[count].Mesage.Count() >= 100)
+                {
+                    <div>@messages[count].Mesage.Substring(0, 99) ...</div>
+                }
+                else
+                {
+                    <div>@messages[count].Mesage</div>
+                }
+
+            </a>
+        </li>
+                count += 1;
+                if (messages.Count() <= count || count == 3)
+                {
+                    break;
+                }
+    }
+    while (true);
+
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="/InternalMessage/Index">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a>                                
+                                <div>Không có tin nhắn nào</div>
+                            </a>
+                        </li>
+                    }
+
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center">
+                            <strong onclick="SendInternallMessage()">Gửi tin nhắn</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- Account -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i><i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a href="/BaiViets/Index"><i class="fa fa-gear fa-fw"></i>Quản lý bài viết</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="/Account/Manage"><i class="fa fa-user fa-fw"></i>Thông tin cá nhân</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-gear fa-fw"></i>Chỉnh sửa thông tin</a>
+                    </li>
+                    <li class="divider"></li>
+
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+
+    }
+}
+else
+{
+    <ul class="nav navbar-top-links navbar-right">
+        <!-- Account -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="/Account/Login"><i class="fa fa-user fa-fw"></i>Đăng nhập</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gear fa-fw"></i>Giúp đỡ</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="/Account/Register"><i class="fa fa-sign-out fa-fw"></i>Đăng ký</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+
+        <!-- /.dropdown -->
+    </ul>
+
+}
+
+
+<script>
+    function SendInternallMessage()
+    {
+        $.ajax({
+            url: "/InternalMessage/Create",
+            type: "GET",
+            data: { To: null },
+            success: function (data) {
+                $("#_MessagePopupLable").html("Gửi tin nhắn");
+                $("#_MessagePopupBody").html(data);
+                $('#myModal').modal('show');
+
+            }
+        });
+    }
+
+    function DetailMessage(count)
+    {
+        var fromuser = $('#messFrom_'+count).val();
+        var datecreate = $('#messDate_'+count).val();
+        $.ajax({
+            url: "/InternalMessage/Details",
+            type: "POST",
+            data: { from: fromuser, date: datecreate },
+            success: function (data) {
+                $("#_MessagePopupLable").html("Tin nhắn");
+                $("#_MessagePopupBody").html(data);
+                $('#myModal').modal('show');
+            }
+        });
+    }
+</script>

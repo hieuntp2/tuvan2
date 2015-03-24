@@ -1,0 +1,18 @@
+﻿@model tuvantuyensinhsv.v2.Models.BaiViet
+@{
+    int LikeCount = Model.RatePosts.Where(t => t.Like == true).Count();
+    int DislikeCount = Model.RatePosts.Where(t => t.Like == false).Count();
+}
+<span>Like/ Dislike:</span>
+@if (LikeCount >= DislikeCount)
+{
+    <span style="color:blue; font-size:30px;"><strong>@LikeCount</strong></span>
+    <span>/</span>
+    <span style="color:red;"> @DislikeCount</span>
+}
+else
+{
+    <span style="color:blue;">@LikeCount</span>
+    <span>/</span>
+    <span style="color: red; font-size: 30px;"><strong>@DislikeCount</strong></span>
+}

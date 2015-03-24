@@ -1,0 +1,17 @@
+﻿@model tuvantuyensinhsv.v2.Models.Truong
+
+
+<div class="panel">
+    <div class="panel-body">
+        @if (Model.linkLogo == null || Model.linkLogo == "")
+        {
+            <img src="~/Content/university.png" style="width:150px; height:150px;" id="_logoTruong" />
+        }
+        else
+        {
+            <img src="@Model.linkLogo" style="width:150px; height:150px;" id="_logoTruong" />
+        }
+    </div>    
+</div>
+<hr />
+

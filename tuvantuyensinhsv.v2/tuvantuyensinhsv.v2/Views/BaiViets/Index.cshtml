@@ -1,0 +1,60 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.BaiViet>
+
+@{
+    ViewBag.Title = "Bài viết";
+}
+
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+
+<div class="panel">
+    <div class="panel-body">
+        <a style="float:right;" class="btn btn-primary" href="/baiviets/Create">Đăng bài</a>
+        <h2>Bài Viết</h2>
+        <hr />
+
+        <div class="table-responsive">
+            <div class="tab-content">
+                <div class="table-responsive">
+                    <table id="tablesresult" class="table table-striped table-bordered table-hover dataTable no-footer">
+                        <thead>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Người đăng</th>
+                                <th>Ngày đăng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="gradeA odd" style="cursor:pointer" onclick="fbaivietdetail(@item.ID)">
+                                    <td>@item.TieuDe</td>
+                                    <td>@item.AspNetUser.UserName</td>
+                                    <td>@item.NgayCapNhat</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="dataTables_wrapper form-inline">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#tablesresult').DataTable({
+            "aLengthMenu": [[50, 100, -1], [50, 100, "All"]]
+        });
+    });
+
+    function fbaivietdetail(id)
+    {
+        window.location.href = "/baiviets/details/"+id;
+    }
+</script>
+

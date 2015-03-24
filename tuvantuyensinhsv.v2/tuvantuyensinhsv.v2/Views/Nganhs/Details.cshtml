@@ -1,0 +1,174 @@
+﻿@model tuvantuyensinhsv.v2.Models.Nganh
+<script src="~/Content/js/facebook_comment.js"></script>
+<!-- DataTables-->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+@{
+    ViewBag.Title = Model.Ten;
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+    List<tuvantuyensinhsv.v2.Models.BaiViet> baiviets = ViewBag.baiviets;
+}
+
+
+<br />
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding: 15px; margin-top: 0px; padding-top: 0px; padding-bottom: 0px;">
+            <h3 style="margin-top: 10px;">@if (Model.MaNganh[0] == 'D')
+            {
+                <h3>Ngành: @Model.Ten  -- hệ Đại học</h3>
+            }
+            else
+                if (Model.MaNganh[0] == 'C')
+                {
+                    <h3>Ngành: @Model.Ten  -- hệ cao đẳng</h3>
+                }
+                else
+                {
+                    <h3>Ngành: @Model.Ten</h3>
+                }
+            </h3>
+
+            <h3>Mã ngành: @Model.MaNganh</h3>
+        </div>
+    </div>
+</div>
+
+<div class="panel row col-lg-12">
+    <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#home" data-toggle="tab">Trường đào tạo</a>
+            </li>
+            <li>
+                <a href="#comments" data-toggle="tab">Comments</a>
+            </li>
+
+            <li>
+                <a href="#baiviet" data-toggle="tab">Bài viết liên quan</a>
+            </li>
+            <li>
+                <a href="#googlesearch" data-toggle="tab">Google</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <div class="table-responsive">
+                    <div class="dataTables_wrapper form-inline">
+                        <table id="tablesresult" class="table table-striped table-bordered table-hover dataTable no-footer">
+                            <thead>
+                                <tr>
+                                    <th>Tỉnh/thành</th>
+                                    <th>Trường</th>
+                                    <th>Điểm @(DateTime.Now.Year - 1)</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @if (Model.TruongNganhs.Count() != 0)
+                                {
+                                    foreach (var item in Model.TruongNganhs)
+                                    {
+                                        <tr>
+                                            <th><a href="/ThanhPhoes/Details/@item.Truong.ThanhPho.ID">@item.Truong.ThanhPho.Ten</a></th>
+                                            <th> <a href="/Truongs/Details/@item.MaTruong">@item.Truong.Ten</a> </th>
+                                            <th>@item.Diem1</th>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <p>Chưa có thông tin</p>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="comments" style="width:100%;">
+                <div id="fb-root"></div>
+                <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="100%" data-numposts="10" data-colorscheme="light"></div>
+            </div>
+
+            <div class="tab-pane fade" id="baiviet">
+                <table class="table table-hover">
+                    <tr>
+                        <th>
+                            Tên bài
+                        </th>
+                        <th>
+                            Người đăng
+                        </th>
+                        <th>Ngày cập nhật</th>
+                    </tr>
+                    @if (baiviets.Count() != 0)
+                    {
+                        foreach (var bai in baiviets)
+                        {
+                            <tr>
+                                <td> <a href="/BaiViets/Details/@bai.ID">@bai.TieuDe</a></td>
+                                <td>@bai.AspNetUser.UserName</td>
+                                <td>@bai.NgayCapNhat.Date.ToString("d")</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <th colspan="2">
+                                <p>Chưa có bài viết liên quan, hãy <a href="/BaiViets/Create">đăng bài mới</a> và tag tài liệu ở đây</p>
+                            </th>
+                        </tr>
+                    }
+
+                </table>
+
+
+            </div>
+            <div class="tab-pane fade" id="googlesearch">
+                <div id="results">Đang tìm kiếm thông tin @Model.Ten trên Google</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#tablesresult').DataTable({
+            "aLengthMenu": [[50, 100, -1], [50, 100, "All"]]
+        });
+    });
+
+    function gcseCallback() {
+        if (document.readyState != 'complete')
+            return google.setOnLoadCallback(gcseCallback, true);
+        $("#results").html("");
+        google.search.cse.element.render({ gname: 'gsearch', div: 'results', tag: 'searchresults-only', attributes: { linkTarget: '' } });
+        var element = google.search.cse.element.getElement('gsearch');
+        element.execute('Ngành @Model.Ten/ Khoa @Model.Ten');
+        
+    };
+    window.__gcse = {
+        parsetags: 'explicit',
+        callback: gcseCallback
+    };
+    (function () {
+        var cx = '004112385005406622951:q9p2zeiezyc';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+          '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+       
+    })();
+</script>

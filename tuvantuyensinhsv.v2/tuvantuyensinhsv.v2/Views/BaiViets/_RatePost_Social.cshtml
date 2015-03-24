@@ -1,0 +1,61 @@
+﻿@model tuvantuyensinhsv.v2.Models.BaiViet
+
+<div class="panel panel-default">
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+
+        <span>Đánh giá: </span>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <span style="float:right;" id="RateButton">
+                <button type="button" class="btn btn-info btn-circle" onclick="LikeClick()">
+                    <i class="fa fa-check"></i>
+                </button>
+
+                <button type="button" class="btn btn-warning btn-circle" onclick="DislikeClick()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </span>
+            <script>
+                    function LikeClick()
+                    {
+                        $.ajax({
+                            url: "/BaiViets/RateBaiViet",
+                            type: "POST",
+                            data: {ID : @Model.ID , rate: 1},
+                            success: function(data){
+                                $("#RateButton").html("<p>Cám ơn bạn đã đánh giá bài viết</p>")
+                            },
+                            success: function(data){
+                                $("#RateButton").html("<p>Cám ơn bạn đã đánh giá bài viết</p>")
+                            },
+                        });
+                    }
+
+                    function DislikeClick() {
+                        $.ajax({
+                            url: "/BaiViets/RateBaiViet",
+                            type: "POST",
+                            data: {ID : @Model.ID , rate: 0},
+                        }).done(function () {
+                            $("#RateButton").html("<p>Cám ơn bạn đã đánh giá bài viết</p>")
+                        });
+                    }
+            </script>
+        }
+        else
+        {
+            <p style="color:red; float:right;">Bạn cần đăng nhập để đánh giá bài viết</p>
+        }
+
+        <br /><br />
+
+        <p>
+            <span>Chia sẻ bài viết: </span>
+        </p>
+
+        <a class="btn btn-block btn-social btn-facebook" href="javascript:fbshareCurrentPage()">
+            <i class="fa fa-facebook"></i>Facebook</a>
+
+    </div>
+</div>
