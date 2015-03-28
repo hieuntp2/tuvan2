@@ -25,6 +25,11 @@ namespace tuvantuyensinhsv.v2.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BaiViet> BaiViets { get; set; }
         public virtual DbSet<InternalMessage> InternalMessages { get; set; }
         public virtual DbSet<KhoiThi> KhoiThis { get; set; }
@@ -38,10 +43,5 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
         public virtual DbSet<TruongNganh> TruongNganhs { get; set; }
         public virtual DbSet<Truong> Truongs { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

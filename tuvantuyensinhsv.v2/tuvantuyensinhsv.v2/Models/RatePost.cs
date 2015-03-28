@@ -18,7 +18,7 @@ namespace tuvantuyensinhsv.v2.Models
         public string IDUsername { get; set; }
         public bool Like { get; set; }
     
-        public virtual BaiViet BaiViet { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual BaiViet BaiViet { get; set; }
     }
 }

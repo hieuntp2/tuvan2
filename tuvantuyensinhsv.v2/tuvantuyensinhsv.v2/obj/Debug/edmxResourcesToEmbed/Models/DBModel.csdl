@@ -1,5 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ProjectHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="BaiViets" Relationship="Self.FK_BaiViets_AspNetUsers" FromRole="AspNetUsers" ToRole="BaiViets" />
+    <NavigationProperty Name="InternalMessages" Relationship="Self.FK_InternalMessage_AspNetUsers" FromRole="AspNetUsers" ToRole="InternalMessage" />
+    <NavigationProperty Name="InternalMessages1" Relationship="Self.FK_InternalMessage_AspNetUsers1" FromRole="AspNetUsers" ToRole="InternalMessage" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_AspNetUsers" FromRole="AspNetUsers" ToRole="Questions" />
+    <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="AspNetUsers" ToRole="RatePost" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
   <EntityType Name="BaiViet">
     <Key>
       <PropertyRef Name="ID" />
@@ -11,8 +75,8 @@
     <Property Name="NgayCapNhat" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Trangthai" Type="Int32" Nullable="false" />
     <Property Name="Tabs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_BaiViets_AspNetUsers" FromRole="BaiViets" ToRole="AspNetUsers" />
     <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_BaiViets" FromRole="BaiViets" ToRole="RatePost" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_BaiViets_AspNetUsers" FromRole="BaiViet" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="InternalMessage">
     <Key>
@@ -24,8 +88,8 @@
     <Property Name="To" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Mesage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_InternalMessage_AspNetUsers" FromRole="InternalMessage" ToRole="AspNetUser" />
-    <NavigationProperty Name="AspNetUser1" Relationship="ProjectHModel.FK_InternalMessage_AspNetUsers1" FromRole="InternalMessage" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_InternalMessage_AspNetUsers" FromRole="InternalMessage" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUser1" Relationship="Self.FK_InternalMessage_AspNetUsers1" FromRole="InternalMessage" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="KhoiThi">
     <Key>
@@ -60,8 +124,8 @@
     <Property Name="Noidung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="userid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Ngaydang" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_Questions_AspNetUsers" FromRole="Question" ToRole="AspNetUser" />
     <Property Name="Tabs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Questions_AspNetUsers" FromRole="Questions" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="RatePost">
     <Key>
@@ -71,8 +135,8 @@
     <Property Name="IDBaiViet" Type="Int32" Nullable="false" />
     <Property Name="IDUsername" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Like" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="RatePost" ToRole="AspNetUsers" />
     <NavigationProperty Name="BaiViet" Relationship="Self.FK_RatePost_BaiViets" FromRole="RatePost" ToRole="BaiViets" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_RatePost_AspNetUsers" FromRole="RatePost" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -139,6 +203,94 @@
     <NavigationProperty Name="ThanhPho" Relationship="Self.FK_Truong_ThanhPho" FromRole="Truongs" ToRole="ThanhPhoes" />
     <NavigationProperty Name="TruongNganhs" Relationship="Self.FK_TruongNganhs_Truongs" FromRole="Truongs" ToRole="TruongNganhs" />
   </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BaiViets_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="BaiViets" Type="Self.BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaiViets">
+        <PropertyRef Name="NguoiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InternalMessage_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="InternalMessage" Type="Self.InternalMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InternalMessage">
+        <PropertyRef Name="To" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InternalMessage_AspNetUsers1">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="InternalMessage" Type="Self.InternalMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InternalMessage">
+        <PropertyRef Name="From" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RatePost_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+    <End Role="RatePost" Type="Self.RatePost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RatePost">
+        <PropertyRef Name="IDUsername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RatePost_BaiViets">
     <End Role="BaiViets" Type="Self.BaiViet" Multiplicity="1" />
     <End Role="RatePost" Type="Self.RatePost" Multiplicity="*" />
@@ -187,7 +339,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="ProjectHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="BaiViets" EntityType="Self.BaiViet" />
     <EntitySet Name="InternalMessages" EntityType="Self.InternalMessage" />
     <EntitySet Name="KhoiThis" EntityType="Self.KhoiThi" />
@@ -201,6 +362,34 @@
     <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPho" />
     <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganh" />
     <EntitySet Name="Truongs" EntityType="Self.Truong" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BaiViets_AspNetUsers" Association="Self.FK_BaiViets_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="BaiViets" EntitySet="BaiViets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InternalMessage_AspNetUsers" Association="Self.FK_InternalMessage_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="InternalMessage" EntitySet="InternalMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InternalMessage_AspNetUsers1" Association="Self.FK_InternalMessage_AspNetUsers1">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="InternalMessage" EntitySet="InternalMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_AspNetUsers" Association="Self.FK_Questions_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RatePost_AspNetUsers" Association="Self.FK_RatePost_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="RatePost" EntitySet="RatePosts" />
+    </AssociationSet>
     <AssociationSet Name="FK_RatePost_BaiViets" Association="Self.FK_RatePost_BaiViets">
       <End Role="BaiViets" EntitySet="BaiViets" />
       <End Role="RatePost" EntitySet="RatePosts" />
@@ -217,198 +406,9 @@
       <End Role="Truongs" EntitySet="Truongs" />
       <End Role="TruongNganhs" EntitySet="TruongNganhs" />
     </AssociationSet>
-    <EntitySet Name="C__MigrationHistory" EntityType="ProjectHModel.C__MigrationHistory" />
-    <EntitySet Name="AspNetRoles" EntityType="ProjectHModel.AspNetRole" />
-    <EntitySet Name="AspNetUserClaims" EntityType="ProjectHModel.AspNetUserClaim" />
-    <EntitySet Name="AspNetUserLogins" EntityType="ProjectHModel.AspNetUserLogin" />
-    <EntitySet Name="AspNetUsers" EntityType="ProjectHModel.AspNetUser" />
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ProjectHModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ProjectHModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BaiViets_AspNetUsers" Association="ProjectHModel.FK_BaiViets_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="BaiViet" EntitySet="BaiViets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InternalMessage_AspNetUsers" Association="ProjectHModel.FK_InternalMessage_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="InternalMessage" EntitySet="InternalMessages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InternalMessage_AspNetUsers1" Association="ProjectHModel.FK_InternalMessage_AspNetUsers1">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="InternalMessage" EntitySet="InternalMessages" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Questions_AspNetUsers" Association="ProjectHModel.FK_Questions_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="Question" EntitySet="Questions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RatePost_AspNetUsers" Association="ProjectHModel.FK_RatePost_AspNetUsers">
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-      <End Role="RatePost" EntitySet="RatePosts" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="ProjectHModel.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="C__MigrationHistory">
-    <Key>
-      <PropertyRef Name="MigrationId" />
-      <PropertyRef Name="ContextKey" />
-    </Key>
-    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="AspNetRole">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUsers" Relationship="ProjectHModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-  </EntityType>
-  <EntityType Name="AspNetUserClaim">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
-  </EntityType>
-  <EntityType Name="AspNetUserLogin">
-    <Key>
-      <PropertyRef Name="LoginProvider" />
-      <PropertyRef Name="ProviderKey" />
-      <PropertyRef Name="UserId" />
-    </Key>
-    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-  </EntityType>
-  <EntityType Name="AspNetUser">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
-    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
-    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
-    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUserClaims" Relationship="ProjectHModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-    <NavigationProperty Name="AspNetUserLogins" Relationship="ProjectHModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="BaiViets" Relationship="ProjectHModel.FK_BaiViets_AspNetUsers" FromRole="AspNetUser" ToRole="BaiViet" />
-    <NavigationProperty Name="InternalMessages" Relationship="ProjectHModel.FK_InternalMessage_AspNetUsers" FromRole="AspNetUser" ToRole="InternalMessage" />
-    <NavigationProperty Name="InternalMessages1" Relationship="ProjectHModel.FK_InternalMessage_AspNetUsers1" FromRole="AspNetUser" ToRole="InternalMessage" />
-    <NavigationProperty Name="Questions" Relationship="ProjectHModel.FK_Questions_AspNetUsers" FromRole="AspNetUser" ToRole="Question" />
-    <NavigationProperty Name="RatePosts" Relationship="ProjectHModel.FK_RatePost_AspNetUsers" FromRole="AspNetUser" ToRole="RatePost" />
-    <NavigationProperty Name="AspNetRoles" Relationship="ProjectHModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-  </EntityType>
-  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="ProjectHModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserClaim">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="ProjectHModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AspNetUserLogin">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BaiViets_AspNetUsers">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-    <End Type="ProjectHModel.BaiViet" Role="BaiViet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="BaiViet">
-        <PropertyRef Name="NguoiDang" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InternalMessage_AspNetUsers">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="ProjectHModel.InternalMessage" Role="InternalMessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InternalMessage">
-        <PropertyRef Name="To" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InternalMessage_AspNetUsers1">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="ProjectHModel.InternalMessage" Role="InternalMessage" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="InternalMessage">
-        <PropertyRef Name="From" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Questions_AspNetUsers">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-    <End Type="ProjectHModel.Question" Role="Question" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Question">
-        <PropertyRef Name="userid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RatePost_AspNetUsers">
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-    <End Type="ProjectHModel.RatePost" Role="RatePost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUser">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RatePost">
-        <PropertyRef Name="IDUsername" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="ProjectHModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
-  </Association>
 </Schema>

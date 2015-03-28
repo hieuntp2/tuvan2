@@ -838,13 +838,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\DBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DBModel.edmx.diagram">
-      <DependentUpon>DBModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\AngularJs\homeindexscript.js" />
     <Content Include="Scripts\AngularJs\questionscript.js" />
@@ -1009,6 +1002,13 @@
     <Content Include="Content\plugins\ckeditor\skins\moono\readme.md" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-codes.json" />
+    <EntityDeploy Include="Models\DBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DBModel.edmx.diagram">
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
@@ -1109,6 +1109,7 @@
     <Content Include="Views\Shared\_main_slide_bar.cshtml" />
     <Content Include="Views\MBTIs\Index2.cshtml" />
     <Content Include="Views\MBTIs\_kiemtraMBTI.cshtml" />
+    <Content Include="Views\Truongs\Details - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
