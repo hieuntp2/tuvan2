@@ -2,11 +2,57 @@
 @{
     ViewBag.Title = "Manage";
 }
+<div class="row">
+    <div class="col-lg-12">
+        <form action="/Manage/Index" method="post">
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 style="margin-top:0px;">Profile</h3>
+                </div>
+                <div class="box-body">                    
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label>Họ Tên</label>
+                        <input name="hoTen" value="@Model.hoTen" type="text" class="form-control" placeholder="Họ tên" />
+                    </div>
 
-<h2>@ViewBag.Title.</h2>
+                    <div class="form-group">
+                        <label>Sinh nhật</label>
+                        <input name="sinhNhat" value="@Model.sinhNhat" type="date" class="form-control" placeholder="Sinh nhật" />
+                    </div>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
+                    <div class="form-group">
+                        <label>link avatar</label>
+                        <input name="profile_avatar_link" value="@Model.profile_avatar_link" type="text" class="form-control" placeholder="Họ tên" />
+                    </div>
+
+                    <hr />
+                    <div class="form-group">
+                        <label>Trường (đại học, cao đẳng, trung cấp...)</label>
+                        <input name="idTruong" value="@Model.idTruong" type="text" class="form-control" placeholder="Họ tên" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngành học</label>
+                        <input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Công việc hiện tại</label>
+                        <input name="congViec" value="@Model.congViec" type="text" class="form-control" placeholder="Công việc hiện tại" />
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-success" value="Cập nhật" />
+                    <button class="btn btn-warning">Đổi mật khẩu</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -28,57 +74,13 @@
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
-            </dd>
-        *@
+        
         <dt>Two-Factor Authentication:</dt>
         <dd>
             <p>
                 There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication.
             </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
         </dd>
     </dl>
-</div>
+</div>*@

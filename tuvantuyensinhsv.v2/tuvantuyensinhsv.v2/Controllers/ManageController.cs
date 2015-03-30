@@ -11,12 +11,15 @@ using tuvantuyensinhsv.v2.Controllers.ClassEngine;
 
 namespace tuvantuyensinhsv.v2.Controllers
 {
+    /// <summary>
+    /// Manage user account information
+    /// </summary>
     [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ProjectHEntities db = new ProjectHEntities();
         public ManageController()
         {
         }
@@ -33,9 +36,9 @@ namespace tuvantuyensinhsv.v2.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -66,8 +69,8 @@ namespace tuvantuyensinhsv.v2.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            FacebookUserInfor fbuser = new FacebookUserInfor();
-            string email = fbuser.getEmail("hieuntp2");
+            //FacebookUserInfor fbuser = new FacebookUserInfor();
+            //string email = fbuser.getEmail("hieuntp2");
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -76,7 +79,41 @@ namespace tuvantuyensinhsv.v2.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
+            model.congViec = user.congViec;
+            model.fbid = user.fbid;
+            model.hoTen = user.hoTen;
+            model.idNganh = user.idNganh;
+            model.idTruong = user.idTruong;
+            model.sinhNhat = (DateTime)user.sinhNhat;
+
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index([Bind(Include = "profile_avatar_link,idTruong,idNganh,congViec,fbid,sinhNhat,hoTen")]IndexViewModel model)
+        {
+            if(model.profile_avatar_link == null || model.profile_avatar_link == "")
+            {
+                model.profile_avatar_link = "../../content/default_account.png";
+            }
+            if (ModelState.IsValid)
+            {
+                var userId = User.Identity.GetUserId();
+                AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
+                user.congViec = model.congViec;
+                user.fbid = model.fbid;
+                user.hoTen = model.hoTen;
+                user.idNganh = model.idNganh;
+                user.idTruong = model.idTruong;
+                user.sinhNhat = model.sinhNhat;
+
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View();
         }
 
         //
@@ -335,7 +372,7 @@ namespace tuvantuyensinhsv.v2.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -386,6 +423,6 @@ namespace tuvantuyensinhsv.v2.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

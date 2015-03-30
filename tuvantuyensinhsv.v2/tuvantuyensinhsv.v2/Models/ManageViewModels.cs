@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
 
 namespace tuvantuyensinhsv.v2.Models
 {
@@ -12,6 +13,18 @@ namespace tuvantuyensinhsv.v2.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+
+        public string profile_avatar_link
+        {
+            get;
+            set;
+        }
+        public string idTruong { get; set; }
+        public string idNganh { get; set; }
+        public string congViec { get; set; }
+        public string fbid { get; set; }
+        public DateTime sinhNhat { get; set; }
+        public string hoTen { get; set; }
     }
 
     public class ManageLoginsViewModel
