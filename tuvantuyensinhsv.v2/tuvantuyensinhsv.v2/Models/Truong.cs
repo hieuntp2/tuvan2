@@ -18,6 +18,7 @@ namespace tuvantuyensinhsv.v2.Models
         public Truong()
         {
             this.TruongNganhs = new HashSet<TruongNganh>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public string Ten { get; set; }
@@ -32,5 +33,7 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual ThanhPho ThanhPho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TruongNganh> TruongNganhs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

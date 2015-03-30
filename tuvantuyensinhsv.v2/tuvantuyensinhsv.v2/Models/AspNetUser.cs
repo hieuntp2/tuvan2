@@ -39,6 +39,13 @@ namespace tuvantuyensinhsv.v2.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
+        public string profile_avatar_link { get; set; }
+        public string idTruong { get; set; }
+        public string idNganh { get; set; }
+        public string congViec { get; set; }
+        public string fbid { get; set; }
+        public Nullable<System.DateTime> sinhNhat { get; set; }
+        public string hoTen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -56,5 +63,7 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual ICollection<RatePost> RatePosts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual Nganh Nganh { get; set; }
+        public virtual Truong Truong { get; set; }
     }
 }

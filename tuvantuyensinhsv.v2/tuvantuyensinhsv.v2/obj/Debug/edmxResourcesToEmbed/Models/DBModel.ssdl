@@ -60,6 +60,13 @@
     <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="profile_avatar_link" Type="nvarchar(max)" />
+    <Property Name="idTruong" Type="nvarchar" MaxLength="10" />
+    <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
+    <Property Name="congViec" Type="nvarchar(max)" />
+    <Property Name="fbid" Type="nvarchar" MaxLength="255" />
+    <Property Name="sinhNhat" Type="date" />
+    <Property Name="hoTen" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="BaiViets">
     <Key>
@@ -187,6 +194,30 @@
     <Property Name="DeAnTuyenSInh" Type="ntext" />
     <Property Name="GioiThieu" Type="ntext" />
   </EntityType>
+  <Association Name="FK_AspNetUsers_Nganhs">
+    <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganhs">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="idNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_Truongs">
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truongs">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="idTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BaiViets_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
     <End Role="BaiViets" Type="Self.BaiViets" Multiplicity="*" />
@@ -371,6 +402,14 @@
     <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganhs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Truongs" EntityType="Self.Truongs" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="Self.FK_AspNetUsers_Nganhs">
+      <End Role="Nganhs" EntitySet="Nganhs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Truongs" Association="Self.FK_AspNetUsers_Truongs">
+      <End Role="Truongs" EntitySet="Truongs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
     <AssociationSet Name="FK_BaiViets_AspNetUsers" Association="Self.FK_BaiViets_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="BaiViets" EntitySet="BaiViets" />

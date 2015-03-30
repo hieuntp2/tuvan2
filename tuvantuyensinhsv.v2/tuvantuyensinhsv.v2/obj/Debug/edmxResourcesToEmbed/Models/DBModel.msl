@@ -41,6 +41,13 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="ProjectHModel.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+          <ScalarProperty Name="sinhNhat" ColumnName="sinhNhat" />
+          <ScalarProperty Name="fbid" ColumnName="fbid" />
+          <ScalarProperty Name="congViec" ColumnName="congViec" />
+          <ScalarProperty Name="idNganh" ColumnName="idNganh" />
+          <ScalarProperty Name="idTruong" ColumnName="idTruong" />
+          <ScalarProperty Name="profile_avatar_link" ColumnName="profile_avatar_link" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />

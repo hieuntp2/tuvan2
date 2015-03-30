@@ -35,6 +35,8 @@
         <AssociationConnector Association="ProjectHModel.FK_Truong_ThanhPho" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_TruongNganhs_Truongs" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectHModel.FK_AspNetUsers_Nganhs" />
+        <AssociationConnector Association="ProjectHModel.FK_AspNetUsers_Truongs" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -30,8 +30,9 @@ namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
 
         public string getEmail(string username)
         {
-            dynamic user = fbclient.Get(username);
-            return user.email;
+            //dynamic user = fbclient.Get(username);
+            //return user.email;
+            return "";
         }
         public string getFullName(string username)
         {

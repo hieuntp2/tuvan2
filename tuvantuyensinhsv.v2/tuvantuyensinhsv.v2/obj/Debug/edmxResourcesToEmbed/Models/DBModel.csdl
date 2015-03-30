@@ -63,6 +63,15 @@
     <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_AspNetUsers" FromRole="AspNetUsers" ToRole="Questions" />
     <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="AspNetUsers" ToRole="RatePost" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="profile_avatar_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idTruong" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="idNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="congViec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fbid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="sinhNhat" Type="DateTime" Precision="0" />
+    <Property Name="hoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Nganh" Relationship="ProjectHModel.FK_AspNetUsers_Nganhs" FromRole="AspNetUser" ToRole="Nganh" />
+    <NavigationProperty Name="Truong" Relationship="ProjectHModel.FK_AspNetUsers_Truongs" FromRole="AspNetUser" ToRole="Truong" />
   </EntityType>
   <EntityType Name="BaiViet">
     <Key>
@@ -114,6 +123,7 @@
     <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MaNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="TruongNganhs" Relationship="Self.FK_TruongNganhs_Nganhs" FromRole="Nganhs" ToRole="TruongNganhs" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ProjectHModel.FK_AspNetUsers_Nganhs" FromRole="Nganh" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="Question">
     <Key>
@@ -202,6 +212,7 @@
     <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ThanhPho" Relationship="Self.FK_Truong_ThanhPho" FromRole="Truongs" ToRole="ThanhPhoes" />
     <NavigationProperty Name="TruongNganhs" Relationship="Self.FK_TruongNganhs_Truongs" FromRole="Truongs" ToRole="TruongNganhs" />
+    <NavigationProperty Name="AspNetUsers" Relationship="ProjectHModel.FK_AspNetUsers_Truongs" FromRole="Truong" ToRole="AspNetUser" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -410,5 +421,37 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="ProjectHModel.FK_AspNetUsers_Nganhs">
+      <End Role="Nganh" EntitySet="Nganhs" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Truongs" Association="ProjectHModel.FK_AspNetUsers_Truongs">
+      <End Role="Truong" EntitySet="Truongs" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_AspNetUsers_Nganhs">
+    <End Type="ProjectHModel.Nganh" Role="Nganh" Multiplicity="0..1" />
+    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganh">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="idNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_Truongs">
+    <End Type="ProjectHModel.Truong" Role="Truong" Multiplicity="0..1" />
+    <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truong">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="idTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

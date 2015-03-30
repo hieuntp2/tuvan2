@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -65,6 +65,13 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="profile_avatar_link" Type="nvarchar(max)" />
+          <Property Name="idTruong" Type="nvarchar" MaxLength="10" />
+          <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
+          <Property Name="congViec" Type="nvarchar(max)" />
+          <Property Name="fbid" Type="nvarchar" MaxLength="255" />
+          <Property Name="sinhNhat" Type="date" />
+          <Property Name="hoTen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BaiViets">
           <Key>
@@ -192,6 +199,30 @@
           <Property Name="DeAnTuyenSInh" Type="ntext" />
           <Property Name="GioiThieu" Type="ntext" />
         </EntityType>
+        <Association Name="FK_AspNetUsers_Nganhs">
+          <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganhs">
+              <PropertyRef Name="MaNganh" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="idNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Truongs">
+          <End Role="Truongs" Type="Self.Truongs" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truongs">
+              <PropertyRef Name="MaTruong" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="idTruong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BaiViets_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="BaiViets" Type="Self.BaiViets" Multiplicity="*" />
@@ -376,6 +407,14 @@
           <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganhs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Truongs" EntityType="Self.Truongs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="Self.FK_AspNetUsers_Nganhs">
+            <End Role="Nganhs" EntitySet="Nganhs" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Truongs" Association="Self.FK_AspNetUsers_Truongs">
+            <End Role="Truongs" EntitySet="Truongs" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
           <AssociationSet Name="FK_BaiViets_AspNetUsers" Association="Self.FK_BaiViets_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="BaiViets" EntitySet="BaiViets" />
@@ -429,8 +468,7 @@
             <End Role="TruongNganhs" EntitySet="TruongNganhs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -497,6 +535,15 @@
           <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_AspNetUsers" FromRole="AspNetUsers" ToRole="Questions" />
           <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="AspNetUsers" ToRole="RatePost" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="profile_avatar_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idTruong" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="idNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="congViec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fbid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="sinhNhat" Type="DateTime" Precision="0" />
+          <Property Name="hoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nganh" Relationship="ProjectHModel.FK_AspNetUsers_Nganhs" FromRole="AspNetUser" ToRole="Nganh" />
+          <NavigationProperty Name="Truong" Relationship="ProjectHModel.FK_AspNetUsers_Truongs" FromRole="AspNetUser" ToRole="Truong" />
         </EntityType>
         <EntityType Name="BaiViet">
           <Key>
@@ -548,6 +595,7 @@
           <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TruongNganhs" Relationship="Self.FK_TruongNganhs_Nganhs" FromRole="Nganhs" ToRole="TruongNganhs" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ProjectHModel.FK_AspNetUsers_Nganhs" FromRole="Nganh" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -636,6 +684,7 @@
           <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ThanhPho" Relationship="Self.FK_Truong_ThanhPho" FromRole="Truongs" ToRole="ThanhPhoes" />
           <NavigationProperty Name="TruongNganhs" Relationship="Self.FK_TruongNganhs_Truongs" FromRole="Truongs" ToRole="TruongNganhs" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ProjectHModel.FK_AspNetUsers_Truongs" FromRole="Truong" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -844,7 +893,39 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="ProjectHModel.FK_AspNetUsers_Nganhs">
+            <End Role="Nganh" EntitySet="Nganhs" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Truongs" Association="ProjectHModel.FK_AspNetUsers_Truongs">
+            <End Role="Truong" EntitySet="Truongs" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_AspNetUsers_Nganhs">
+          <End Type="ProjectHModel.Nganh" Role="Nganh" Multiplicity="0..1" />
+          <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganh">
+              <PropertyRef Name="MaNganh" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="idNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Truongs">
+          <End Type="ProjectHModel.Truong" Role="Truong" Multiplicity="0..1" />
+          <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truong">
+              <PropertyRef Name="MaTruong" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="idTruong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -891,6 +972,13 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="ProjectHModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="hoTen" ColumnName="hoTen" />
+                <ScalarProperty Name="sinhNhat" ColumnName="sinhNhat" />
+                <ScalarProperty Name="fbid" ColumnName="fbid" />
+                <ScalarProperty Name="congViec" ColumnName="congViec" />
+                <ScalarProperty Name="idNganh" ColumnName="idNganh" />
+                <ScalarProperty Name="idTruong" ColumnName="idTruong" />
+                <ScalarProperty Name="profile_avatar_link" ColumnName="profile_avatar_link" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />

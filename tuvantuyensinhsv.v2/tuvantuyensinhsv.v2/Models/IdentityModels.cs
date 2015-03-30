@@ -10,7 +10,11 @@ namespace tuvantuyensinhsv.v2.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public string profile_avatar_link { get; set; }
+        public string profile_avatar_link
+        {
+            get;
+            set;
+        }
         public string idTruong { get; set; }
         public string idNganh { get; set; }
         public string congViec { get; set; }
