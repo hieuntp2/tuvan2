@@ -36,7 +36,7 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     @if (Request.IsAuthenticated)
                     {
-                        @*<li class="dropdown user user-menu">
+                        <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="@currentUser.profile_avatar_link" class="user-image" alt="User Image">
                                 <span class="hidden-xs">@currentUser.hoTen</span>
@@ -47,21 +47,22 @@
                                     <img src="@currentUser.profile_avatar_link" class="img-circle" alt="User Image">
                                     <p>
                                         @currentUser.hoTen
-                                        <small>@User.Identity.AuthenticationType</small>
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <small>- Admin -</small>
+                                        }
+                                        @if (User.IsInRole("Morderate"))
+                                        {
+                                            <small>- Admin -</small>
+                                        }
+                                        @if (User.IsInRole("User"))
+                                        {
+                                            <small>- User -</small>
+                                        }
                                     </p>
                                 </li>
-                                <!-- Menu Body -->
-                                @*<li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </li>
+                                
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
@@ -70,8 +71,18 @@
 
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <div>
-                                            <a href="/Admin/Index"><i class="fa fa-user fa-fw"></i> Quản lý</a>
+                                        <div class="pull-left">
+                                            <a href="/Admin/Index" class="btn btn-default btn-flat">
+                                                Admin
+                                            </a>
+                                        </div>
+                                    }
+                                    @if (User.IsInRole("Moderate"))
+                                    {
+                                        <div class="pull-left">
+                                            <a href="/Moderate/Index" class="btn btn-default btn-flat">
+                                                Admin
+                                            </a>
                                         </div>
                                     }
 
@@ -84,30 +95,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </li>*@
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <a href="/Manage/Index"><i class="fa fa-user fa-fw"></i> @User.Identity.GetUserName()</a>
-                                </li>
-
-
-                                <li>
-
-                                    <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-
-                                </li>
-                            </ul>
-                            <!-- /.dropdown-user -->
-
-                        </li>
+                        </li>                      
                     }
                     else
                     {
