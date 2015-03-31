@@ -1,10 +1,6 @@
-﻿<div class="chat-panel panel panel-default" ng-controller="TagEngineController as controller" ng-app="ProjectHApp">
-    <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i>
-        Trường, ngành, tỉnh thành được liên quan        
-    </div>
+﻿<div class="chat-panel panel panel-default" ng-controller="Quicksearch as controller" ng-app="ProjectHApp">
     <!-- /.panel-heading -->
-    <div class="panel-body" ng-init="controller.loadListTags('@Model.ID')">
+    <div class="panel-body" ng-init="controller.loadTruong('@Model.ID')">
         <div class="list-group">
             <button ng-repeat="tag in controller.tags" ng-click="controller.RemoveTag(tag.ID)"
                     class="btn btn-default customTagButton" data-toggle="tooltip" data-placement="left" title="{{tag.Ten}}"

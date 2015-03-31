@@ -107,6 +107,22 @@ $("#QuickFindInput").typeahead({
             alert(loai, id);
         }
     }])
+
+    app.controller('QuicksearchTruong', ['$http', function ($http) {
+        this.object = {};       
+        var ctrll = this;
+
+        this.loadTruong = function (idtruong) {
+            $http.get("/TabEngineServer/getTruong?id=" + idtruong).success(function (data) {
+
+                ctrll.object = data;
+
+            }).error(function () {
+                alert("Lỗi khi lấy dữ liệu tags");
+            });
+        }      
+
+    }])
 })();
 
 function findAndRemove(array, property, value) {

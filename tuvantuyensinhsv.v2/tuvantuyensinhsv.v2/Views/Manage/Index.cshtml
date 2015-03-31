@@ -7,41 +7,75 @@
         <form action="/Manage/Index" method="post">
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 style="margin-top:0px;">Profile</h3>
+                    <h3 style="margin-top:0px;">Profile: @User.Identity.Name</h3>
                 </div>
-                <div class="box-body">                    
+                <div class="box-body">
                     @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <label>Họ Tên</label>
-                        <input name="hoTen" value="@Model.hoTen" type="text" class="form-control" placeholder="Họ tên" />
-                    </div>
 
-                    <div class="form-group">
-                        <label>Sinh nhật</label>
-                        <input name="sinhNhat" value="@Model.sinhNhat" type="date" class="form-control" placeholder="Sinh nhật" />
-                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label>Họ Tên</label>
+                                    <input name="hoTen" value="@Model.hoTen" type="text" class="form-control" placeholder="Họ tên" />
+                                </div>
 
-                    <div class="form-group">
-                        <label>link avatar</label>
-                        <input name="profile_avatar_link" value="@Model.profile_avatar_link" type="text" class="form-control" placeholder="Họ tên" />
-                    </div>
+                                <div class="form-group">
+                                    <label>Sinh nhật</label>
+                                    <input name="sinhNhat" id="_manger_index_sinhnhat" value="@Model.sinhNhat" type="text" class="form-control" placeholder="Sinh nhật" />
+                                </div>
 
+                                <div class="form-group">
+                                    <label>link avatar</label>
+                                    <input name="profile_avatar_link" value="@Model.profile_avatar_link" type="text" class="form-control" placeholder="Họ tên" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <br />
+                                <label>Preview</label>
+                                <br />
+                                <img src="@Model.profile_avatar_link" id="_manage_index_profile_preview" />
+                            </div>
+                        </div>
+                    </div>
                     <hr />
-                    <div class="form-group">
-                        <label>Trường (đại học, cao đẳng, trung cấp...)</label>
-                        <input name="idTruong" value="@Model.idTruong" type="text" class="form-control" placeholder="Họ tên" />
-                    </div>
+                    <div class="row">
 
-                    <div class="form-group">
-                        <label>Ngành học</label>
-                        <input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />
-                    </div>
+                        <div class="col-lg-12">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label>Trường (đại học, cao đẳng, trung cấp...) đã / đang theo học</label>
+                                    <input name="idTruong" value="@Model.idTruong" type="text" class="form-control" placeholder="Họ tên" />
 
-                    <div class="form-group">
-                        <label>Công việc hiện tại</label>
-                        <input name="congViec" value="@Model.congViec" type="text" class="form-control" placeholder="Công việc hiện tại" />
-                    </div>
+                                    <div ng-controller="QuicksearchTruong as controller" ng-app="ProjectHApp">
+                                        <!-- /.panel-heading -->
+                                        <div class="panel-body" ng-init="controller.loadTruong('@Model.idTruong')">
 
+                                            <input class="custominputTag btn btn-default " id="QuickFindInput" ng-model="controller.object.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-keyup="$event.keyCode == 13 && controller.InputTagEnter()" />
+
+                                            <!-- /.list-group -->
+                                        </div>
+                                        <!-- /.panel-footer -->
+                                    </div>
+
+                                    <script type="text/javascript" src="/Content/js/TabEngineClient.js"></script>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Ngành học</label>
+                                    <input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Công việc hiện tại</label>
+                                    <input name="congViec" value="@Model.congViec" type="text" class="form-control" placeholder="Công việc hiện tại" />
+                                </div>
+                                @Html.Partial("~/views/tabengineserver/_create_tab_truong_single.cshtml")
+                            </div>
+
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="box-footer">
                     <input type="submit" class="btn btn-success" value="Cập nhật" />
@@ -52,35 +86,11 @@
     </div>
 </div>
 
-@*<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-        </dd>
-    </dl>
-</div>*@
+<script src="~/content/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#_manger_index_sinhnhat  ').datepicker({
+            format: 'mm-dd-yyyy'
+        });
+    });
+</script>

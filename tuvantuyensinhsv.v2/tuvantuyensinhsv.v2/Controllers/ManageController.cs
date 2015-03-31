@@ -87,6 +87,7 @@ namespace tuvantuyensinhsv.v2.Controllers
             model.idNganh = user.idNganh;
             model.idTruong = user.idTruong;
             model.sinhNhat = (DateTime)user.sinhNhat;
+            model.profile_avatar_link = user.profile_avatar_link;
 
             return View(model);
         }
@@ -99,6 +100,11 @@ namespace tuvantuyensinhsv.v2.Controllers
             {
                 model.profile_avatar_link = "../../content/default_account.png";
             }
+
+            if (model.sinhNhat == null )
+            {
+                model.sinhNhat = DateTime.Now;
+            }
             if (ModelState.IsValid)
             {
                 var userId = User.Identity.GetUserId();
@@ -109,11 +115,12 @@ namespace tuvantuyensinhsv.v2.Controllers
                 user.idNganh = model.idNganh;
                 user.idTruong = model.idTruong;
                 user.sinhNhat = model.sinhNhat;
+                user.profile_avatar_link = model.profile_avatar_link;
 
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
-            return View();
+            return View(model);
         }
 
         //

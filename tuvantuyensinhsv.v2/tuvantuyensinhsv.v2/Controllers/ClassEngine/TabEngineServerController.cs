@@ -38,6 +38,19 @@ namespace tuvantuyensinhsv.v2.Controllers
     {
         private ProjectHEntities db = new ProjectHEntities();
 
+        public JsonResult getTruong(string id)
+        {
+            TabOject tab = new TabOject();
+
+            Truong truong = db.Truongs.SingleOrDefault(t => t.MaTruong == id);
+            if (truong == null)
+                return null;
+            tab.ID = truong.MaTruong;
+            tab.Ten = truong.Ten;
+
+            return Json(tab, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult getTagList(int IDBaiViet) 
         {
             List<TabOject> list = new List<TabOject>();
