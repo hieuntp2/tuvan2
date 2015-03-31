@@ -34,35 +34,30 @@
                                 <br />
                                 <label>Preview</label>
                                 <br />
-                                <img src="@Model.profile_avatar_link" id="_manage_index_profile_preview" />
+                                <img style="width:150px; height:150px;" src="@Model.profile_avatar_link" id="_manage_index_profile_preview" />
                             </div>
                         </div>
                     </div>
                     <hr />
                     <div class="row">
 
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" ng-controller="QuicksearchTruong as controller" ng-app="ProjectHApp" ng-init="controller.loadTruong('@Model.idTruong','@Model.idNganh')">
                             <div class="col-lg-8">
                                 <div class="form-group">
                                     <label>Trường (đại học, cao đẳng, trung cấp...) đã / đang theo học</label>
-                                    <input name="idTruong" value="@Model.idTruong" type="text" class="form-control" placeholder="Họ tên" />
+                                    <input id="_hidden_idTruong" name="idTruong" value="@Model.idTruong" type="hidden" class="form-control" placeholder="Họ tên" />
 
-                                    <div ng-controller="QuicksearchTruong as controller" ng-app="ProjectHApp">
-                                        <!-- /.panel-heading -->
-                                        <div class="panel-body" ng-init="controller.loadTruong('@Model.idTruong')">
-
-                                            <input class="custominputTag btn btn-default " id="QuickFindInput" ng-model="controller.object.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-keyup="$event.keyCode == 13 && controller.InputTagEnter()" />
-
-                                            <!-- /.list-group -->
-                                        </div>
-                                        <!-- /.panel-footer -->
-                                    </div>
-
-                                    <script type="text/javascript" src="/Content/js/TabEngineClient.js"></script>
+                                        <input class="form-control" id="QuickFindInput" ng-model="controller.truong.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-keyup="$event.keyCode == 13 && controller.InputTagEnter()" />
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" name="idNganh">
                                     <label>Ngành học</label>
+
+                                    <select id="_selecte_nganh" class="form-control" ng-model="controller.nganhs" value="@Model.idNganh"
+                                            ng-options="nganh.ID as nganh.Ten for nganh in controller.nganhs">
+                                        @*<option ng-repeat="nganh in controller.nganhs" value="{{nganh.ID}}">{{nganh.Ten}}</option>*@
+                                    </select>
+
                                     <input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />
                                 </div>
 
@@ -70,11 +65,16 @@
                                     <label>Công việc hiện tại</label>
                                     <input name="congViec" value="@Model.congViec" type="text" class="form-control" placeholder="Công việc hiện tại" />
                                 </div>
-                                @Html.Partial("~/views/tabengineserver/_create_tab_truong_single.cshtml")
                             </div>
 
-                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <br />
+                                <label>Preview</label>
+                                <br />
+                                <img style="width:150px; height:150px;" ng-src="{{controller.truong.Loai}}" id="_manage_index_school_image_preview" />
+                            </div>
                         </div>
+                        <script type="text/javascript" src="/Content/js/TabEngineClient.js"></script>
                     </div>
                 </div>
                 <div class="box-footer">

@@ -22,8 +22,8 @@ $("#QuickFindInput").typeahead({
 
         });
     },
-    updater: function (item) {       
-       
+    updater: function (item) {
+
         TenTab = map[item].Ten;
         MaTab = map[item].ID;
         LoaiTab = map[item].Loai;
@@ -33,7 +33,7 @@ $("#QuickFindInput").typeahead({
 });
 
 
-(function() {
+(function () {
     var app = angular.module('ProjectHApp', []);
 
     app.controller('TagEngineController', ['$http', function ($http) {
@@ -45,7 +45,7 @@ $("#QuickFindInput").typeahead({
             $http.get("/TabEngineServer/getTagList?IDBaiViet=" + idbaiviet).success(function (data) {
 
                 ctrll.tags = data;
-               
+
             }).error(function () {
                 alert("Lỗi khi lấy dữ liệu tags");
             });
@@ -61,10 +61,8 @@ $("#QuickFindInput").typeahead({
             });
         }
 
-        this.addTagObject = function ()
-        {
-            if (MaTab == null || MaTab == "")
-            {
+        this.addTagObject = function () {
+            if (MaTab == null || MaTab == "") {
                 return;
             }
             this.object.Ten = TenTab;
@@ -77,17 +75,16 @@ $("#QuickFindInput").typeahead({
             $("#_inputsTabs").val(this.Code(this.tags));
 
             MaTab = "";
-            
+
         }
 
-        this.InputTagEnter = function(e){
+        this.InputTagEnter = function (e) {
             this.addTagObject();
-                return false;
+            return false;
 
         }
 
-        this.Code = function (list)
-        {
+        this.Code = function (list) {
             var result = "";
             for (var i = 0; i < list.length; i++) {
                 var object = list[i];
@@ -96,39 +93,60 @@ $("#QuickFindInput").typeahead({
             result = result.substring(0, result.length - 1);
             return result;
         }
-         
-        this.RemoveTag = function (idtag) {    
+
+        this.RemoveTag = function (idtag) {
             findAndRemove(this.tags, 'ID', idtag);
             $("#_inputsTabs").val(this.Code(this.tags));
         }
 
-        this._ViewTagClickChange = function(loai,id)
-        {
+        this._ViewTagClickChange = function (loai, id) {
             alert(loai, id);
         }
     }])
 
     app.controller('QuicksearchTruong', ['$http', function ($http) {
-        this.object = {};       
+        this.truong = {};
+        this.nganhs = [];
+        this.selectednganh = {};
+        this.linkprofile = "";
+
         var ctrll = this;
 
-        this.loadTruong = function (idtruong) {
+        this.loadTruong = function (idtruong,idnganh) {
             $http.get("/TabEngineServer/getTruong?id=" + idtruong).success(function (data) {
+                ctrll.truong = data;
+                ctrll.loadNganh(idtruong, idnganh);
+            }).error(function () {
+                alert("Lỗi khi lấy dữ liệu tags");
+            });         
+        }
 
-                ctrll.object = data;
+        this.loadNganh = function (idtruong, idnganh) {
+            $http.get("/TabEngineServer/getNganh?idtruong=" + idtruong).success(function (data) {
+                ctrll.nganhs = data;
+
+                for (var i = 0; i < ctrll.nganhs.length; i++)
+                {                   
+                    var item = ctrll.nganhs[i];
+                    if(item.ID === idnganh)
+                    {                        
+                        ctrll.selectednganh.ID = item.ID;
+                        ctrll.selectednganh.Ten = item.Ten;
+                        $("#_selecte_nganh").select = item.ID;
+                    }
+                }
 
             }).error(function () {
                 alert("Lỗi khi lấy dữ liệu tags");
             });
-        }      
-
+        }
     }])
 })();
 
 function findAndRemove(array, property, value) {
-    $.each(array, function(index, result) {
-        if(result[property] == value) {            
+    $.each(array, function (index, result) {
+        if (result[property] == value) {
             array.splice(index, 1);
-        }    
+        }
     });
 }

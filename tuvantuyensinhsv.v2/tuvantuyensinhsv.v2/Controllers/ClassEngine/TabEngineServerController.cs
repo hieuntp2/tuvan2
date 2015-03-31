@@ -48,7 +48,40 @@ namespace tuvantuyensinhsv.v2.Controllers
             tab.ID = truong.MaTruong;
             tab.Ten = truong.Ten;
 
+            // do ko co nen gan tam vao day
+            tab.Loai = truong.linkLogo;
+
             return Json(tab, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getNganh(string idtruong)
+        {
+            List<TabOject> result = new List<TabOject>();
+
+            if (idtruong == null || idtruong == "")
+                return Json(result, JsonRequestBehavior.AllowGet);
+            List<TruongNganh> nganh = db.TruongNganhs.Where(t => t.MaTruong == idtruong).ToList();
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            //HashSet<TabOject> hashresult = new HashSet<TabOject>();
+            for(int i = 0; i < nganh.Count; i++)
+            {                
+
+                if(dic.ContainsKey(nganh[i].MaNganh))
+                {
+                    continue;
+                }
+                else
+                {
+                    TabOject tab = new TabOject();
+                    tab.ID = nganh[i].MaNganh;
+                    tab.Ten = nganh[i].Nganh.Ten;
+
+                    dic.Add(tab.ID, tab.Ten);
+                    result.Add(tab);
+                }  
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult getTagList(int IDBaiViet) 
