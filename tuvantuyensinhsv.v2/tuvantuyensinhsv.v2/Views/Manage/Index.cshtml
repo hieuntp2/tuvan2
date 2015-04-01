@@ -47,18 +47,18 @@
                                     <label>Trường (đại học, cao đẳng, trung cấp...) đã / đang theo học</label>
                                     <input id="_hidden_idTruong" name="idTruong" value="@Model.idTruong" type="hidden" class="form-control" placeholder="Họ tên" />
 
-                                        <input class="form-control" id="QuickFindInput" ng-model="controller.truong.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-keyup="$event.keyCode == 13 && controller.InputTagEnter()" />
+                                    <input class="form-control" id="QuickFindInput" ng-model="controller.truong.Ten" type="text" placeholder="Tag trường, ngành..." autocomplete="off" ng-blur="controller.changeschool()" />
                                 </div>
 
                                 <div class="form-group" name="idNganh">
                                     <label>Ngành học</label>
 
-                                    <select id="_selecte_nganh" class="form-control" ng-model="controller.nganhs" value="@Model.idNganh"
-                                            ng-options="nganh.ID as nganh.Ten for nganh in controller.nganhs">
-                                        @*<option ng-repeat="nganh in controller.nganhs" value="{{nganh.ID}}">{{nganh.Ten}}</option>*@
+                                    <select name="idNganh" id="_selecte_nganh" class="form-control" ng-model="controller.selectednganh" value="{{controller.selectednganh.ID}}"
+                                            ng-options="nganh as nganh.Ten for nganh in controller.nganhs track by nganh.ID" ng-blur="controller.changenganh()">
+                                        @*<option ng-selected="selected" ng-repeat="nganh in controller.nganhs" value="{{nganh.ID}}">{{nganh.Ten}}</option>*@
                                     </select>
 
-                                    <input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />
+                                    @*<input name="idNganh" value="@Model.idNganh" type="text" class="form-control" placeholder="Họ tên" />*@
                                 </div>
 
                                 <div class="form-group">
@@ -92,5 +92,6 @@
         $('#_manger_index_sinhnhat  ').datepicker({
             format: 'mm-dd-yyyy'
         });
+        
     });
 </script>

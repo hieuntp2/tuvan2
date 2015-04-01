@@ -3,7 +3,7 @@ var MaTab;
 var LoaiTab;
 var ListTab = "";
 $("#QuickFindInput").typeahead({
-    limit: 20,
+    limit: 100,
     source: function (query, process) {
         var listKhoi = [];
         map = {};
@@ -126,19 +126,40 @@ $("#QuickFindInput").typeahead({
                 ctrll.nganhs = data;
 
                 for (var i = 0; i < ctrll.nganhs.length; i++)
-                {                   
-                    var item = ctrll.nganhs[i];
-                    if(item.ID === idnganh)
-                    {                        
-                        ctrll.selectednganh.ID = item.ID;
-                        ctrll.selectednganh.Ten = item.Ten;
-                        $("#_selecte_nganh").select = item.ID;
+                {
+                    if (ctrll.nganhs[i].Ten[0] === 'C') {
+                        ctrll.nganhs[i].Ten = ctrll.nganhs[i].Ten + " - hệ cao đẳng";
+                    }
+                    else {
+                        ctrll.nganhs[i].Ten = ctrll.nganhs[i].Ten + " - hệ đại học";
+                    }
+                    if (ctrll.nganhs[i].ID === idnganh)
+                    {
+                        ctrll.selectednganh = ctrll.nganhs[i];
                     }
                 }
 
             }).error(function () {
                 alert("Lỗi khi lấy dữ liệu tags");
             });
+        }
+
+        this.changeschool = function()
+        {
+
+            $("#_hidden_idTruong").val(MaTab);
+            ctrll.loadTruong(MaTab, "");
+            ctrll.loadNganh(MaTab, "");
+
+            ctrll.truong.ID = MaTab;
+        }
+
+        this.changenganh = function () {
+            $("#_selecte_nganh").val();
+            ctrll.loadTruong(MaTab, "");
+            ctrll.loadNganh(MaTab, "");
+
+            ctrll.truong.ID = MaTab;
         }
     }])
 })();

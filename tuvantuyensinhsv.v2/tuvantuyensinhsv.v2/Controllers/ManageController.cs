@@ -116,6 +116,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 user.idTruong = model.idTruong;
                 user.sinhNhat = model.sinhNhat;
                 user.profile_avatar_link = model.profile_avatar_link;
+                
 
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
