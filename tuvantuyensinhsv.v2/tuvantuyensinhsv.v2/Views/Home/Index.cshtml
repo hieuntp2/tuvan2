@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ";
 }
 
 <div class="row">
@@ -104,8 +104,11 @@
             <li style="cursor:pointer;" ng-repeat="post in controller.posts | orderBy: '-ngaydang'" ng-click="controller.postclick(post.id, post.loai)">
                 <i ng-class="post.loai === 'q'? 'ion ion-chatbubbles bg-green': 'ion ion-compose bg-red'"></i>
                 <div class="timeline-item">
-                    <span class="time"> <i class="fa fa-clock-o"></i>{{post.ngaydang}} </span>
-                    <h3 class="timeline-header"><b>{{post.tieude}}</b></h3>
+                    <span class="time"> <i class="fa fa-clock-o"></i> {{post.ngaydang}} </span>
+                    <h3 class="timeline-header">
+                        <img style="width:50px; height:50px;" ng-src="{{post.avatar}}" class="img-circle" alt="User Image">
+                    <b>{{post.tieude}}</b></h3>
+
                     <div class="timeline-body">
                         {{post.noidung}}
                     </div>

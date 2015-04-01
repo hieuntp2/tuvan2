@@ -89,6 +89,11 @@ namespace tuvantuyensinhsv.v2.Controllers
             model.sinhNhat = (DateTime)user.sinhNhat;
             model.profile_avatar_link = user.profile_avatar_link;
 
+            // lấy ds bài viết
+            ViewBag.baiviets = db.BaiViets.Where(t => t.NguoiDang == userId).ToList();
+            ViewBag.questions = db.Questions.Where(t => t.userid == userId).ToList();
+            // lấy ds câu hỏi
+
             return View(model);
         }
 
@@ -121,7 +126,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
-            return View(model);
+            return RedirectToAction("Index", "Manage", model);
         }
 
         //

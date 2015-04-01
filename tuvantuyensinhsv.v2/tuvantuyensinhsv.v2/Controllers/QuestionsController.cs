@@ -58,7 +58,8 @@ namespace tuvantuyensinhsv.v2.Controllers
                 id = t.id,
                 tieude = t.Tieude,
                 noidung = t.Noidung,
-                ngaydang = t.Ngaydang.ToString()
+                ngaydang = t.Ngaydang.ToString(),
+                avatar = t.AspNetUser.profile_avatar_link
             }).ToArray();
 
             for (int i = 0; i < questions.Length; i++)

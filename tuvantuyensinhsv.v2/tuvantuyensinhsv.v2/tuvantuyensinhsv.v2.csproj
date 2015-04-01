@@ -839,6 +839,7 @@
     <Content Include="Scripts\AngularJs\homeindexscript.js" />
     <Content Include="Scripts\AngularJs\questionscript.js" />
     <Content Include="Scripts\AngularJs\baivietscripts.js" />
+    <Content Include="Scripts\AngularJs\_manage_index_JS.js" />
     <Content Include="Scripts\bootstrap-typeahead.js" />
     <Content Include="Scripts\mbtiscript.js" />
     <Content Include="Scripts\QuickSearchBaiViet.js" />

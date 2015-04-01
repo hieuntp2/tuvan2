@@ -22,6 +22,7 @@ namespace tuvantuyensinhsv.v2.Controllers
         public string noidung;
         public string ngaydang;
         public char loai;
+        public string avatar;
     }
     public class BaiVietsController : Controller
     {
@@ -56,7 +57,8 @@ namespace tuvantuyensinhsv.v2.Controllers
                 id = t.ID,
                 tieude = t.TieuDe,
                 noidung = t.NoiDung,
-                ngaydang = t.NgayCapNhat.ToString()
+                ngaydang = t.NgayCapNhat.ToString(),
+                avatar = t.AspNetUser.profile_avatar_link
             }).ToArray();
 
             for (int i = 0; i < baiviets.Length; i++)

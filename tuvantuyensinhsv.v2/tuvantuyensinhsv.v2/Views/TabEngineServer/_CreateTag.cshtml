@@ -1,12 +1,12 @@
 ﻿
 <script type="text/javascript" src="~/Scripts/angular.min.js"></script>
 
-<div class="chat-panel panel panel-default" ng-controller="TagEngineController as controller" ng-app="ProjectHApp">
-    <div class="panel-heading">
+<div class="box box-info" ng-controller="TagEngineController as controller" ng-app="ProjectHApp">
+    <div class="box-header">
         Tag trường/ngành được nhắc đến ở trên, để các trường/ngành được cập nhật. (Chỉ chọn trong danh sách được đề nghị). Sau khi chọn xong, hãy nhấn enter để tag.       
     </div>
     <!-- /.panel-heading -->
-    <div class="panel-body">
+    <div class="box-body">
         <div class="list-group">
             <button ng-repeat="tag in controller.tags" ng-click="controller.RemoveTag(tag.ID)"
                     class="btn btn-default customTagButton" data-toggle="tooltip" data-placement="left" title="{{tag.Ten}}"

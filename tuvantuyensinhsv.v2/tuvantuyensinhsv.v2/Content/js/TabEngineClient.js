@@ -103,65 +103,6 @@ $("#QuickFindInput").typeahead({
             alert(loai, id);
         }
     }])
-
-    app.controller('QuicksearchTruong', ['$http', function ($http) {
-        this.truong = {};
-        this.nganhs = [];
-        this.selectednganh = {};
-        this.linkprofile = "";
-
-        var ctrll = this;
-
-        this.loadTruong = function (idtruong,idnganh) {
-            $http.get("/TabEngineServer/getTruong?id=" + idtruong).success(function (data) {
-                ctrll.truong = data;
-                ctrll.loadNganh(idtruong, idnganh);
-            }).error(function () {
-                alert("Lỗi khi lấy dữ liệu tags");
-            });         
-        }
-
-        this.loadNganh = function (idtruong, idnganh) {
-            $http.get("/TabEngineServer/getNganh?idtruong=" + idtruong).success(function (data) {
-                ctrll.nganhs = data;
-
-                for (var i = 0; i < ctrll.nganhs.length; i++)
-                {
-                    if (ctrll.nganhs[i].Ten[0] === 'C') {
-                        ctrll.nganhs[i].Ten = ctrll.nganhs[i].Ten + " - hệ cao đẳng";
-                    }
-                    else {
-                        ctrll.nganhs[i].Ten = ctrll.nganhs[i].Ten + " - hệ đại học";
-                    }
-                    if (ctrll.nganhs[i].ID === idnganh)
-                    {
-                        ctrll.selectednganh = ctrll.nganhs[i];
-                    }
-                }
-
-            }).error(function () {
-                alert("Lỗi khi lấy dữ liệu tags");
-            });
-        }
-
-        this.changeschool = function()
-        {
-
-            $("#_hidden_idTruong").val(MaTab);
-            ctrll.loadTruong(MaTab, "");
-            ctrll.loadNganh(MaTab, "");
-
-            ctrll.truong.ID = MaTab;
-        }
-
-        this.changenganh = function () {
-            $("#_selecte_nganh").val();
-            ctrll.loadTruong(MaTab, "");
-            ctrll.loadNganh(MaTab, "");
-
-            ctrll.truong.ID = MaTab;
-        }
-    }])
 })();
 
 function findAndRemove(array, property, value) {
