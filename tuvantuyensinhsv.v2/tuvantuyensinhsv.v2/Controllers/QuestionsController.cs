@@ -50,10 +50,10 @@ namespace tuvantuyensinhsv.v2.Controllers
             }
             else
             {
-                skip = (int)(5 * index);
+                skip = (int)(3 * index);
             }
 
-            questions = db.Questions.OrderBy(t => t.Ngaydang).Skip(skip).Take(5).Select(t => new JsonObjectBaiViet()
+            questions = db.Questions.OrderByDescending(t => t.Ngaydang).Skip(skip).Take(3).Select(t => new JsonObjectBaiViet()
             {
                 id = t.id,
                 tieude = t.Tieude,

@@ -49,10 +49,10 @@ namespace tuvantuyensinhsv.v2.Controllers
             }
             else
             {
-                skip = (int)(5 * index);
+                skip = (int)(3 * index);
             }
 
-            baiviets = db.BaiViets.OrderBy(t => t.NgayCapNhat).Skip(skip).Take(5).Select(t => new JsonObjectBaiViet()
+            baiviets = db.BaiViets.OrderByDescending(t => t.NgayCapNhat).Skip(skip).Take(3).Select(t => new JsonObjectBaiViet()
             {
                 id = t.ID,
                 tieude = t.TieuDe,
@@ -202,7 +202,11 @@ namespace tuvantuyensinhsv.v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                baiviet.Tabs.Remove(baiviet.Tabs.Length - 1);
+                if(baiviet.Tabs != null && baiviet.Tabs.Length > 1)
+                {
+                    baiviet.Tabs.Remove(baiviet.Tabs.Length - 1);
+                }
+               
                 baiviet.NgayCapNhat = DateTime.Now;
                 // TBai viet chi moi duoc post, dang doi su dong y cua admin
                 baiviet.Trangthai = 0;

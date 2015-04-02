@@ -2,63 +2,73 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
     List<tuvantuyensinhsv.v2.Models.Question> questions = ViewBag.questions;
 }
 <script src="~/Content/js/facebook_comment.js"></script>
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3>Hỏi: @Model.Tieude</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-primary btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
 
-<div class="col-lg-2">
-    <div class="panel">
-        <div class="panel-body">
-            <h4>Câu hỏi mới</h4>
-            <div class="table-responsive">
-                <table class="table">
-                    <tbody>
-                        @foreach (tuvantuyensinhsv.v2.Models.Question item in questions)
-                        {
-                            <tr onclick="questionclick(@item.id)" style="cursor:pointer;">
-                                <td>@item.Tieude</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+            <div class="box-body">
+                @Model.Noidung
+            </div>
+
+            <div class="box-footer">
+                <p>
+                    <span style="float:left;">@Model.Ngaydang</span>
+                    <span style="float:right;">@Model.AspNetUser.UserName</span>
+                </p>
             </div>
         </div>
     </div>
 </div>
 
-<div class="col-lg-8">
-    <div class="panel panel-default ">
-        <div class="panel-body">
-
-            <h3>Hỏi: @Model.Tieude</h3>
-            <hr />
-            @Model.Noidung
-
-            <hr />
-            <span style="float:left;">@Model.Ngaydang</span>
-            <span style="float:right;">@Model.AspNetUser.UserName</span>
-        </div>
-    </div>
-</div>
-
-<div class="col-lg-2">
-    @Html.Partial("~/views/shared/_sharefacebook.cshtml")
-</div>
-
-<div class="col-lg-8">
-    <div class="panel panel-default ">
-        <div class="panel-body">
-            <h4>Comments</h4>
-            <hr />
-            <div class="panel-body">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box box-success">
+            <div class="box-header">
+                <h4>Comments</h4>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-primary btn-xs" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
                 <div id="fb-root"></div>
                 <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="100%" data-numposts="10" data-colorscheme="light"></div>
             </div>
         </div>
     </div>
 </div>
+
+<h3>Câu hỏi gần đây</h3>
+<div class="row">
+    <div class="col-lg-12">
+        @foreach (tuvantuyensinhsv.v2.Models.Question item in questions)
+        {
+            <div class="col-lg-3">
+                <div class="box box-success" style=" min-height: 70px;">
+                    <div class="box-body" onclick="questionclick(@item.id)" style="cursor:pointer;">
+                        Hỏi: @item.Tieude
+                    </div>
+                </div>
+            </div>           
+        }
+       
+    </div>
+</div>
+@*<div class="col-lg-2">
+    @Html.Partial("~/views/shared/_sharefacebook.cshtml")
+</div>*@
+
 <script>
     function questionclick(id) {
         window.location.href = "/questions/details/" + id;
