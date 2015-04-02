@@ -31,16 +31,18 @@ namespace tuvantuyensinhsv.v2.Controllers
         // GET: /BaiViets/
         [Authorize]
         public ActionResult Index()
-        {
-
-            //string IDUser = User.Identity.GetUserId();
-            List<BaiViet> baiviets = db.BaiViets.OrderBy(t => t.NgayCapNhat).ToList();
-            return View(baiviets.ToList());
+        {          
+            return View();
         }
 
-        public JsonResult getNewPost(int? index)
+        public JsonResult getNewPost(int? index, int number = 0)
         {
             JsonObjectBaiViet[] baiviets = new JsonObjectBaiViet[5];
+            int x = 3;
+            if (number != 0)
+            {
+                x = number;
+            }
 
             int skip;
             if (index == null || index == 0)
@@ -49,10 +51,13 @@ namespace tuvantuyensinhsv.v2.Controllers
             }
             else
             {
-                skip = (int)(3 * index);
+                skip = (int)(x * index);
             }
 
-            baiviets = db.BaiViets.OrderByDescending(t => t.NgayCapNhat).Skip(skip).Take(3).Select(t => new JsonObjectBaiViet()
+
+
+
+            baiviets = db.BaiViets.OrderByDescending(t => t.NgayCapNhat).Skip(skip).Take(x).Select(t => new JsonObjectBaiViet()
             {
                 id = t.ID,
                 tieude = t.TieuDe,

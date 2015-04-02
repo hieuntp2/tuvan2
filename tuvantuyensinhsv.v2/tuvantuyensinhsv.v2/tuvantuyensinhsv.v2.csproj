@@ -838,6 +838,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\AngularJs\baivietindex.js" />
     <Content Include="Scripts\AngularJs\homeindexscript.js" />
+    <Content Include="Scripts\AngularJs\questionindex.js" />
     <Content Include="Scripts\AngularJs\questionscript.js" />
     <Content Include="Scripts\AngularJs\baivietscripts.js" />
     <Content Include="Scripts\AngularJs\_manage_index_JS.js" />

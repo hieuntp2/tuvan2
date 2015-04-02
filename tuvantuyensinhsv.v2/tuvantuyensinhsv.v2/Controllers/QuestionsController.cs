@@ -15,10 +15,8 @@ namespace tuvantuyensinhsv.v2.Controllers
 
         // GET: Questions
         public ActionResult Index()
-        {
-            List<Question> questions = db.Questions.Include(q => q.AspNetUser).OrderBy(t => t.Ngaydang).ToList();
-            
-            return View(questions);
+        {            
+            return View();
         }
 
         // GET: Questions/Details/5
@@ -39,9 +37,15 @@ namespace tuvantuyensinhsv.v2.Controllers
             return View(question);
         }
 
-        public JsonResult getQuestion(int? index)
+        public JsonResult getQuestion(int? index, int number = 0)
         {
             JsonObjectBaiViet[] questions = new JsonObjectBaiViet[5];
+
+            int x = 3;
+            if (number != 0)
+            {
+                x = number;
+            }
 
             int skip;
             if (index == null || index == 0)
@@ -50,10 +54,10 @@ namespace tuvantuyensinhsv.v2.Controllers
             }
             else
             {
-                skip = (int)(3 * index);
+                skip = (int)(x * index);
             }
 
-            questions = db.Questions.OrderByDescending(t => t.Ngaydang).Skip(skip).Take(3).Select(t => new JsonObjectBaiViet()
+            questions = db.Questions.OrderByDescending(t => t.Ngaydang).Skip(skip).Take(x).Select(t => new JsonObjectBaiViet()
             {
                 id = t.id,
                 tieude = t.Tieude,

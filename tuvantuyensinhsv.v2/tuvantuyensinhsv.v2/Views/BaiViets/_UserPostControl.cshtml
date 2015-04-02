@@ -1,53 +1,42 @@
 ﻿@model tuvantuyensinhsv.v2.Models.BaiViet
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        Chức năng cho người đăng bài
-    </div>
 
-    <!-- /.panel-heading -->
-    <div class="panel-body">
-        <h5>
-            Trạng thái: @switch (Model.Trangthai)
-            {
-                case 0:
-                    <strong style="color:green;">Chưa được xác nhận</strong>
-                    break;
-                case 1:
-                <strong style="color:blue;">Được đăng tải</strong>
-                    break;
-                case 2:
-                <strong style="color:red;">User ẨN bài viết</strong>
-                    break;
-                case 3:
-                <strong style="color:red;">User XÓA bài viết</strong>
-                    break;
-                case 4:
-                <strong style="color:red;">Disable bởi Admin</strong>
-                    break;
-            }
-        </h5>
 
-        <p>
-            <button type="button" style="width: 100%;" class="btn btn-primary" onclick="Post()">Đăng bài</button>
-            <button type="button" style="width: 100%;" class="btn btn-info" onclick="Edit()">Sửa</button>
-            <button type="button" style="width: 100%;" class="btn btn-warning" onclick="HidenPostByUser()">Ẩn</button>
-            <button type="button" style="width: 100%;" class="btn btn-danger" onclick="deletepost()">Xóa</button>
-        </p>
+<h4>
+    Chức năng cho người đăng bài:
 
-    </div>
-</div>
 
-<hr />
+    Trạng thái: @switch (Model.Trangthai)
+    {
+        case 0:
+            <strong style="color:green;">Chưa được xác nhận</strong>
+            break;
+        case 1:
+        <strong style="color:blue;">Được đăng tải</strong>
+            break;
+        case 2:
+        <strong style="color:red;">User ẨN bài viết</strong>
+            break;
+        case 3:
+        <strong style="color:red;">User XÓA bài viết</strong>
+            break;
+        case 4:
+        <strong style="color:red;">Disable bởi Admin</strong>
+            break;
+    }
+</h4>
 
+<button type="button" class="btn btn-primary" onclick="Post()">Đăng bài</button>
+<button type="button" class="btn btn-info" onclick="Edit()">Sửa</button>
+<button type="button" class="btn btn-warning" onclick="HidenPostByUser()">Ẩn</button>
+<button type="button" class="btn btn-danger" onclick="deletepost()">Xóa</button>
 
 <script>
     function Post() {
         window.location = "/Admin/Admin_ChangeStatePost?ID=@Model.ID&&stt=0";
     }
 
-    function Edit()
-    {
+    function Edit() {
         window.location = "/BaiViets/Edit/@Model.ID";
     }
 

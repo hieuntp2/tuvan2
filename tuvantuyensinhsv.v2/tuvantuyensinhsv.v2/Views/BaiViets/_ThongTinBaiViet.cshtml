@@ -1,13 +1,6 @@
 ﻿@model tuvantuyensinhsv.v2.Models.BaiViet
 
 
-
-<div class="panel panel-default">
-    <!-- /.panel-heading -->
-    <div class="panel-body">
-        <p>Người đăng: @Model.AspNetUser.UserName</p>
-        <p>Lần cập nhât cuối: @Model.NgayCapNhat</p>
-        <span>Like/ Dislike:</span> <span style="color:blue;"> @Model.RatePosts.Where(t => t.Like == true).Count()</span> / <span style="color:red;"> @Model.RatePosts.Where(t => t.Like == false).Count()</span>
-
-    </div>
-</div>
+<span style="float:left;">@Model.NgayCapNhat</span>
+<span>.............Like/ Dislike:</span> <span style="color:blue;"> @Model.RatePosts.Where(t => t.Like == true).Count()</span> / <span style="color:red;"> @Model.RatePosts.Where(t => t.Like == false).Count()</span>
+<span style="float:right;">Người đăng: @Model.AspNetUser.UserName</span>

@@ -19,39 +19,32 @@
         @Html.Raw(Model.NoiDung)
     </div><!-- /.box-body -->
 
-    <div class="box-footer">
-        <div class="row">
-            <div class="col-lg-4">
-                @Html.Partial("_ThongTinBaiViet")
-            </div>
-            <div class="col-lg-4">
-                @Html.Partial("_RatePost_Social", Model)
-            </div>
-            <div class="col-lg-4">
-                @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-lg-4">
-                @if (User.Identity.Name == Model.AspNetUser.UserName)
-                {
-                    Html.RenderPartial("_UserPostControl");
-                }
-            </div>
-            <div class="col-lg-4">
-                @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
-                {
-                    Html.RenderPartial("_AdminControlPost", Model);
-                }
-            </div>
-
-            <div class="col-lg-4">
-
-            </div>
-        </div>
-
+    <div class="box-footer">    
+            @Html.Partial("_ThongTinBaiViet") 
     </div>
+
+    <div class="box-footer">
+        @Html.Partial("_RatePost_Social", Model)
+    </div>
+
+    <div class="box-footer">
+        <p>Danh sách tags</p>
+        @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
+    </div>
+
+    @if (User.Identity.Name == Model.AspNetUser.UserName)
+    {
+        <div class="box-footer">
+            @Html.Partial("_UserPostControl")
+        </div>
+    }
+
+    @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
+    {
+        <div class="box-footer">
+            @Html.Partial("_AdminControlPost", Model)
+        </div>
+    }
 </div>
 
 <div class="box box-danger">
