@@ -56,8 +56,8 @@ namespace tuvantuyensinhsv.v2
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "1502475853349939",
-               appSecret: "cbf3a4270af849724207f40bf5d49892");
+               appId: "1559933350937522",
+               appSecret: "587062ebdf48a84b761b35bd29197e90");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

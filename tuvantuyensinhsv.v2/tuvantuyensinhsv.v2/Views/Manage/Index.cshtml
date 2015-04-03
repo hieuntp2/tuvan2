@@ -92,6 +92,7 @@
                             </div>
                             <div class="box-footer">
                                 <input type="submit" class="btn btn-success" value="Cập nhật" />
+                                <button type="button" onclick="updateInforFromFacebook()" class="btn btn-primary">Cập nhật từ Facebook</button>
                                 <button type="button" onclick="changepassword()" class="btn btn-warning">Đổi mật khẩu</button>
                             </div>
                         </div>
@@ -215,10 +216,15 @@
 
     function redirectaddquestion()
     {
-        window.location.href = "/questions/create"
+        window.location.href = "/questions/create";
     }
 
     function redirectaddbaiviet() {
-        window.location.href = "/baiviets/create"
+        window.location.href = "/baiviets/create";
+    }
+
+    function updateInforFromFacebook()
+    {
+        window.location.href = "/manage/GetFacebookUserInfor";
     }
 </script>

@@ -8,7 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using tuvantuyensinhsv.v2.Models;
 using tuvantuyensinhsv.v2.Controllers.ClassEngine;
-
+using tuvantuyensinhsv.v2.Controllers.ClassEngine;
 namespace tuvantuyensinhsv.v2.Controllers
 {
     /// <summary>
@@ -69,8 +69,6 @@ namespace tuvantuyensinhsv.v2.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            //FacebookUserInfor fbuser = new FacebookUserInfor();
-            //string email = fbuser.getEmail("hieuntp2");
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -79,6 +77,8 @@ namespace tuvantuyensinhsv.v2.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();    
 
             AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
             model.congViec = user.congViec;
@@ -89,12 +89,31 @@ namespace tuvantuyensinhsv.v2.Controllers
             model.sinhNhat = (DateTime)user.sinhNhat;
             model.profile_avatar_link = user.profile_avatar_link;
 
+            //string email = 
+
             // lấy ds bài viết
             ViewBag.baiviets = db.BaiViets.Where(t => t.NguoiDang == userId).ToList();
             ViewBag.questions = db.Questions.Where(t => t.userid == userId).ToList();
             // lấy ds câu hỏi
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult GetFacebookUserInfor()
+        {
+            FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();
+            var userId = User.Identity.GetUserId();
+            AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
+            FBUserInforReturn datauser =  fb.getEmail(user.AspNetUserLogins.SingleOrDefault(t=>t.LoginProvider == "Facebook").ProviderKey);
+
+            user.profile_avatar_link = datauser.picture;
+            user.hoTen = datauser.name;
+
+            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

@@ -1,8 +1,6 @@
 ﻿using Facebook;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
 {
@@ -28,11 +26,20 @@ namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
             return "";
         }
 
-        public string getEmail(string username)
+        public FBUserInforReturn getEmail(string username)
         {
             //dynamic user = fbclient.Get(username);
             //return user.email;
-            return "";
+            var me = (IDictionary<string, object>)fbclient.Get("https://graph.facebook.com/" + username + "?fields=name,birthday,education,picture.type(large)");
+            FBUserInforReturn user = new FBUserInforReturn();
+
+            
+            user.name = me["name"].ToString();
+
+            var picture_data = (IDictionary<string, object>)me["picture"];
+            var picture_url = (IDictionary<string, object>)picture_data["data"];
+            user.picture = picture_url["url"].ToString();
+            return user;
         }
         public string getFullName(string username)
         {
@@ -42,7 +49,14 @@ namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
         {
             return fbclient.AccessToken;
         }
+    }
 
-
+    public class FBUserInforReturn
+    {
+        public string name;
+        public DateTime birthday;
+        public string picture;
+        public string university_name;
+        public string major_name;
     }
 }
