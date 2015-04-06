@@ -41,6 +41,7 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual DbSet<SystemInformation> SystemInformations { get; set; }
         public virtual DbSet<SystemLog> SystemLogs { get; set; }
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
+        public virtual DbSet<TruongNganhMonthi> TruongNganhMonthis { get; set; }
         public virtual DbSet<TruongNganh> TruongNganhs { get; set; }
         public virtual DbSet<Truong> Truongs { get; set; }
     }

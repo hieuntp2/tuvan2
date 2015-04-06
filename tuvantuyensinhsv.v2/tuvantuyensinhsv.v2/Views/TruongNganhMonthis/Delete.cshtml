@@ -1,0 +1,80 @@
+﻿@model tuvantuyensinhsv.v2.Models.TruongNganhMonthi
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TruongNganhMonthi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idMon1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idMon1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idMon2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idMon2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idMon3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idMon3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongTruyCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTruyCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nganh.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nganh.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Truong.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Truong.Ten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.TruongNganhMonthi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3>Tìm kiếm theo điểm, môn, ngành</h3>
+            </div>
+
+            <div class="box-header">
+                <form action="/truongnganhmonthi" method="post" >
+                    <div class="col-lg-7 no-padding">
+                        <div class="form-group">
+                            <div class="col-lg-3 no-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Môn </span>
+                                    <select class="form-control" name="mon1" id="_idmon1">
+                                        <option selected value="">Môn thi</option>
+                                        <option value="1">Toán</option>
+                                        <option value="2">Lý</option>
+                                        <option value="3">Hóa</option>
+                                        <option value="4">Văn</option>
+                                        <option value="5">Sử</option>
+                                        <option value="6">Địa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 no-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> + </span>
+                                    <select class="form-control" name="mon2" id="_idmon2">
+                                        <option selected value="">Môn thi</option>
+                                        <option value="1">Toán</option>
+                                        <option value="2">Lý</option>
+                                        <option value="3">Hóa</option>
+                                        <option value="4">Văn</option>
+                                        <option value="5">Sử</option>
+                                        <option value="6">Địa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 no-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> + </span>
+                                    <select class="form-control" name="mon3" id="_idmon3">
+                                        <option selected value="">Môn thi</option>
+                                        <option value="1">Toán</option>
+                                        <option value="2">Lý</option>
+                                        <option value="3">Hóa</option>
+                                        <option value="4">Văn</option>
+                                        <option value="5">Sử</option>
+                                        <option value="6">Địa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 no-padding">
+                                <div class="input-group">
+                                    <span class="input-group-addon"> = </span>
+                                    <input name="diem" id="_iddiem" type="number" class="form-control" placeholder="Điểm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 no-padding">
+                        <div class="form-group">
+                            <input name="nganh" id="_idnganh" type="text" class="form-control" placeholder="Ngành học (Option)" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <input class="btn btn-info" type="button" value="Tìm kiếm" onclick="checkvalue()"/>
+                    </div>
+                </form>
+            </div>
+            <div class="box-body" id="_idbody">
+                
+            </div>
+
+            <div class="box-footer"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkvalue()
+    {
+        var _mon1 =$("#_idmon1").val();
+        var _mon2 =$("#_idmon2").val();
+        var _mon3 =$("#_idmon3").val();
+        var _nganh = $("#_idnganh").val();
+        var _diem = $("#_iddiem").val();
+
+        if(_mon1 == _mon2 || _mon2 == _mon3 || _mon3 == _mon1)
+        {
+            alert("chọn 3 môn khác nhau!");
+            return;
+        }      
+
+        $("#_idbody").html("Chờ xíu nhé...");
+
+        $.ajax({
+            type: "POST",
+            url: "/search/deantuyensinh",
+            data: {
+                mon1: _mon1,
+                mon2: _mon2,
+                mon3: _mon3,
+                diem: _diem,
+                nganh: _nganh
+            },
+            success: function (data) {
+                $("#_idbody").html(data);
+            },
+            fail: function()
+            {
+                $("#_idbody").html("Có lỗi xảy ra. Xin thử lại :D");
+            }
+        });
+
+
+        return false;
+    }
+</script>

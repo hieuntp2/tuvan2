@@ -167,6 +167,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaiVietsController.cs" />
     <Compile Include="Controllers\ClassEngine\FacebookUserInfor.cs" />
+    <Compile Include="Controllers\ClassEngine\MonThi.cs" />
     <Compile Include="Controllers\ClassEngine\SearchV2.cs" />
     <Compile Include="Controllers\ClassEngine\SysLogEngine.cs" />
     <Compile Include="Controllers\ClassEngine\SystemInfo.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ThanhPhoesController.cs" />
+    <Compile Include="Controllers\TruongNganhMonthisController.cs" />
     <Compile Include="Controllers\TruongNganhsController.cs" />
     <Compile Include="Controllers\TruongsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -269,6 +271,9 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TruongNganh.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TruongNganhMonthi.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -822,6 +827,7 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\university.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1098,6 +1104,12 @@
     <Content Include="Views\MBTIs\_kiemtraMBTI.cshtml" />
     <Content Include="Views\Truongs\Details - Copy.cshtml" />
     <Content Include="Views\TabEngineServer\_create_tab_truong_single.cshtml" />
+    <Content Include="Views\TruongNganhMonthis\Create.cshtml" />
+    <Content Include="Views\TruongNganhMonthis\Delete.cshtml" />
+    <Content Include="Views\TruongNganhMonthis\Details.cshtml" />
+    <Content Include="Views\TruongNganhMonthis\Edit.cshtml" />
+    <Content Include="Views\TruongNganhMonthis\Index.cshtml" />
+    <Content Include="Views\Search\_SearchReturnIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

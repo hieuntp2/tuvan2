@@ -54,9 +54,6 @@ namespace tuvantuyensinhsv.v2.Controllers
                 skip = (int)(x * index);
             }
 
-
-
-
             baiviets = db.BaiViets.OrderByDescending(t => t.NgayCapNhat).Skip(skip).Take(x).Select(t => new JsonObjectBaiViet()
             {
                 id = t.ID,

@@ -78,7 +78,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
 
-            FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();    
+            FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();
 
             AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
             model.congViec = user.congViec;
@@ -102,17 +102,26 @@ namespace tuvantuyensinhsv.v2.Controllers
         [HttpGet]
         public ActionResult GetFacebookUserInfor()
         {
-            FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();
-            var userId = User.Identity.GetUserId();
-            AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
-            FBUserInforReturn datauser =  fb.getEmail(user.AspNetUserLogins.SingleOrDefault(t=>t.LoginProvider == "Facebook").ProviderKey);
+            try
+            {
+                FacebookUserInfor fb = new ClassEngine.FacebookUserInfor();
+                var userId = User.Identity.GetUserId();
+                AspNetUser user = db.AspNetUsers.SingleOrDefault(t => t.Id == userId);
+                FBUserInforReturn datauser = fb.getEmail(user.AspNetUserLogins.SingleOrDefault(t => t.LoginProvider == "Facebook").ProviderKey);
 
-            user.profile_avatar_link = datauser.picture;
-            user.hoTen = datauser.name;
+                user.profile_avatar_link = datauser.picture;
+                user.hoTen = datauser.name;
 
-            db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();
-
+                db.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ManageMessageId message = new ManageMessageId();
+                message = ManageMessageId.Error;
+                return RedirectToAction("Index", message);
+            }
             return RedirectToAction("Index");
         }
 
@@ -120,12 +129,12 @@ namespace tuvantuyensinhsv.v2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index([Bind(Include = "profile_avatar_link,idTruong,idNganh,congViec,fbid,sinhNhat,hoTen")]IndexViewModel model)
         {
-            if(model.profile_avatar_link == null || model.profile_avatar_link == "")
+            if (model.profile_avatar_link == null || model.profile_avatar_link == "")
             {
                 model.profile_avatar_link = "../../content/default_account.png";
             }
 
-            if (model.sinhNhat == null )
+            if (model.sinhNhat == null)
             {
                 model.sinhNhat = DateTime.Now;
             }
@@ -140,7 +149,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 user.idTruong = model.idTruong;
                 user.sinhNhat = model.sinhNhat;
                 user.profile_avatar_link = model.profile_avatar_link;
-                
+
 
                 db.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

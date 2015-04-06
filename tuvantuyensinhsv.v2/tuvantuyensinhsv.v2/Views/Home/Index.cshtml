@@ -57,6 +57,17 @@
         </div><!-- /.info-box -->
     </div><!-- /.col -->
 
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box" style="cursor:pointer;" onclick="fredirectDeAn()">
+            <span class="info-box-icon bg-olive"><i class="ion ion-university"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-number">Môn thi-Điểm </span>
+                <span>Lựa chọn trường theo môn thi, điểm, ngành</span>
+            </div><!-- /.info-box-content -->
+        </div>
+    </div><!-- /.col -->
+
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box" style="cursor:pointer;" onclick="fredirectBaiViet()">
             <span class="info-box-icon bg-red"><i class="ion ion-compose"></i></span>
@@ -79,13 +90,14 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box" style="cursor:pointer;" onclick="fmbti()">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-university"></i></span>
+            <span class="info-box-icon bg-yellow"><i class="ion ion-compass"></i></span>
             <div class="info-box-content">
                 <span class="info-box-number">MBTI</span>
                 <span>Tính cách-Ngành nghề</span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
-    </div><!-- /.col -->
+    </div><!-- /.col -->   
+
 
 </div>
 
@@ -127,6 +139,10 @@
 <script>
     function questionclick(id) {
         window.location.href = "/questions/details/" + id;
+    }
+        
+    function fredirectDeAn() {
+        window.location = "/truongnganhmonthis";
     }
 
     function baivietclick(id) {
