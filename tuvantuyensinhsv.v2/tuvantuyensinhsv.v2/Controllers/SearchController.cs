@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using tuvantuyensinhsv.v2.Models;
+using System.Diagnostics;
 
 namespace tuvantuyensinhsv.v2.Controllers
 {
@@ -23,41 +24,50 @@ namespace tuvantuyensinhsv.v2.Controllers
         // GET: /Search/
         public JsonResult quickSearch(string text)
         {
-            List<JsonSearchResult> list = new List<JsonSearchResult>();
+            List<JsonSearchResult> list = new List<JsonSearchResult>();        
             if (ValidationTextSearch(ref text) == null)
             {
                 return null;
             }
 
-            if (text == null || text == "" || text.Contains("  "))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 list.Add(new JsonSearchResult("", "Không tìm thấy"));
                 return Json(list, JsonRequestBehavior.AllowGet);
-            }
+            }            
 
-            List<Truong> truongs = db.Truongs.Where(t => t.Ten.Contains(text)).ToList();
-            List<Nganh> nganhs = db.Nganhs.Where(t => t.Ten.Contains(text)).ToList();
-            List<ThanhPho> thanhphoes = db.ThanhPhoes.Where(t => t.Ten.Contains(text)).ToList();
+            list.AddRange(
+                    (from item in db.Truongs.AsNoTracking()
+                     where item.Ten.Contains(text)
+                     select new JsonSearchResult()
+                     {
+                         Ten = item.Ten,
+                         Href = "/Truongs/Details?ID=" + item.MaTruong
+                     }
+                         )
+                );
 
-            for (int i = 0; i < truongs.Count; i++)
-            {
-                list.Add(new JsonSearchResult(truongs[i].Ten, "/Truongs/Details?ID=" + truongs[i].MaTruong));
-            }
+            list.AddRange(
+                    (from item in db.Nganhs.AsNoTracking()
+                     where item.Ten.Contains(text)
+                     select new JsonSearchResult()
+                     {
+                         Ten = item.Ten,
+                         Href = "/Nganhs/Details?ID=" + item.MaNganh
+                     }
+                         )
+                );
 
-            for (int i = 0; i < nganhs.Count; i++)
-            {
-                list.Add(new JsonSearchResult(nganhs[i].Ten, "/Nganhs/Details?ID=" + nganhs[i].MaNganh));
-            }
-
-            for (int i = 0; i < thanhphoes.Count; i++)
-            {
-                list.Add(new JsonSearchResult(thanhphoes[i].Ten, "/ThanhPhoes/Details?ID=" + thanhphoes[i].ID));
-            }
-
-            if (list.Count == 0)
-            {
-                list.Add(new JsonSearchResult("Không tìm thấy", null));
-            }
+            list.AddRange(
+                    (from item in db.ThanhPhoes.AsNoTracking()
+                     where item.Ten.Contains(text)
+                     select new JsonSearchResult()
+                     {
+                         Ten = item.Ten,
+                         Href = "/ThanhPhoes/Details?ID=" + item.ID
+                     }
+                         )
+                );
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }
@@ -328,10 +338,10 @@ namespace tuvantuyensinhsv.v2.Controllers
                            MaTruong = truong.MaTruong,
                            MaNganh = truong.MaNganh
                        }
-                       where ((item.idMon1 == mon1 || item.idMon1 == mon2 || item.idMon1 == mon3)
-                               && (item.idMon1 == mon1 || item.idMon1 == mon2 || item.idMon1 == mon3)
-                               && (item.idMon1 == mon1 || item.idMon1 == mon2 || item.idMon1 == mon3))
-                               && ( diem - 5 <= truong.Diem1 && diem + 5 >= truong.Diem1 )
+                       where ((item.idMon1 == mon1)
+                               && (item.idMon1 == mon2)
+                               && (item.idMon1 == mon3))
+                               && (diem - 5 <= truong.Diem1 && diem + 5 >= truong.Diem1)
                        select new SearchResultDeAnTuyenSinh()
                        {
                            tentruong = item.Truong.Ten,
@@ -342,13 +352,6 @@ namespace tuvantuyensinhsv.v2.Controllers
                            diem = (float)truong.Diem1
                        }
                         ).ToList();
-
-            //db.TruongNganhMonthis.Where(
-            //x => (x.idMon1 == mon1 || x.idMon1 == mon2 || x.idMon1 == mon3)
-            //    && (x.idMon2 == mon1 || x.idMon2 == mon2 || x.idMon2 == mon3)
-            //    && (x.idMon3 == mon1 || x.idMon3 == mon2 || x.idMon3 == mon3)
-
-            //).ToList();
 
             if (!string.IsNullOrWhiteSpace(nganh))
             {

@@ -14,5 +14,7 @@ namespace tuvantuyensinhsv.v2.Models.Metadata
             this.Href = Href;
             this.Ten = Ten;
         }
+
+        public JsonSearchResult() { }
     }
 }
