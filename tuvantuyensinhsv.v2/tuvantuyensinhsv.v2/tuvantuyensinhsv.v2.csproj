@@ -181,6 +181,7 @@
     <Compile Include="Controllers\NganhsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\sachController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ThanhPhoesController.cs" />
     <Compile Include="Controllers\TruongNganhMonthisController.cs" />
@@ -1110,6 +1111,7 @@
     <Content Include="Views\TruongNganhMonthis\Edit.cshtml" />
     <Content Include="Views\TruongNganhMonthis\Index.cshtml" />
     <Content Include="Views\Search\_SearchReturnIndex.cshtml" />
+    <Content Include="Views\sach\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1119,6 +1121,7 @@
       <DependentUpon>201503301501075_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

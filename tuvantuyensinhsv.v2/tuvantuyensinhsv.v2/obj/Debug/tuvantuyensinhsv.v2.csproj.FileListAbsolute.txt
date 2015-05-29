@@ -294,3 +294,6 @@ F:\5. Project\3. mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuv
 F:\5. Project\3. mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.dll
 F:\5. Project\3. mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.pdb
 F:\5. Project\3. mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.csprojResolveAssemblyReference.cache
+E:\6. My Project\net\mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.csprojResolveAssemblyReference.cache
+E:\6. My Project\net\mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.Migrations.Init.resources
+E:\6. My Project\net\mvc\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.csproj.GenerateResource.Cache
