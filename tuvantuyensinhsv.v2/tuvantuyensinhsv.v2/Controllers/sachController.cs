@@ -11,9 +11,13 @@ namespace tuvantuyensinhsv.v2.Controllers
         ProjectHEntities db = new ProjectHEntities();
         //
         // GET: /sach/
+        // Sach cho: type = true.
+        // Sach nhan: type = false
         public ActionResult Index()
         {
-            return View();
+            List<SachChoMuon> sachs = db.SachChoMuons.ToList();
+           
+            return View(sachs);
         }
 	}
 }
