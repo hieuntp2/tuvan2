@@ -24,6 +24,7 @@ namespace tuvantuyensinhsv.v2.Models
             this.InternalMessages1 = new HashSet<InternalMessage>();
             this.Questions = new HashSet<Question>();
             this.RatePosts = new HashSet<RatePost>();
+            this.SachChoMuons = new HashSet<SachChoMuon>();
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
@@ -63,6 +64,8 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual ICollection<Question> Questions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatePost> RatePosts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SachChoMuon> SachChoMuons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

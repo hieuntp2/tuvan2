@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -68,9 +68,9 @@
           <Property Name="profile_avatar_link" Type="nvarchar(max)" />
           <Property Name="idTruong" Type="nvarchar" MaxLength="10" />
           <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
-          <Property Name="congViec" Type="nvarchar" MaxLength="255" />
+          <Property Name="congViec" Type="nvarchar(max)" />
           <Property Name="fbid" Type="nvarchar" MaxLength="255" />
-          <Property Name="sinhNhat" Type="datetime" />
+          <Property Name="sinhNhat" Type="date" />
           <Property Name="hoTen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BaiViets">
@@ -143,11 +143,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Ten" Type="nvarchar(max)" />
-          <Property Name="linkanh" Type="ntext" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenSach" Type="nvarchar(max)" />
+          <Property Name="Tacgia" Type="nvarchar(max)" />
           <Property Name="NXB" Type="nvarchar(max)" />
-          <Property Name="tacgia" Type="nvarchar(max)" />
+          <Property Name="hinhanh" Type="ntext" />
         </EntityType>
         <EntityType Name="SachChoMuon">
           <Key>
@@ -156,10 +156,9 @@
           </Key>
           <Property Name="id_sach" Type="int" Nullable="false" />
           <Property Name="id_nguoidung" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="loai" Type="bit" />
-          <Property Name="diachi" Type="text" />
-          <Property Name="comment" Type="nchar" MaxLength="10" />
-          <Property Name="soluong" Type="int" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="Loai" Type="bit" />
+          <Property Name="Comment" Type="ntext" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -193,6 +192,21 @@
           <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MoTa" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TruongNganhMonthi">
+          <Key>
+            <PropertyRef Name="MaTruong" />
+            <PropertyRef Name="MaNganh" />
+            <PropertyRef Name="Nam" />
+          </Key>
+          <Property Name="MaTruong" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaNganh" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="idMon1" Type="int" Nullable="false" />
+          <Property Name="idMon2" Type="int" Nullable="false" />
+          <Property Name="idMon3" Type="int" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="Diem" Type="float" Nullable="false" />
+          <Property Name="SoLuongTruyCap" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TruongNganhs">
           <Key>
@@ -409,6 +423,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TruongNganhMonthi_Nganhs">
+          <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
+          <End Role="TruongNganhMonthi" Type="Self.TruongNganhMonthi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nganhs">
+              <PropertyRef Name="MaNganh" />
+            </Principal>
+            <Dependent Role="TruongNganhMonthi">
+              <PropertyRef Name="MaNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TruongNganhMonthi_Truongs">
+          <End Role="Truongs" Type="Self.Truongs" Multiplicity="1" />
+          <End Role="TruongNganhMonthi" Type="Self.TruongNganhMonthi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truongs">
+              <PropertyRef Name="MaTruong" />
+            </Principal>
+            <Dependent Role="TruongNganhMonthi">
+              <PropertyRef Name="MaTruong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TruongNganhs_Nganhs">
           <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
           <End Role="TruongNganhs" Type="Self.TruongNganhs" Multiplicity="*" />
@@ -453,6 +491,7 @@
           <EntitySet Name="SystemInformation" EntityType="Self.SystemInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemLogs" EntityType="Self.SystemLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TruongNganhMonthi" EntityType="Self.TruongNganhMonthi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganhs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Truongs" EntityType="Self.Truongs" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="Self.FK_AspNetUsers_Nganhs">
@@ -515,6 +554,14 @@
             <End Role="ThanhPhoes" EntitySet="ThanhPhoes" />
             <End Role="Truongs" EntitySet="Truongs" />
           </AssociationSet>
+          <AssociationSet Name="FK_TruongNganhMonthi_Nganhs" Association="Self.FK_TruongNganhMonthi_Nganhs">
+            <End Role="Nganhs" EntitySet="Nganhs" />
+            <End Role="TruongNganhMonthi" EntitySet="TruongNganhMonthi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TruongNganhMonthi_Truongs" Association="Self.FK_TruongNganhMonthi_Truongs">
+            <End Role="Truongs" EntitySet="Truongs" />
+            <End Role="TruongNganhMonthi" EntitySet="TruongNganhMonthi" />
+          </AssociationSet>
           <AssociationSet Name="FK_TruongNganhs_Nganhs" Association="Self.FK_TruongNganhs_Nganhs">
             <End Role="Nganhs" EntitySet="Nganhs" />
             <End Role="TruongNganhs" EntitySet="TruongNganhs" />
@@ -524,7 +571,8 @@
             <End Role="TruongNganhs" EntitySet="TruongNganhs" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -586,9 +634,9 @@
           <Property Name="profile_avatar_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="idTruong" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="idNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="congViec" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="congViec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="fbid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="sinhNhat" Type="DateTime" Precision="3" />
+          <Property Name="sinhNhat" Type="DateTime" Precision="0" />
           <Property Name="hoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
@@ -599,8 +647,8 @@
           <NavigationProperty Name="InternalMessages1" Relationship="Self.FK_InternalMessage_AspNetUsers1" FromRole="AspNetUsers" ToRole="InternalMessage" />
           <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_AspNetUsers" FromRole="AspNetUsers" ToRole="Questions" />
           <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="AspNetUsers" ToRole="RatePost" />
+          <NavigationProperty Name="SachChoMuons" Relationship="Self.FK_SachChoMuon_AspNetUsers" FromRole="AspNetUsers" ToRole="SachChoMuon" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="SachChoMuons" Relationship="ProjectHModel.FK_SachChoMuon_AspNetUsers" FromRole="AspNetUser" ToRole="SachChoMuon" />
         </EntityType>
         <EntityType Name="BaiViet">
           <Key>
@@ -677,6 +725,30 @@
           <Property Name="Like" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_RatePost_AspNetUsers" FromRole="RatePost" ToRole="AspNetUsers" />
           <NavigationProperty Name="BaiViet" Relationship="Self.FK_RatePost_BaiViets" FromRole="RatePost" ToRole="BaiViets" />
+        </EntityType>
+        <EntityType Name="Sach">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenSach" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tacgia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NXB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="hinhanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SachChoMuons" Relationship="Self.FK_SachChoMuon_Sach" FromRole="Sach" ToRole="SachChoMuon" />
+        </EntityType>
+        <EntityType Name="SachChoMuon">
+          <Key>
+            <PropertyRef Name="id_sach" />
+            <PropertyRef Name="id_nguoidung" />
+          </Key>
+          <Property Name="id_sach" Type="Int32" Nullable="false" />
+          <Property Name="id_nguoidung" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="Loai" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_SachChoMuon_AspNetUsers" FromRole="SachChoMuon" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Sach" Relationship="Self.FK_SachChoMuon_Sach" FromRole="SachChoMuon" ToRole="Sach" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -874,6 +946,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SachChoMuon_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="SachChoMuon" Type="Self.SachChoMuon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SachChoMuon">
+              <PropertyRef Name="id_nguoidung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RatePost_BaiViets">
           <End Role="BaiViets" Type="Self.BaiViet" Multiplicity="1" />
           <End Role="RatePost" Type="Self.RatePost" Multiplicity="*" />
@@ -907,6 +991,18 @@
             </Principal>
             <Dependent Role="TruongNganhs">
               <PropertyRef Name="MaNganh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SachChoMuon_Sach">
+          <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+          <End Role="SachChoMuon" Type="Self.SachChoMuon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sach">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SachChoMuon">
+              <PropertyRef Name="id_sach" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -963,6 +1059,8 @@
           <EntitySet Name="Nganhs" EntityType="Self.Nganh" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="RatePosts" EntityType="Self.RatePost" />
+          <EntitySet Name="Saches" EntityType="Self.Sach" />
+          <EntitySet Name="SachChoMuons" EntityType="Self.SachChoMuon" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="SystemInformations" EntityType="Self.SystemInformation" />
           <EntitySet Name="SystemLogs" EntityType="Self.SystemLog" />
@@ -1006,6 +1104,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="RatePost" EntitySet="RatePosts" />
           </AssociationSet>
+          <AssociationSet Name="FK_SachChoMuon_AspNetUsers" Association="Self.FK_SachChoMuon_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="SachChoMuon" EntitySet="SachChoMuons" />
+          </AssociationSet>
           <AssociationSet Name="FK_RatePost_BaiViets" Association="Self.FK_RatePost_BaiViets">
             <End Role="BaiViets" EntitySet="BaiViets" />
             <End Role="RatePost" EntitySet="RatePosts" />
@@ -1017,6 +1119,10 @@
           <AssociationSet Name="FK_TruongNganhs_Nganhs" Association="Self.FK_TruongNganhs_Nganhs">
             <End Role="Nganhs" EntitySet="Nganhs" />
             <End Role="TruongNganhs" EntitySet="TruongNganhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SachChoMuon_Sach" Association="Self.FK_SachChoMuon_Sach">
+            <End Role="Sach" EntitySet="Saches" />
+            <End Role="SachChoMuon" EntitySet="SachChoMuons" />
           </AssociationSet>
           <AssociationSet Name="FK_Truong_ThanhPho" Association="Self.FK_Truong_ThanhPho">
             <End Role="ThanhPhoes" EntitySet="ThanhPhoes" />
@@ -1034,66 +1140,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Saches" EntityType="ProjectHModel.Sach" />
-          <EntitySet Name="SachChoMuons" EntityType="ProjectHModel.SachChoMuon" />
-          <AssociationSet Name="FK_SachChoMuon_AspNetUsers" Association="ProjectHModel.FK_SachChoMuon_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="SachChoMuon" EntitySet="SachChoMuons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SachChoMuon_Sach" Association="ProjectHModel.FK_SachChoMuon_Sach">
-            <End Role="Sach" EntitySet="Saches" />
-            <End Role="SachChoMuon" EntitySet="SachChoMuons" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Sach">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="linkanh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NXB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tacgia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SachChoMuons" Relationship="ProjectHModel.FK_SachChoMuon_Sach" FromRole="Sach" ToRole="SachChoMuon" />
-        </EntityType>
-        <EntityType Name="SachChoMuon">
-          <Key>
-            <PropertyRef Name="id_sach" />
-            <PropertyRef Name="id_nguoidung" />
-          </Key>
-          <Property Name="id_sach" Type="Int32" Nullable="false" />
-          <Property Name="id_nguoidung" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="loai" Type="Boolean" />
-          <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="soluong" Type="Int32" />
-          <NavigationProperty Name="AspNetUser" Relationship="ProjectHModel.FK_SachChoMuon_AspNetUsers" FromRole="SachChoMuon" ToRole="AspNetUser" />
-          <NavigationProperty Name="Sach" Relationship="ProjectHModel.FK_SachChoMuon_Sach" FromRole="SachChoMuon" ToRole="Sach" />
-        </EntityType>
-        <Association Name="FK_SachChoMuon_AspNetUsers">
-          <End Type="ProjectHModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="ProjectHModel.SachChoMuon" Role="SachChoMuon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SachChoMuon">
-              <PropertyRef Name="id_nguoidung" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SachChoMuon_Sach">
-          <End Type="ProjectHModel.Sach" Role="Sach" Multiplicity="1" />
-          <End Type="ProjectHModel.SachChoMuon" Role="SachChoMuon" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sach">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SachChoMuon">
-              <PropertyRef Name="id_sach" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1232,6 +1279,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Saches">
+            <EntityTypeMapping TypeName="ProjectHModel.Sach">
+              <MappingFragment StoreEntitySet="Sach">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TenSach" ColumnName="TenSach" />
+                <ScalarProperty Name="Tacgia" ColumnName="Tacgia" />
+                <ScalarProperty Name="NXB" ColumnName="NXB" />
+                <ScalarProperty Name="hinhanh" ColumnName="hinhanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SachChoMuons">
+            <EntityTypeMapping TypeName="ProjectHModel.SachChoMuon">
+              <MappingFragment StoreEntitySet="SachChoMuon">
+                <ScalarProperty Name="id_sach" ColumnName="id_sach" />
+                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="ProjectHModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1266,6 +1335,20 @@
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TruongNganhMonthis">
+            <EntityTypeMapping TypeName="ProjectHModel.TruongNganhMonthi">
+              <MappingFragment StoreEntitySet="TruongNganhMonthi">
+                <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="idMon1" ColumnName="idMon1" />
+                <ScalarProperty Name="idMon2" ColumnName="idMon2" />
+                <ScalarProperty Name="idMon3" ColumnName="idMon3" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="Diem" ColumnName="Diem" />
+                <ScalarProperty Name="SoLuongTruyCap" ColumnName="SoLuongTruyCap" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1304,29 +1387,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Saches">
-            <EntityTypeMapping TypeName="ProjectHModel.Sach">
-              <MappingFragment StoreEntitySet="Sach">
-                <ScalarProperty Name="tacgia" ColumnName="tacgia" />
-                <ScalarProperty Name="NXB" ColumnName="NXB" />
-                <ScalarProperty Name="linkanh" ColumnName="linkanh" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SachChoMuons">
-            <EntityTypeMapping TypeName="ProjectHModel.SachChoMuon">
-              <MappingFragment StoreEntitySet="SachChoMuon">
-                <ScalarProperty Name="soluong" ColumnName="soluong" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="diachi" ColumnName="diachi" />
-                <ScalarProperty Name="loai" ColumnName="loai" />
-                <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-                <ScalarProperty Name="id_sach" ColumnName="id_sach" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
