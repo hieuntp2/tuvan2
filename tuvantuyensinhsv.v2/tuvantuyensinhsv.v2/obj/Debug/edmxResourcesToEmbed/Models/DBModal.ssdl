@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -63,9 +63,9 @@
     <Property Name="profile_avatar_link" Type="nvarchar(max)" />
     <Property Name="idTruong" Type="nvarchar" MaxLength="10" />
     <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
-    <Property Name="congViec" Type="nvarchar" MaxLength="255" />
+    <Property Name="congViec" Type="nvarchar(max)" />
     <Property Name="fbid" Type="nvarchar" MaxLength="255" />
-    <Property Name="sinhNhat" Type="datetime" />
+    <Property Name="sinhNhat" Type="date" />
     <Property Name="hoTen" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="BaiViets">
@@ -188,6 +188,21 @@
     <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MoTa" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TruongNganhMonthi">
+    <Key>
+      <PropertyRef Name="MaTruong" />
+      <PropertyRef Name="MaNganh" />
+      <PropertyRef Name="Nam" />
+    </Key>
+    <Property Name="MaTruong" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNganh" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="idMon1" Type="int" Nullable="false" />
+    <Property Name="idMon2" Type="int" Nullable="false" />
+    <Property Name="idMon3" Type="int" Nullable="false" />
+    <Property Name="Nam" Type="int" Nullable="false" />
+    <Property Name="Diem" Type="float" Nullable="false" />
+    <Property Name="SoLuongTruyCap" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TruongNganhs">
     <Key>
@@ -404,6 +419,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TruongNganhMonthi_Nganhs">
+    <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
+    <End Role="TruongNganhMonthi" Type="Self.TruongNganhMonthi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganhs">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="TruongNganhMonthi">
+        <PropertyRef Name="MaNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruongNganhMonthi_Truongs">
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="1" />
+    <End Role="TruongNganhMonthi" Type="Self.TruongNganhMonthi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truongs">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="TruongNganhMonthi">
+        <PropertyRef Name="MaTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TruongNganhs_Nganhs">
     <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
     <End Role="TruongNganhs" Type="Self.TruongNganhs" Multiplicity="*" />
@@ -448,6 +487,7 @@
     <EntitySet Name="SystemInformation" EntityType="Self.SystemInformation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SystemLogs" EntityType="Self.SystemLogs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruongNganhMonthi" EntityType="Self.TruongNganhMonthi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganhs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Truongs" EntityType="Self.Truongs" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="Self.FK_AspNetUsers_Nganhs">
@@ -509,6 +549,14 @@
     <AssociationSet Name="FK_Truong_ThanhPho" Association="Self.FK_Truong_ThanhPho">
       <End Role="ThanhPhoes" EntitySet="ThanhPhoes" />
       <End Role="Truongs" EntitySet="Truongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhMonthi_Nganhs" Association="Self.FK_TruongNganhMonthi_Nganhs">
+      <End Role="Nganhs" EntitySet="Nganhs" />
+      <End Role="TruongNganhMonthi" EntitySet="TruongNganhMonthi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhMonthi_Truongs" Association="Self.FK_TruongNganhMonthi_Truongs">
+      <End Role="Truongs" EntitySet="Truongs" />
+      <End Role="TruongNganhMonthi" EntitySet="TruongNganhMonthi" />
     </AssociationSet>
     <AssociationSet Name="FK_TruongNganhs_Nganhs" Association="Self.FK_TruongNganhs_Nganhs">
       <End Role="Nganhs" EntitySet="Nganhs" />
