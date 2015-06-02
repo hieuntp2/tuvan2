@@ -294,6 +294,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\npm.js" />
     <Content Include="Content\default_account.png" />
+    <Content Include="Content\default_book.png" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\css\skins\skin-black.css" />
@@ -938,6 +939,7 @@
     <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Views\Admin\New Text Document.txt" />
+    <Content Include="Scripts\sachcontroller.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
@@ -1118,6 +1120,7 @@
     <Content Include="Views\TruongNganhMonthis\Index.cshtml" />
     <Content Include="Views\Search\_SearchReturnIndex.cshtml" />
     <Content Include="Views\sach\Index.cshtml" />
+    <Content Include="Views\sach\sachmodal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

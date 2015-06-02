@@ -1,57 +1,77 @@
-﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.SachChoMuon>
+﻿@model IEnumerable<tuvantuyensinhsv.v2.Models.Sach>
 
 @{
     ViewBag.Title = "Index";
+
+    int count = 0;
 }
 
-<h2>Index</h2>
+<script src="~/scripts/sachcontroller.js"></script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Loai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sach.TenSach)
-        </th>
-        <th></th>
-    </tr>
+<div class="row" ng-app="main_app">
+    <div class="col-lg-12">
+        <div class="box box-info" ng-controller="bookindexcontroller as controller">
+            <div class="box-header">
+                <h4 class="box-title">Sách đăng ký cho</h4>
+                <div class="box-tools pull-right">
+                    <div class="btn-group" data-toggle="btn-toggle">
+                        <button type="button" class="btn btn-success" data-toggle="on" ng-click="showTangSachModal()">Tặng sách</button>
+                    </div>
+                </div>
+            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Loai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sach.TenSach)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+            <div class="box-body table-responsive no-padding">
 
-</table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Tên</td>
+                            <td>Ảnh</td>
+                            <td>Thông tin thêm</td>
+                            <td>Tặng</td>
+                            <td>Nhận</td>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="cursor: pointer;" ng-click="showBookInforModal(@item.id)">
+                            <td>@count</td>
+                            <td>
+                                <p> @item.Ten</p>
+                            </td>
+                            <td>
+                                @if (item.linkanh == null)
+                                {
+                                    <span class="chat-img pull-left">
+                                        <img style="width: 30px;" src="../../content/default_book.png" class="small-logo-img">
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="chat-img pull-left">
+                                        <img src="@item.linkanh" class="small-logo-img">
+                                    </span>
+                                }
+                            </td>
+                            <td>@item.NXB,  @item.tacgia</td>
+                            <td>
+                                @item.SachChoMuons.Where(t => t.loai == true).Count()
+                            </td>
+                            <td>
+                                @item.SachChoMuons.Where(t => t.loai == false).Count()
+                            </td>
+                        </tr>
+
+                                count += 1;
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="box-footer"></div>
+
+        </div>
+    </div>
+
+    @Html.Partial("sachmodal")
+</div>

@@ -1,0 +1,84 @@
+﻿<!-- Sach Infor -->
+<div class="modal fade" id="bookinformodal" ng-controller="bookinforcontroller as controller">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div>
+                    <img style="width: 130px; float: left; margin-right: 10px;" ng-src="{{linkanh}}" class="small-logo-img">
+                    <h4 style="color: blue;">{{Ten}}</h4>
+                    <p>Nhà xuất bản: {{nxb}}</p>
+                    <p>Tác giả: {{tacgia}}</p>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6" style="padding-left: 1px; padding-right: 1px;">
+                        <p>Người đăng ký nhận sách</p>
+                        <div class="panel" ng-repeat="item in nguoi_cho">
+                            <div class="box-header with-border">
+                                <h5 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+                                        <img ng-src="{{item.anhavatar}}" style="width: 30px;" />
+                                        {{item.ten}}: {{item.soluong}} cuốn
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="box-body">
+                                    {{item.comment}}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6" style="padding-left: 1px; padding-right: 1px;">
+                        <p>Người đăng ký tặng sách</p>
+                        <div class="panel" ng-repeat="item in nguoi_nhan">
+                            <div class="box-header with-border">
+                                <h5 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" class="collapsed">
+                                        <img ng-src="{{item.anhavatar}}" style="width: 30px;" />
+                                        {{item.ten}}: {{item.soluong}} cuốn
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                <div class="box-body">
+                                    {{item.comment}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="dangkynhansach()" style="  float: left;">Tặng sách này</button>
+                <button type="button" class="btn btn-primary" ng-click="dangkytangsach()">Đăng ký nhận</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- Sach Infor -->
+<div class="modal fade" id="tangsachmodal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Create group
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input autocomplete="off" type="text" ng-model="name" class="form-control" placeholder="Name">
+                    <p style="color:red;">{{nameerror}}</p>
+                </div>
+                <div class="form-group">
+                    <input autocomplete="off" type="password" ng-model="password" class="form-control" placeholder="password">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="createGroup()">Create</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

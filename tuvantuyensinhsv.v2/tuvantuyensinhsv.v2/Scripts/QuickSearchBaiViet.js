@@ -27,9 +27,3 @@
         return item;
     }
 });
-
-
-function AddTab()
-{
-
-}
