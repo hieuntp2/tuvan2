@@ -16,9 +16,10 @@ namespace tuvantuyensinhsv.v2.Models
     {
         public int id_sach { get; set; }
         public string id_nguoidung { get; set; }
-        public Nullable<int> SoLuong { get; set; }
-        public Nullable<bool> Loai { get; set; }
-        public string Comment { get; set; }
+        public Nullable<bool> loai { get; set; }
+        public string diachi { get; set; }
+        public string comment { get; set; }
+        public Nullable<int> soluong { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Sach Sach { get; set; }

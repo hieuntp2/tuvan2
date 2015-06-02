@@ -133,6 +133,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Saches">
+      <EntityTypeMapping TypeName="ProjectHModel.Sach">
+        <MappingFragment StoreEntitySet="Sach">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="linkanh" ColumnName="linkanh" />
+          <ScalarProperty Name="NXB" ColumnName="NXB" />
+          <ScalarProperty Name="tacgia" ColumnName="tacgia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SachChoMuons">
+      <EntityTypeMapping TypeName="ProjectHModel.SachChoMuon">
+        <MappingFragment StoreEntitySet="SachChoMuon">
+          <ScalarProperty Name="id_sach" ColumnName="id_sach" />
+          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
+          <ScalarProperty Name="loai" ColumnName="loai" />
+          <ScalarProperty Name="diachi" ColumnName="diachi" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
       <EntityTypeMapping TypeName="ProjectHModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
@@ -167,6 +190,20 @@
           <ScalarProperty Name="Ten" ColumnName="Ten" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TruongNganhMonthis">
+      <EntityTypeMapping TypeName="ProjectHModel.TruongNganhMonthi">
+        <MappingFragment StoreEntitySet="TruongNganhMonthi">
+          <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
+          <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+          <ScalarProperty Name="idMon1" ColumnName="idMon1" />
+          <ScalarProperty Name="idMon2" ColumnName="idMon2" />
+          <ScalarProperty Name="idMon3" ColumnName="idMon3" />
+          <ScalarProperty Name="Nam" ColumnName="Nam" />
+          <ScalarProperty Name="Diem" ColumnName="Diem" />
+          <ScalarProperty Name="SoLuongTruyCap" ColumnName="SoLuongTruyCap" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -205,28 +242,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Saches">
-      <EntityTypeMapping TypeName="ProjectHModel.Sach">
-        <MappingFragment StoreEntitySet="Sach">
-          <ScalarProperty Name="tacgia" ColumnName="tacgia" />
-          <ScalarProperty Name="NXB" ColumnName="NXB" />
-          <ScalarProperty Name="linkanh" ColumnName="linkanh" />
-          <ScalarProperty Name="Ten" ColumnName="Ten" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SachChoMuons">
-      <EntityTypeMapping TypeName="ProjectHModel.SachChoMuon">
-        <MappingFragment StoreEntitySet="SachChoMuon">
-          <ScalarProperty Name="soluong" ColumnName="soluong" />
-          <ScalarProperty Name="comment" ColumnName="comment" />
-          <ScalarProperty Name="diachi" ColumnName="diachi" />
-          <ScalarProperty Name="loai" ColumnName="loai" />
-          <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
-          <ScalarProperty Name="id_sach" ColumnName="id_sach" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

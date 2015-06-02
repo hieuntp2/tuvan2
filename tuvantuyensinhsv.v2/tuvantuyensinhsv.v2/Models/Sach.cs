@@ -21,10 +21,10 @@ namespace tuvantuyensinhsv.v2.Models
         }
     
         public int id { get; set; }
-        public string TenSach { get; set; }
-        public string Tacgia { get; set; }
+        public string Ten { get; set; }
+        public string linkanh { get; set; }
         public string NXB { get; set; }
-        public string hinhanh { get; set; }
+        public string tacgia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SachChoMuon> SachChoMuons { get; set; }

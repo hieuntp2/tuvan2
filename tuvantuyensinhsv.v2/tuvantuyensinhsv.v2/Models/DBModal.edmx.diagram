@@ -4,22 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="01609b85e0ce4fbcbb57b13048f67315" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="ProjectHModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="a1fb4a76396042cf800de095781ca9a1" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectHModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.AspNetUser" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.BaiViet" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.InternalMessage" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectHModel.KhoiThi" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectHModel.MBTI" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.KhoiThi" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.MBTI" Width="1.5" PointX="7.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.Nganh" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.Question" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.RatePost" Width="1.5" PointX="7.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectHModel.sysdiagram" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectHModel.SystemInformation" Width="1.5" PointX="8.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectHModel.SystemLog" Width="1.5" PointX="9.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.Sach" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.SachChoMuon" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.sysdiagram" Width="1.5" PointX="8.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.SystemInformation" Width="1.5" PointX="2.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectHModel.SystemLog" Width="1.5" PointX="8.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.ThanhPho" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.TruongNganhMonthi" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="ProjectHModel.TruongNganh" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
@@ -33,17 +35,15 @@
         <AssociationConnector Association="ProjectHModel.FK_InternalMessage_AspNetUsers1" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_Questions_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_RatePost_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectHModel.FK_SachChoMuon_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_RatePost_BaiViets" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_TruongNganhMonthi_Nganhs" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_TruongNganhs_Nganhs" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectHModel.FK_SachChoMuon_Sach" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_Truong_ThanhPho" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_TruongNganhMonthi_Truongs" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.FK_TruongNganhs_Truongs" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectHModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ProjectHModel.Sach" Width="1.5" PointX="6" PointY="2.25" />
-        <EntityTypeShape EntityType="ProjectHModel.SachChoMuon" Width="1.5" PointX="8.25" PointY="13.125" />
-        <AssociationConnector Association="ProjectHModel.FK_SachChoMuon_AspNetUsers" />
-        <AssociationConnector Association="ProjectHModel.FK_SachChoMuon_Sach" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
