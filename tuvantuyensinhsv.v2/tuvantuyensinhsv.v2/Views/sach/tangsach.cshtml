@@ -1,0 +1,175 @@
+﻿@model tuvantuyensinhsv.v2.Models.Sach
+
+@{
+    ViewBag.Title = "View1";
+}
+<script src="~/scripts/sachcontroller.js"></script>
+
+<div class="row" ng-app="main_app">
+    <div class="col-lg-12">
+        <div class="box box-info" ng-controller="tangsachcontrolller as controller">
+            <div class="box-header">
+                <h3>Đăng ký tặng sách, nhận sách</h3>
+                <button class="btn btn-success" ng-click="showallbook()">Tìm sách có sẵn</button>
+            </div>
+
+            <div class="box-body">
+                Thêm sách mới
+                <hr />
+                <div class="col-lg-8">
+                    <div class="form-group">
+                        <label>Tên sách</label>
+                        <input class="form-control" ng-model="ten" placeholder="Tên sách (yêu cầu)" ng-disabled="(id >= 0?true: false)">
+                        <p style="color:red;">{{tensacherror}}</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhà xuất bản</label>
+                        <input class="form-control" placeholder="Nhà xuất bản (optional)" ng-model="nxb" ng-disabled="id >= 0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tác giả</label>
+                        <input class="form-control" placeholder="Tác giả (optional)" ng-model="tacgia" ng-disabled="id >= 0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ảnh bìa</label>
+                        <input class="form-control" placeholder="Ảnh bìa (optional)" ng-model="linkanh" ng-disabled="id >= 0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số lượng</label>
+                        <input class="form-control" type="number" placeholder="Số lượng" ng-model="soluong">
+                        <p style="color:red;">{{soluong_alert}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img ng-src="{{linkanh}}" width="200px;" />
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Comments" ng-model="comment"></textarea>
+                    </div>
+                    <button ng-click="tangsach()" class="btn btn-primary">Tặng sách</button>
+                    <button ng-click="nhansach()" class="btn btn-primary">Nhận sách</button>
+                </div>
+                <hr />
+
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên</th>
+                            <th>Ảnh</th>
+                            <th>Nhà xuất bản</th>
+                            <th>Tác giả</th>
+                            <th>Loại</th>
+                            <th>Số lượng</th>
+                            <th>Xóa</th>
+                        </tr>
+                        <tr ng-repeat="sach in saches" style="cursor:pointer;" ng-click="doithongtin(sach.index)">
+                            <td>{{sach.index}}</td>
+                            <td>{{sach.ten}}</td>
+                            <td><img ng-src="{{sach.linkanh}}" width="40px;" /></td>
+                            <td>{{sach.nxb}}</td>
+                            <td>{{sach.tacgia}}</td>
+                            <td ng-switch="sach.loai">
+                                <p ng-switch-when="1">Tặng sách</p>
+                                <p ng-switch-when="0">Nhận sách</p>
+                            </td>
+                            <td>{{sach.soluong}}</td>
+                            <td>
+                                <button class="btn btn-primary btn-xs" ng-click="xoasach(sach.index)"><i class="fa fa-times"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="box-footer">    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button ng-click="hoanthanh()" class="btn btn-success" style="float:left;">Xong</button>
+                        <button ng-click="huytoanbo()" class="btn btn-primary" style="float:right;">Hủy</button>
+                    </div>
+                </div>     
+            </div>
+
+            <!--All Book Modal-->
+            <!-- Sach Infor -->
+            <div class="modal fade" id="allbookmodal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <table class="table table-hover" style="overflow-y: auto;">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tên</th>
+                                    <th>Ảnh</th>
+                                    <th>Nhà xuất bản</th>
+                                    <th>Tác giả</th>
+                                </tr>
+                                <tr ng-repeat="sach in allbook" style="cursor:pointer;" ng-click="chonsach(sach.id)">
+                                    <td>{{sach.id}}</td>
+                                    <td>{{sach.ten}}</td>
+                                    <td><img ng-src="{{sach.linkanh}}" width="40px;" /></td>
+                                    <td>{{sach.nxb}}</td>
+                                    <td>{{sach.tacgia}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <!--/All Bookk Modal-->
+        </div>
+    </div>
+</div>
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Sach</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ten, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ten)
+                    @Html.ValidationMessageFor(model => model.Ten)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.linkanh, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.linkanh)
+                    @Html.ValidationMessageFor(model => model.linkanh)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NXB, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NXB)
+                    @Html.ValidationMessageFor(model => model.NXB)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.tacgia, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tacgia)
+                    @Html.ValidationMessageFor(model => model.tacgia)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }*@

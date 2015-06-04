@@ -341,7 +341,6 @@
     <Content Include="Content\dist\img\user8-128x128.jpg" />
     <Content Include="Content\dist\js\app.js" />
     <Content Include="Content\dist\js\app.min.js" />
-    <Content Include="Content\dist\js\demo.js" />
     <Content Include="Content\dist\js\pages\dashboard.js" />
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\js\facebook_comment.js" />
@@ -1121,6 +1120,7 @@
     <Content Include="Views\Search\_SearchReturnIndex.cshtml" />
     <Content Include="Views\sach\Index.cshtml" />
     <Content Include="Views\sach\sachmodal.cshtml" />
+    <Content Include="Views\sach\tangsach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
