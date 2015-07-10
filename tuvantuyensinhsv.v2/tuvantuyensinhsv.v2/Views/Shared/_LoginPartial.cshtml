@@ -35,12 +35,7 @@
     {
         <li onclick="DetailMessage(@count)">
             <a>
-                <div>
-                    @*@if (messages[count].AspNetUser.HoTen != null)
-                    {
-                        <strong>@messages[count].AspNetUser.HoTen</strong>
-                    }
-                    else
+                <div>                  
                     {*@
                         <strong>@messages[count].AspNetUser.UserName</strong>
                   //  }
@@ -150,9 +145,7 @@ else
 
         <!-- /.dropdown -->
     </ul>
-
 }
-
 
 <script>
     function SendInternallMessage()
