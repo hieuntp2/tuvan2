@@ -948,8 +948,6 @@
     <Content Include="Views\Shared\_Layout.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Shared\_Layout1.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Shared\_LayoutTruong.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LoginPopUp.cshtml" />
@@ -1105,8 +1103,6 @@
     <Content Include="Views\Truongs\ThieuWebsite.cshtml" />
     <Content Include="Views\Truongs\_RightSideBarTruong.cshtml" />
     <Content Include="Views\BaiViets\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout3.cshtml" />
-    <Content Include="Views\Shared\_PartialLogin2.cshtml" />
     <Content Include="Views\Shared\_main_slide_bar.cshtml" />
     <Content Include="Views\MBTIs\Index2.cshtml" />
     <Content Include="Views\MBTIs\_kiemtraMBTI.cshtml" />
