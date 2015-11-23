@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="profile_avatar_link" Type="nvarchar(max)" />
+    <Property Name="idTruong" Type="nvarchar" MaxLength="10" />
+    <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
+    <Property Name="congViec" Type="nvarchar(max)" />
+    <Property Name="fbid" Type="nvarchar" MaxLength="255" />
+    <Property Name="sinhNhat" Type="date" />
+    <Property Name="hoTen" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="BaiViets">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NguoiDang" Type="nvarchar" MaxLength="128" />
+    <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
+    <Property Name="Trangthai" Type="int" Nullable="false" />
+    <Property Name="Tabs" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="InternalMessage">
+    <Key>
+      <PropertyRef Name="From" />
+      <PropertyRef Name="To" />
+      <PropertyRef Name="DateCreate" />
+    </Key>
+    <Property Name="From" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="To" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Mesage" Type="ntext" />
+    <Property Name="DateCreate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhoiThis">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Ten" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MBTI">
+    <Key>
+      <PropertyRef Name="idMBTI" />
+    </Key>
+    <Property Name="idMBTI" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Tags" Type="ntext" />
+    <Property Name="GioiThieu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Nganhs">
+    <Key>
+      <PropertyRef Name="MaNganh" />
+    </Key>
+    <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaNganh" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tieude" Type="nvarchar(max)" />
+    <Property Name="Noidung" Type="ntext" />
+    <Property Name="userid" Type="nvarchar" MaxLength="128" />
+    <Property Name="Ngaydang" Type="datetime" />
+    <Property Name="Tabs" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="RatePost">
+    <Key>
+      <PropertyRef Name="IDBaiViet" />
+      <PropertyRef Name="IDUsername" />
+    </Key>
+    <Property Name="IDBaiViet" Type="int" Nullable="false" />
+    <Property Name="IDUsername" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Like" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sach">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar(max)" />
+    <Property Name="linkanh" Type="ntext" />
+    <Property Name="NXB" Type="nvarchar(max)" />
+    <Property Name="tacgia" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SachChoMuon">
+    <Key>
+      <PropertyRef Name="id_sach" />
+      <PropertyRef Name="id_nguoidung" />
+    </Key>
+    <Property Name="id_sach" Type="int" Nullable="false" />
+    <Property Name="id_nguoidung" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="loai" Type="bit" />
+    <Property Name="diachi" Type="text" />
+    <Property Name="comment" Type="nchar" MaxLength="10" />
+    <Property Name="soluong" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="SystemInformation">
+    <Key>
+      <PropertyRef Name="Key" />
+    </Key>
+    <Property Name="Key" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="value" Type="int" />
+  </EntityType>
+  <EntityType Name="SystemLogs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LogMessage" Type="ntext" />
+    <Property Name="DateCreated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ThanhPhoes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TruongNganhMonthis">
+    <Key>
+      <PropertyRef Name="MaTruong" />
+      <PropertyRef Name="MaNganh" />
+      <PropertyRef Name="Nam" />
+    </Key>
+    <Property Name="MaTruong" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNganh" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="idMon1" Type="int" Nullable="false" />
+    <Property Name="idMon2" Type="int" Nullable="false" />
+    <Property Name="idMon3" Type="int" Nullable="false" />
+    <Property Name="Nam" Type="int" Nullable="false" />
+    <Property Name="Diem" Type="float" Nullable="false" />
+    <Property Name="SoLuongTruyCap" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TruongNganhs">
+    <Key>
+      <PropertyRef Name="MaTruong" />
+      <PropertyRef Name="MaNganh" />
+      <PropertyRef Name="KhoiThi" />
+    </Key>
+    <Property Name="MaTruong" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaNganh" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="KhoiThi" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Diem1" Type="float" />
+    <Property Name="Diem2" Type="float" />
+    <Property Name="Diem3" Type="float" />
+    <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Truongs">
+    <Key>
+      <PropertyRef Name="MaTruong" />
+    </Key>
+    <Property Name="Ten" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Website" Type="nvarchar(max)" />
+    <Property Name="IDThanhPho" Type="int" Nullable="false" />
+    <Property Name="MaTruong" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LoaiTruong" Type="char" MaxLength="2" />
+    <Property Name="linkLogo" Type="nvarchar(max)" />
+    <Property Name="DeAnTuyenSInh" Type="ntext" />
+    <Property Name="GioiThieu" Type="ntext" />
+  </EntityType>
+  <Association Name="FK_AspNetUsers_Nganhs">
+    <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganhs">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="idNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_Truongs">
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truongs">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="idTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BaiViets_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="BaiViets" Type="Self.BaiViets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BaiViets">
+        <PropertyRef Name="NguoiDang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InternalMessage_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="InternalMessage" Type="Self.InternalMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InternalMessage">
+        <PropertyRef Name="To" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InternalMessage_AspNetUsers1">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="InternalMessage" Type="Self.InternalMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InternalMessage">
+        <PropertyRef Name="From" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Questions_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Questions">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RatePost_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="RatePost" Type="Self.RatePost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RatePost">
+        <PropertyRef Name="IDUsername" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RatePost_BaiViets">
+    <End Role="BaiViets" Type="Self.BaiViets" Multiplicity="1" />
+    <End Role="RatePost" Type="Self.RatePost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BaiViets">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RatePost">
+        <PropertyRef Name="IDBaiViet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SachChoMuon_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="SachChoMuon" Type="Self.SachChoMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SachChoMuon">
+        <PropertyRef Name="id_nguoidung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SachChoMuon_Sach">
+    <End Role="Sach" Type="Self.Sach" Multiplicity="1" />
+    <End Role="SachChoMuon" Type="Self.SachChoMuon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sach">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SachChoMuon">
+        <PropertyRef Name="id_sach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Truong_ThanhPho">
+    <End Role="ThanhPhoes" Type="Self.ThanhPhoes" Multiplicity="1" />
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThanhPhoes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Truongs">
+        <PropertyRef Name="IDThanhPho" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruongNganhMonthi_Nganhs">
+    <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
+    <End Role="TruongNganhMonthis" Type="Self.TruongNganhMonthis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganhs">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="TruongNganhMonthis">
+        <PropertyRef Name="MaNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruongNganhMonthi_Truongs">
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="1" />
+    <End Role="TruongNganhMonthis" Type="Self.TruongNganhMonthis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truongs">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="TruongNganhMonthis">
+        <PropertyRef Name="MaTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruongNganhs_Nganhs">
+    <End Role="Nganhs" Type="Self.Nganhs" Multiplicity="1" />
+    <End Role="TruongNganhs" Type="Self.TruongNganhs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nganhs">
+        <PropertyRef Name="MaNganh" />
+      </Principal>
+      <Dependent Role="TruongNganhs">
+        <PropertyRef Name="MaNganh" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TruongNganhs_Truongs">
+    <End Role="Truongs" Type="Self.Truongs" Multiplicity="1" />
+    <End Role="TruongNganhs" Type="Self.TruongNganhs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Truongs">
+        <PropertyRef Name="MaTruong" />
+      </Principal>
+      <Dependent Role="TruongNganhs">
+        <PropertyRef Name="MaTruong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectHModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BaiViets" EntityType="Self.BaiViets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InternalMessage" EntityType="Self.InternalMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhoiThis" EntityType="Self.KhoiThis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MBTI" EntityType="Self.MBTI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nganhs" EntityType="Self.Nganhs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RatePost" EntityType="Self.RatePost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SachChoMuon" EntityType="Self.SachChoMuon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemInformation" EntityType="Self.SystemInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemLogs" EntityType="Self.SystemLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruongNganhMonthis" EntityType="Self.TruongNganhMonthis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruongNganhs" EntityType="Self.TruongNganhs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Truongs" EntityType="Self.Truongs" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUsers_Nganhs" Association="Self.FK_AspNetUsers_Nganhs">
+      <End Role="Nganhs" EntitySet="Nganhs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_Truongs" Association="Self.FK_AspNetUsers_Truongs">
+      <End Role="Truongs" EntitySet="Truongs" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BaiViets_AspNetUsers" Association="Self.FK_BaiViets_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="BaiViets" EntitySet="BaiViets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InternalMessage_AspNetUsers" Association="Self.FK_InternalMessage_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="InternalMessage" EntitySet="InternalMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InternalMessage_AspNetUsers1" Association="Self.FK_InternalMessage_AspNetUsers1">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="InternalMessage" EntitySet="InternalMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Questions_AspNetUsers" Association="Self.FK_Questions_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Questions" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RatePost_AspNetUsers" Association="Self.FK_RatePost_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="RatePost" EntitySet="RatePost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RatePost_BaiViets" Association="Self.FK_RatePost_BaiViets">
+      <End Role="BaiViets" EntitySet="BaiViets" />
+      <End Role="RatePost" EntitySet="RatePost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SachChoMuon_AspNetUsers" Association="Self.FK_SachChoMuon_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SachChoMuon" EntitySet="SachChoMuon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SachChoMuon_Sach" Association="Self.FK_SachChoMuon_Sach">
+      <End Role="Sach" EntitySet="Sach" />
+      <End Role="SachChoMuon" EntitySet="SachChoMuon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Truong_ThanhPho" Association="Self.FK_Truong_ThanhPho">
+      <End Role="ThanhPhoes" EntitySet="ThanhPhoes" />
+      <End Role="Truongs" EntitySet="Truongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhMonthi_Nganhs" Association="Self.FK_TruongNganhMonthi_Nganhs">
+      <End Role="Nganhs" EntitySet="Nganhs" />
+      <End Role="TruongNganhMonthis" EntitySet="TruongNganhMonthis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhMonthi_Truongs" Association="Self.FK_TruongNganhMonthi_Truongs">
+      <End Role="Truongs" EntitySet="Truongs" />
+      <End Role="TruongNganhMonthis" EntitySet="TruongNganhMonthis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhs_Nganhs" Association="Self.FK_TruongNganhs_Nganhs">
+      <End Role="Nganhs" EntitySet="Nganhs" />
+      <End Role="TruongNganhs" EntitySet="TruongNganhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TruongNganhs_Truongs" Association="Self.FK_TruongNganhs_Truongs">
+      <End Role="Truongs" EntitySet="Truongs" />
+      <End Role="TruongNganhs" EntitySet="TruongNganhs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
