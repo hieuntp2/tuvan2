@@ -466,7 +466,6 @@ D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\bin\Mic
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\bin\Microsoft.Owin.Security.Google.xml
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\bin\Microsoft.Owin.Security.Twitter.xml
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.csprojResolveAssemblyReference.cache
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.Migrations.Init.resources
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.csproj.GenerateResource.Cache
 D:\1. My Project\3. tuvan2\trunk\tuvantuyensinhsv.v2\tuvantuyensinhsv.v2\obj\Debug\tuvantuyensinhsv.v2.dll

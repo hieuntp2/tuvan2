@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="db9283aa975e4f4637a39ea55900f182dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -160,16 +160,6 @@
           <Property Name="diachi" Type="text" />
           <Property Name="comment" Type="nchar" MaxLength="10" />
           <Property Name="soluong" Type="int" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="SystemInformation">
           <Key>
@@ -472,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProjectHModelStoreContainer">
+        <EntityContainer Name="db9283aa975e4f4637a39ea55900f182dbModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -488,7 +478,6 @@
           <EntitySet Name="RatePost" EntityType="Self.RatePost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sach" EntityType="Self.Sach" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SachChoMuon" EntityType="Self.SachChoMuon" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemInformation" EntityType="Self.SystemInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemLogs" EntityType="Self.SystemLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPhoes" Schema="dbo" store:Type="Tables" />
@@ -576,7 +565,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ProjectHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="db9283aa975e4f4637a39ea55900f182dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -751,16 +740,6 @@
           <Property Name="soluong" Type="Int32" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_SachChoMuon_AspNetUsers" FromRole="SachChoMuon" ToRole="AspNetUsers" />
           <NavigationProperty Name="Sach" Relationship="Self.FK_SachChoMuon_Sach" FromRole="SachChoMuon" ToRole="Sach" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="SystemInformation">
           <Key>
@@ -1063,7 +1042,6 @@
           <EntitySet Name="RatePosts" EntityType="Self.RatePost" />
           <EntitySet Name="Saches" EntityType="Self.Sach" />
           <EntitySet Name="SachChoMuons" EntityType="Self.SachChoMuon" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="SystemInformations" EntityType="Self.SystemInformation" />
           <EntitySet Name="SystemLogs" EntityType="Self.SystemLog" />
           <EntitySet Name="ThanhPhoes" EntityType="Self.ThanhPho" />
@@ -1148,9 +1126,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProjectHModelStoreContainer" CdmEntityContainer="ProjectHEntities">
+        <EntityContainerMapping StorageEntityContainer="db9283aa975e4f4637a39ea55900f182dbModelStoreContainer" CdmEntityContainer="ProjectHEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="ProjectHModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -1160,7 +1138,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="ProjectHModel.AspNetRole">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1168,7 +1146,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="ProjectHModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1178,7 +1156,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="ProjectHModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -1187,7 +1165,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="ProjectHModel.AspNetUser">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1212,7 +1190,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BaiViets">
-            <EntityTypeMapping TypeName="ProjectHModel.BaiViet">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.BaiViet">
               <MappingFragment StoreEntitySet="BaiViets">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
@@ -1225,7 +1203,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InternalMessages">
-            <EntityTypeMapping TypeName="ProjectHModel.InternalMessage">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.InternalMessage">
               <MappingFragment StoreEntitySet="InternalMessage">
                 <ScalarProperty Name="From" ColumnName="From" />
                 <ScalarProperty Name="To" ColumnName="To" />
@@ -1235,7 +1213,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KhoiThis">
-            <EntityTypeMapping TypeName="ProjectHModel.KhoiThi">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.KhoiThi">
               <MappingFragment StoreEntitySet="KhoiThis">
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1244,7 +1222,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MBTIs">
-            <EntityTypeMapping TypeName="ProjectHModel.MBTI">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.MBTI">
               <MappingFragment StoreEntitySet="MBTI">
                 <ScalarProperty Name="idMBTI" ColumnName="idMBTI" />
                 <ScalarProperty Name="Tags" ColumnName="Tags" />
@@ -1253,7 +1231,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Nganhs">
-            <EntityTypeMapping TypeName="ProjectHModel.Nganh">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.Nganh">
               <MappingFragment StoreEntitySet="Nganhs">
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
@@ -1261,7 +1239,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="ProjectHModel.Question">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.Question">
               <MappingFragment StoreEntitySet="Questions">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Tieude" ColumnName="Tieude" />
@@ -1273,7 +1251,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RatePosts">
-            <EntityTypeMapping TypeName="ProjectHModel.RatePost">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.RatePost">
               <MappingFragment StoreEntitySet="RatePost">
                 <ScalarProperty Name="IDBaiViet" ColumnName="IDBaiViet" />
                 <ScalarProperty Name="IDUsername" ColumnName="IDUsername" />
@@ -1282,7 +1260,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Saches">
-            <EntityTypeMapping TypeName="ProjectHModel.Sach">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.Sach">
               <MappingFragment StoreEntitySet="Sach">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
@@ -1293,7 +1271,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SachChoMuons">
-            <EntityTypeMapping TypeName="ProjectHModel.SachChoMuon">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.SachChoMuon">
               <MappingFragment StoreEntitySet="SachChoMuon">
                 <ScalarProperty Name="id_sach" ColumnName="id_sach" />
                 <ScalarProperty Name="id_nguoidung" ColumnName="id_nguoidung" />
@@ -1304,19 +1282,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ProjectHModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SystemInformations">
-            <EntityTypeMapping TypeName="ProjectHModel.SystemInformation">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.SystemInformation">
               <MappingFragment StoreEntitySet="SystemInformation">
                 <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="value" ColumnName="value" />
@@ -1324,7 +1291,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SystemLogs">
-            <EntityTypeMapping TypeName="ProjectHModel.SystemLog">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.SystemLog">
               <MappingFragment StoreEntitySet="SystemLogs">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
@@ -1333,7 +1300,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThanhPhoes">
-            <EntityTypeMapping TypeName="ProjectHModel.ThanhPho">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.ThanhPho">
               <MappingFragment StoreEntitySet="ThanhPhoes">
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1342,7 +1309,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TruongNganhMonthis">
-            <EntityTypeMapping TypeName="ProjectHModel.TruongNganhMonthi">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.TruongNganhMonthi">
               <MappingFragment StoreEntitySet="TruongNganhMonthis">
                 <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
                 <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
@@ -1356,7 +1323,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TruongNganhs">
-            <EntityTypeMapping TypeName="ProjectHModel.TruongNganh">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.TruongNganh">
               <MappingFragment StoreEntitySet="TruongNganhs">
                 <ScalarProperty Name="MaTruong" ColumnName="MaTruong" />
                 <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
@@ -1369,7 +1336,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Truongs">
-            <EntityTypeMapping TypeName="ProjectHModel.Truong">
+            <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.Truong">
               <MappingFragment StoreEntitySet="Truongs">
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
@@ -1382,7 +1349,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ProjectHModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>

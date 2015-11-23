@@ -39,7 +39,6 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual DbSet<RatePost> RatePosts { get; set; }
         public virtual DbSet<Sach> Saches { get; set; }
         public virtual DbSet<SachChoMuon> SachChoMuons { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<SystemInformation> SystemInformations { get; set; }
         public virtual DbSet<SystemLog> SystemLogs { get; set; }
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
