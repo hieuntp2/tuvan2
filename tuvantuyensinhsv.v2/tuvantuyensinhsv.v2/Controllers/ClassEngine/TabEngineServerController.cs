@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using tuvantuyensinhsv.v2.Models;
-using tuvantuyensinhsv.v2.Models.Metadata;
 
 namespace tuvantuyensinhsv.v2.Controllers
 {

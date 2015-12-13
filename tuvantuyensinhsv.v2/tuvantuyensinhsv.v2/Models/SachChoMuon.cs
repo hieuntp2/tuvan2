@@ -21,7 +21,7 @@ namespace tuvantuyensinhsv.v2.Models
         public string comment { get; set; }
         public Nullable<int> soluong { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Sach Sach { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
-using System.Linq;
-using System.Web;
-using tuvantuyensinhsv.v2.Models;
-using tuvantuyensinhsv.v2.Models.Metadata;
-namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
+﻿namespace tuvantuyensinhsv.v2.Controllers.ClassEngine
 {
     //public static class SearchV2
     //{

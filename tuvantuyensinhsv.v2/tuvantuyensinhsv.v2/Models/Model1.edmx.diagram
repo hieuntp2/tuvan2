@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUser" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.BaiViet" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.InternalMessage" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.KhoiThi" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
@@ -25,16 +24,6 @@
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.TruongNganhMonthi" Width="1.5" PointX="6" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.TruongNganh" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.Truong" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_AspNetUsers_Nganhs" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_AspNetUsers_Truongs" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_BaiViets_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_InternalMessage_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_InternalMessage_AspNetUsers1" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_Questions_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_RatePost_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_SachChoMuon_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_RatePost_BaiViets" ManuallyRouted="false" />
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_TruongNganhMonthi_Nganhs" ManuallyRouted="false" />
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_TruongNganhs_Nganhs" ManuallyRouted="false" />
@@ -42,7 +31,18 @@
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_Truong_ThanhPho" ManuallyRouted="false" />
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_TruongNganhMonthi_Truongs" ManuallyRouted="false" />
         <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_TruongNganhs_Truongs" ManuallyRouted="false" />
-        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUser" Width="1.5" PointX="11" PointY="4.625" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_AspNetUsers_Nganhs" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_AspNetUsers_Truongs" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_BaiViets_AspNetUsers" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_InternalMessage_AspNetUsers" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_InternalMessage_AspNetUsers1" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_Questions_AspNetUsers" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_RatePost_AspNetUsers" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.FK_SachChoMuon_AspNetUsers" />
+        <AssociationConnector Association="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

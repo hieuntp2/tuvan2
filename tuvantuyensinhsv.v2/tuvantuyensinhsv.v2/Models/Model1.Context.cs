@@ -29,7 +29,6 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BaiViet> BaiViets { get; set; }
         public virtual DbSet<InternalMessage> InternalMessages { get; set; }
         public virtual DbSet<KhoiThi> KhoiThis { get; set; }
@@ -45,5 +44,6 @@ namespace tuvantuyensinhsv.v2.Models
         public virtual DbSet<TruongNganhMonthi> TruongNganhMonthis { get; set; }
         public virtual DbSet<TruongNganh> TruongNganhs { get; set; }
         public virtual DbSet<Truong> Truongs { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

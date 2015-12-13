@@ -1803,12 +1803,12 @@ a:focus {
 }
 .btn-primary {
   background-color: #3c8dbc;
-  border-color: #367fa9;
+  border-color: #3399FF;
 }
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.hover {
-  background-color: #367fa9;
+  background-color: #3399FF;
 }
 .btn-success {
   background-color: #00a65a;

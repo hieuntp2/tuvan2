@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using tuvantuyensinhsv.v2.Models;
 using tuvantuyensinhsv.v2.Controllers.ClassEngine;
-using tuvantuyensinhsv.v2.Controllers.ClassEngine;
 namespace tuvantuyensinhsv.v2.Controllers
 {
     /// <summary>
@@ -86,7 +85,7 @@ namespace tuvantuyensinhsv.v2.Controllers
             model.hoTen = user.hoTen;
             model.idNganh = user.idNganh;
             model.idTruong = user.idTruong;
-            model.sinhNhat = (DateTime)user.sinhNhat;
+        //    model.sinhNhat = (DateTime)user.sinhNhat;
             model.profile_avatar_link = user.profile_avatar_link;
 
             //string email = 
@@ -147,7 +146,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 user.hoTen = model.hoTen;
                 user.idNganh = model.idNganh;
                 user.idTruong = model.idTruong;
-                user.sinhNhat = model.sinhNhat;
+              //  user.sinhNhat = model.sinhNhat;
                 user.profile_avatar_link = model.profile_avatar_link;
 
 

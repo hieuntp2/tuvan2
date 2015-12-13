@@ -17,19 +17,19 @@ namespace tuvantuyensinhsv.v2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nganh()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
             this.TruongNganhMonthis = new HashSet<TruongNganhMonthi>();
             this.TruongNganhs = new HashSet<TruongNganh>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public string Ten { get; set; }
         public string MaNganh { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TruongNganhMonthi> TruongNganhMonthis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TruongNganh> TruongNganhs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

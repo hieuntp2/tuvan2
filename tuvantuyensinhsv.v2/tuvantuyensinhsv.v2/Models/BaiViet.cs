@@ -28,8 +28,8 @@ namespace tuvantuyensinhsv.v2.Models
         public int Trangthai { get; set; }
         public string Tabs { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatePost> RatePosts { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
