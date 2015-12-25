@@ -1,5 +1,9 @@
 ﻿@model tuvantuyensinhsv.v2.Models.BaiViet
 
+<a class="btn btn-social btn-facebook btn btn-block" href="javascript:fbshareCurrentPage()">
+    <i class="fa fa-facebook"></i>Facebook
+</a>
+<hr />
 <span>Đánh giá: </span>
 @if (User.Identity.IsAuthenticated)
 {
@@ -41,12 +45,5 @@
 }
 else
 {
-    <p style="color:red; float:right;">Bạn cần đăng nhập để đánh giá bài viết</p>
+    <p style="color:red;">Bạn cần đăng nhập để đánh giá bài viết</p>
 }
-
-<p>
-    <span>Chia sẻ bài viết: </span><a class="btn btn-social btn-facebook" href="javascript:fbshareCurrentPage()">
-        <i class="fa fa-facebook"></i>Facebook
-    </a>
-</p>
-

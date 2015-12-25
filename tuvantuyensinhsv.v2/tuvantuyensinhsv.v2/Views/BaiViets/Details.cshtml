@@ -8,89 +8,62 @@
 
 <div class="row">
     <section>
-        <div class="col-md-8 col-lg-offset-1">
-            <div>
-                <!-- Widget: user widget style 1 -->
-                <div class="box box-widget widget-user">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
-                    <div class="widget-user-header bg-black my-baiviet-background-image" style="background-image: url('@Model.linkImage'); ">
-                        <h3 class="widget-user-username"><b>@Model.TieuDe</b></h3>
-                        <h5 class="widget-user-desc">@Model.NgayCapNhat</h5>
-                    </div>
+        <div class="col-md-7 col-md-offset-1">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-black my-baiviet-background-image" style="background-image: url('@Model.linkImage'); ">
+                    <h3 class="widget-user-username"><b>@Model.TieuDe</b></h3>
+                    <h5 class="widget-user-desc">@Model.NgayCapNhat</h5>
+                </div>
 
-                    <div class="box-body">
-                        @Html.Raw(Model.NoiDung)
-                    </div>
+                <div class="box-body">
+                    @Html.Raw(Model.NoiDung)
+                </div>
 
+                <div class="box-footer" style="padding-top:0px;">
+                    @Html.Partial("_ThongTinBaiViet")
+                </div>
+
+                @if (User.Identity.Name == Model.AspNetUser.UserName)
+                {
                     <div class="box-footer">
-
-                        <div class="row">
-                            <div class="col-sm-4 border-right">
-                                <div class="description-block">
-                                    @Html.Partial("_ThongTinBaiViet")
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4 border-right">
-                                <div class="description-block">
-                                    @Html.Partial("_RatePost_Social", Model)
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-4">
-                                <div class="description-block">
-                                    <h5 class="description-header">35</h5>
-                                    <span class="description-text">PRODUCTS</span>
-                                </div>
-                                <!-- /.description-block -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
+                        @Html.Partial("_UserPostControl")
                     </div>
-
-                    @if (User.Identity.Name == Model.AspNetUser.UserName)
-                {
-                        <div class="box-footer">
-                            @Html.Partial("_UserPostControl")
-                        </div>
                 }
 
-                    @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
+                @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
                 {
-                        <div class="box-footer">
-                            @Html.Partial("_AdminControlPost", Model)
-                        </div>
+                    <div class="box-footer">
+                        @Html.Partial("_AdminControlPost", Model)
+                    </div>
                 }
-                </div>
-                <!-- /.widget-user -->
+            </div>
 
-                <div class="box-footer">
-                    <p>Danh sách tags</p>
-                    @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Bình luận</b></h3>
                 </div>
-
-                <div class="box box-danger">
-                    <div class="box-header">
-                        <h2 class="box-title"><b>Bình luận</b></h2>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                    <div class="box-body" id="fb-root">
-                    </div>
+                <div class="box-body" id="fb-root">
                 </div>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="box box-info">
-                <div class="box-header">Thông tin bài viết</div>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Chia sẻ</h3>
+                </div>
                 <div class="box-body">
-                    Đây là thông tin
+                    @Html.Partial("_RatePost_Social", Model)
+                </div>
+            </div>
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tag</h3>
+                </div>
+                <div class="box-body">
+                    @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
                 </div>
             </div>
         </div>
