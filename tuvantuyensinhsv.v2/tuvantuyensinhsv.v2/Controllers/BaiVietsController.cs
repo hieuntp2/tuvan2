@@ -198,7 +198,7 @@ namespace tuvantuyensinhsv.v2.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [Authorize]
-        public ActionResult Create([Bind(Include = "ID,TieuDe,NoiDung,NguoiDang,NgayCapNhat,Trangthai,Tabs")] BaiViet baiviet)
+        public ActionResult Create([Bind(Include = "ID,TieuDe,NoiDung,NguoiDang,NgayCapNhat,Trangthai,Tabs,linkImage")] BaiViet baiviet)
         {
             if (ModelState.IsValid)
             {
@@ -248,7 +248,7 @@ namespace tuvantuyensinhsv.v2.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,TieuDe,NoiDung,NguoiDang,NgayCapNhat,Trangthai,Tabs")] BaiViet baiviet)
+        public ActionResult Edit([Bind(Include = "ID,TieuDe,NoiDung,NguoiDang,NgayCapNhat,Trangthai,Tabs,linkImage")] BaiViet baiviet)
         {
             BaiViet testbai = db.BaiViets.SingleOrDefault(t => t.ID == baiviet.ID);
             if (checkUser(testbai) == false)
@@ -263,6 +263,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 testbai.Tabs = baiviet.Tabs;
                 testbai.TieuDe = baiviet.TieuDe;
                 testbai.Trangthai = 0;
+                testbai.linkImage = baiviet.linkImage;
 
                 db.Entry(testbai).State = EntityState.Modified;
                 db.SaveChanges();

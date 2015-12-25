@@ -1,22 +1,28 @@
 ﻿(function () {
     var app = angular.module('homepage', []);
 
-    app.controller('indexcontroller', ['$http', '$scope', function ($http, $scope) {
+    app.controller('indexcontroller', ['$http', '$scope', '$sce', function ($http, $scope, $sce) {
         var ctrll = this;
         this.posts = [];
 
         this.getQuestions = function (index) {
 
             $http.get("/baiviets/getNewPost?index=" + index).success(function (data) {
+               
+                for (var i = 0; i < data.length; i++)
+                {
+                    data[i].noidung = $sce.trustAsHtml(data[i].noidung);
+                    
+                }
                 ctrll.posts.push.apply(ctrll.posts, data);
             }).error(function () {
-                alert("Lỗi khi lấy dữ liệu bai viet");
+                //alert("Lỗi khi lấy dữ liệu bai viet");
             });
 
             $http.get("/questions/getquestion?index=" + index).success(function (data) {
                 ctrll.posts.push.apply(ctrll.posts,data);
             }).error(function () {
-                alert("Lỗi khi lấy dữ liệu questions");
+                //alert("Lỗi khi lấy dữ liệu questions");
             });
         }
 
@@ -40,20 +46,32 @@
             }
         }
 
-        $scope.getQuestions = function (index) {
+        //$scope.getQuestions = function (index) {
 
-            $http.get("/baiviets/getNewPost?index=" + index).success(function (data) {
-                ctrll.posts.push.apply(ctrll.posts, data);
-            }).error(function () {
-                alert("Lỗi khi lấy dữ liệu bai viet");
-            });
+        //    $http.get("/baiviets/getNewPost?index=" + index).success(function (data) {
+        //        ctrll.posts.push.apply(ctrll.posts, data);
+        //    }).error(function () {
+        //        alert("Lỗi khi lấy dữ liệu bai viet");
+        //    });
 
-            $http.get("/questions/getquestion?index=" + index).success(function (data) {
-                ctrll.posts.push.apply(ctrll.posts, data);
-            }).error(function () {
-                alert("Lỗi khi lấy dữ liệu questions");
-            });
-        }
+        //    $http.get("/questions/getquestion?index=" + index).success(function (data) {
+        //        ctrll.posts.push.apply(ctrll.posts, data);
+        //    }).error(function () {
+        //        alert("Lỗi khi lấy dữ liệu questions");
+        //    });
+        //}
     }])
+
+    app.filter("sanitize", ['$sce', function ($sce) {
+        return function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+        }
+    }]);
+
+    app.filter('myhtml', function ($sce) {
+        return function(input){
+            return $sce.trustAsHtml(input);
+        }
+    })
 })();
 

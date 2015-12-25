@@ -981,7 +981,6 @@
           <Property Name="congViec" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="fbid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="hoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sinhNhat" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="db9283aa975e4f4637a39ea55900f182dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Nganh" Relationship="db9283aa975e4f4637a39ea55900f182dbModel.FK_AspNetUsers_Nganhs" FromRole="AspNetUser" ToRole="Nganh" />
@@ -1329,7 +1328,6 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="sinhNhat" ColumnName="sinhNhat" />
                 <ScalarProperty Name="hoTen" ColumnName="hoTen" />
                 <ScalarProperty Name="fbid" ColumnName="fbid" />
                 <ScalarProperty Name="congViec" ColumnName="congViec" />

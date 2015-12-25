@@ -386,7 +386,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <p>{{post.noidung}}</p>
+                    <p>{{post.noidung | sanitize}}</p>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                 </div>
@@ -404,7 +404,8 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <p>{{post.noidung}}</p>
+                    @*<p>{{post.noidung}}</p>*@
+                    <p ng-bind-html="post.noidung"></p>
                     <img ng-click="controller.postclick(post.id, post.loai)" class="img-responsive pad my-home-post-image  my-mouse-hand" ng-src="{{post.avatar}}" alt="Photo">
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>

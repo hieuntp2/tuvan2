@@ -19,7 +19,7 @@ namespace tuvantuyensinhsv.v2.Models
         public string idNganh { get; set; }
         public string congViec { get; set; }
         public string fbid { get; set; }
-        public DateTime sinhNhat { get; set; }
+        //public DateTime sinhNhat { get; set; }
         public string hoTen { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

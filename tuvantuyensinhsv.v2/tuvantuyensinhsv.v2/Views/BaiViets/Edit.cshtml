@@ -40,21 +40,30 @@
             {
                 @Html.AntiForgeryToken()
 
-                <div class="form-horizontal">
-                    @Html.ValidationSummary(true)
-                    @Html.HiddenFor(model => model.ID)
+                <div class="box-body">
 
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.ID)
 
-                        <div class="box-header">
-                            @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control", placeholder = "Tiêu đề" })
-                            @Html.ValidationMessageFor(model => model.TieuDe)
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.TieuDe, new { @class = "form-control", placeholder = "Tiêu đề" })
+                                @Html.ValidationMessageFor(model => model.TieuDe)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.linkImage, new { @class = "form-control", placeholder = "link hình" })
+                                @Html.ValidationMessageFor(model => model.linkImage)
 
-                            <div class="box-tools pull-right">
-                                <input type="submit" value="Lưu" class="btn btn-primary" style="min-width:100px;" onsubmit="return false" />
+                                <div class="box-tools pull-right">
+                                    <input type="submit" value="Lưu" class="btn btn-primary" style="min-width:100px;" onsubmit="return false" />
+                                </div>
                             </div>
                         </div>
 
-                    <div class="box-body">
+                        <hr />
                         <textarea name="NoiDung" id="tinymce" style="height:500px;">@Model.NoiDung</textarea>
                         <input name="Tabs" type="hidden" value="@Model.Tabs" id="_inputsTabs" ng-model="createcontroller.baiviet.tabs" />
                     </div>
@@ -71,7 +80,7 @@
             </div>
         </div>
 
-        
+
     </div>
 </div>
 
