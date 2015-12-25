@@ -97,10 +97,21 @@ section {
     max-height: 300px;
 }
 
-.my-baiviet-background-image{
+.my-baiviet-background-image {
     background-repeat: no-repeat;
-    -webkit-background-size: cover; 
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.my-post-header-title {
+    background-color: rgba(0, 0, 0, 0.25);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0px;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
 }

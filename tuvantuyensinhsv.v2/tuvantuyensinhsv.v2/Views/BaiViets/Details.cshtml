@@ -10,11 +10,13 @@
     <section>
         <div class="col-md-7 col-md-offset-1">
             <!-- Widget: user widget style 1 -->
-            <div class="box box-widget widget-user">
+            <div class="box box-widget widget-user my-box-shadow">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-black my-baiviet-background-image" style="background-image: url('@Model.linkImage'); ">
-                    <h3 class="widget-user-username"><b>@Model.TieuDe</b></h3>
-                    <h5 class="widget-user-desc">@Model.NgayCapNhat</h5>
+                <div class="widget-user-header bg-black my-baiviet-background-image" style="height:200px; background-image: url('@Model.linkImage');">
+                    <div class="my-post-header-title">
+                        <h3 class="widget-user-username"><b>@Model.TieuDe</b></h3>
+                        <h5 class="widget-user-desc">@Model.NgayCapNhat</h5>
+                    </div>
                 </div>
 
                 <div class="box-body">
@@ -40,7 +42,7 @@
                 }
             </div>
 
-            <div class="box box-info">
+            <div class="box box-info my-box-shadow">
                 <div class="box-header with-border">
                     <h3 class="box-title">Bình luận</b></h3>
                 </div>
@@ -50,7 +52,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="box box-info">
+            <div class="box box-info my-box-shadow">
                 <div class="box-header with-border">
                     <h3 class="box-title">Chia sẻ</h3>
                 </div>
@@ -58,7 +60,7 @@
                     @Html.Partial("_RatePost_Social", Model)
                 </div>
             </div>
-            <div class="box box-info">
+            <div class="box box-info my-box-shadow">
                 <div class="box-header with-border">
                     <h3 class="box-title">Tag</h3>
                 </div>
