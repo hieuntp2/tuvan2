@@ -70,8 +70,8 @@
           <Property Name="idNganh" Type="nvarchar" MaxLength="10" />
           <Property Name="congViec" Type="nvarchar(max)" />
           <Property Name="fbid" Type="nvarchar" MaxLength="255" />
-          <Property Name="hoTen" Type="nvarchar(max)" />
           <Property Name="sinhNhat" Type="datetime" />
+          <Property Name="hoTen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="BaiViets">
           <Key>
@@ -84,6 +84,7 @@
           <Property Name="NgayCapNhat" Type="datetime" Nullable="false" />
           <Property Name="Trangthai" Type="int" Nullable="false" />
           <Property Name="Tabs" Type="nvarchar(max)" />
+          <Property Name="linkImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="InternalMessage">
           <Key>
@@ -617,6 +618,7 @@
           <Property Name="Tabs" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RatePosts" Relationship="Self.FK_RatePost_BaiViets" FromRole="BaiViets" ToRole="RatePost" />
           <NavigationProperty Name="AspNetUser" Relationship="db9283aa975e4f4637a39ea55900f182dbModel.FK_BaiViets_AspNetUsers" FromRole="BaiViet" ToRole="AspNetUser" />
+          <Property Name="linkImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="InternalMessage">
           <Key>
@@ -1166,6 +1168,7 @@
           <EntitySetMapping Name="BaiViets">
             <EntityTypeMapping TypeName="db9283aa975e4f4637a39ea55900f182dbModel.BaiViet">
               <MappingFragment StoreEntitySet="BaiViets">
+                <ScalarProperty Name="linkImage" ColumnName="linkImage" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />

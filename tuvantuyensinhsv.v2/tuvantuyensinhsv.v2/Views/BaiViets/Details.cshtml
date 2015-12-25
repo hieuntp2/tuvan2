@@ -2,61 +2,84 @@
 
 @{
     ViewBag.Title = Model.TieuDe;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.v2.cshtml";
 }
 <script src="~/Content/js/facebook_comment.js"></script>
 
-<div class="box box-danger">
-    <div class="box-header">
-        <h2 class="box-title"><b>@Model.TieuDe</b></h2>
-        <div class="box-tools pull-right">
-            <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+<div class="row">
+    <section class="col-md-10 col-lg-offset-1">
+        <!-- Widget: user widget style 1 -->
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-black my-baiviet-background-image" style="background-image: url('@Model.linkImage'); ">
+                <h3 class="widget-user-username"><b>@Model.TieuDe</b></h3>
+                <h5 class="widget-user-desc">@Model.NgayCapNhat</h5>
+            </div>
+
+            <div class="box-body">
+                @Html.Raw(Model.NoiDung)
+            </div>
+
+            <div class="box-footer">
+
+                <div class="row">
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            @Html.Partial("_ThongTinBaiViet")
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            @Html.Partial("_RatePost_Social", Model)
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-4">
+                        <div class="description-block">
+                            <h5 class="description-header">35</h5>
+                            <span class="description-text">PRODUCTS</span>
+                        </div>
+                        <!-- /.description-block -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            @if (User.Identity.Name == Model.AspNetUser.UserName)
+            {
+                <div class="box-footer">
+                    @Html.Partial("_UserPostControl")
+                </div>
+            }
+
+            @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
+            {
+                <div class="box-footer">
+                    @Html.Partial("_AdminControlPost", Model)
+                </div>
+            }
         </div>
-    </div>
-    <hr />
-    <div class="box-body">
-        @Html.Raw(Model.NoiDung)
-    </div><!-- /.box-body -->
+        <!-- /.widget-user -->
 
-    <div class="box-footer">    
-            @Html.Partial("_ThongTinBaiViet") 
-    </div>
-
-    <div class="box-footer">
-        @Html.Partial("_RatePost_Social", Model)
-    </div>
-
-    <div class="box-footer">
-        <p>Danh sách tags</p>
-        @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
-    </div>
-
-    @if (User.Identity.Name == Model.AspNetUser.UserName)
-    {
         <div class="box-footer">
-            @Html.Partial("_UserPostControl")
+            <p>Danh sách tags</p>
+            @Html.Partial("~/views/tabengineserver/_viewtags.cshtml")
         </div>
-    }
 
-    @if (User.IsInRole("Moderate") || User.IsInRole("Admin"))
-    {
-        <div class="box-footer">
-            @Html.Partial("_AdminControlPost", Model)
+        <div class="box box-danger">
+            <div class="box-header">
+                <h2 class="box-title"><b>Bình luận</b></h2>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body" id="fb-root">
+            </div>
         </div>
-    }
+    </section>
 </div>
-
-<div class="box box-danger">
-    <div class="box-header">
-        <h2 class="box-title"><b>Bình luận</b></h2>
-        <div class="box-tools pull-right">
-            <button class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
-    </div>
-    <div class="box-body" id="fb-root">
-    </div>
-</div>
-
-

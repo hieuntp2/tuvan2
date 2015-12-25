@@ -58,7 +58,7 @@ namespace tuvantuyensinhsv.v2.Controllers
                 tieude = t.TieuDe,
                 noidung = t.NoiDung,
                 ngaydang = t.NgayCapNhat.ToString(),
-                avatar = t.AspNetUser.profile_avatar_link
+                avatar = t.linkImage
             }).ToArray();
 
             for (int i = 0; i < baiviets.Length; i++)

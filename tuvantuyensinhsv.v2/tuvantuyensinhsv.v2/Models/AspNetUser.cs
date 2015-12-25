@@ -46,7 +46,7 @@ namespace tuvantuyensinhsv.v2.Models
         public string congViec { get; set; }
         public string fbid { get; set; }
         public string hoTen { get; set; }
-        public System.DateTime? sinhNhat { get; set; }
+        public Nullable<System.DateTime> sinhNhat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

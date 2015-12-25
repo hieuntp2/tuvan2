@@ -1116,6 +1116,9 @@
     <Content Include="Views\sach\Index.cshtml" />
     <Content Include="Views\sach\sachmodal.cshtml" />
     <Content Include="Views\sach\tangsach.cshtml" />
+    <Content Include="Views\Shared\_Layout.v2.cshtml" />
+    <Content Include="Views\Shared\_header.v2.cshtml" />
+    <Content Include="Views\Shared\_footer.v2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

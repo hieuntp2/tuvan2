@@ -1,0 +1,164 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using tuvantuyensinhsv.v2.Models;
+@{
+    var currentUser = new ApplicationUser();
+    if (User.Identity.IsAuthenticated)
+    {
+        var userStore = new UserStore<ApplicationUser>(new ApplicationDbContext());
+        var manager = new UserManager<ApplicationUser>(userStore);
+        currentUser = manager.FindById(User.Identity.GetUserId());
+    }
+}
+<section class="my-background-white">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top my-background-white" style="background-color: white; box-shadow: 1px 1px 5px #D2D2D2;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="navbar-header">
+                            <a href="index2.html" class="navbar-brand my-text-upper" style="color:#0088CC;"><strong>Con đường tương lai</strong></a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse" style="width: 100%;">
+                            <ul class="nav navbar-nav" style="width: 100%;">
+                                <li style="width: 100%;">
+                                    <div class="navbar-form navbar-left" role="search" style="width: 100%; padding-right:0px;" id="my_nav_top_li_search">
+                                        <div class="input-group" style="width: 100%;">
+                                            <input type="@ViewBag.Key" id="Search_Input" autocomplete="off" class="form-control" placeholder="Tìm kiếm trường, ngành, tỉnh thành..." style="border-radius: 5px; border: 1px solid #0088CC; width: 100%;">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="my-nav-top-li"><a href="#" class="btn btn-block btn-primary my-nav-top-button my-text-upper my-nav-top-button-active">Trang chủ</a></li>
+                                <li class="my-nav-top-li"><a href="#" class="btn btn-block btn-primary my-nav-top-button my-text-upper">Định hướng ngành</a></li>
+                                <li class="my-nav-top-li"><a href="#" class="btn btn-block btn-primary my-nav-top-button my-text-upper">Chọn Trường</a></li>
+                                <li class="my-nav-top-li"><a href="#" class="btn btn-block btn-primary my-nav-top-button my-text-upper">Bài viết</a></li>
+                                <li class="my-nav-top-li"><a href="#" class="btn btn-block btn-primary my-nav-top-button my-text-upper">Hỏi đáp</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <!-- User Account: style can be found in dropdown.less -->
+                                @if (Request.IsAuthenticated)
+                            {
+                                    <li class="dropdown user user-menu">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <img src="@currentUser.profile_avatar_link" class="user-image" alt="User Image">
+                                            <span class="hidden-xs">@currentUser.hoTen</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <!-- User image -->
+                                            <li class="user-header">
+                                                <img src="@currentUser.profile_avatar_link" class="img-circle" alt="User Image">
+                                                <p>
+                                                    @currentUser.hoTen
+
+                                                    @if (User.IsInRole("Admin"))
+                                                {
+                                                        <small>- Admin -</small>
+                                                }
+                                                    @if (User.IsInRole("Morderate"))
+                                                {
+                                                        <small>- Admin -</small>
+                                                }
+                                                    @if (User.IsInRole("User"))
+                                                {
+                                                        <small>- User -</small>
+                                                }
+                                                </p>
+                                            </li>
+
+                                            <!-- Menu Footer-->
+                                            <li class="user-footer">
+                                                <div class="pull-left">
+                                                    <a href="/Manage/Index" class="btn btn-default btn-flat">Profile</a>
+                                                </div>
+
+                                                @if (User.IsInRole("Admin"))
+                                            {
+                                                    <div class="pull-left">
+                                                        <a href="/Admin/Index" class="btn btn-default btn-flat">
+                                                            Admin
+                                                        </a>
+                                                    </div>
+                                            }
+                                                @if (User.IsInRole("Moderate"))
+                                            {
+                                                    <div class="pull-left">
+                                                        <a href="/Moderate/Index" class="btn btn-default btn-flat">
+                                                            Admin
+                                                        </a>
+                                                    </div>
+                                            }
+
+                                                <div class="pull-right">
+                                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                                {
+                                                        @Html.AntiForgeryToken()
+                                                        <a class="btn btn-default btn-flat" href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
+                                                }
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            }
+                            else
+                            {
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-user fa-fw my-color-blue"></i>  <i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li>
+                                                <a href="/Account/Login" class="my-color-blue"><i class="fa fa-user fa-fw my-color-blue"></i> Đăng nhập</a>
+                                            </li>
+
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="/Account/Register" class="my-color-blue"><i class="fa fa-plus fa-fw my-color-blue"></i> Đăng ký</a>
+                                            </li>
+                                        </ul>
+                                        <!-- /.dropdown-user -->
+                                    </li>
+                            }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+</section>
+<script>
+    window.addEventListener("scroll", function (event) {
+
+        var top = this.scrollY,
+            left = this.scrollX;
+
+        var horizontalScroll = document.querySelector(".horizontalScroll"),
+            verticalScroll = document.querySelector(".verticalScroll");
+
+        if (top < 50) {
+            //$("my_nav_top_li_search").animate({ top: '-100px;' });
+            $("#my_nav_top_li_search").show(300);
+            $("#navbar-collapse").css({ 'margin-top': '0px' });
+        }
+        else {
+            //$("my_nav_top_li_search").animate({ top: '-100px;' });
+            //$("#navbar-collapse").style(" margin-top: 10px;");
+
+            $("#navbar-collapse").css({ 'margin-top': '10px' });
+            $("#my_nav_top_li_search").hide(300);
+        }
+
+    }, false);
+
+
+</script>

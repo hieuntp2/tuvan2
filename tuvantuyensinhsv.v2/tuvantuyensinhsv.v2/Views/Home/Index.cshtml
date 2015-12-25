@@ -1,204 +1,421 @@
 ﻿@{
     ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.v2.cshtml";
 }
-<div class="col-md-12">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="item">
-                <img src="http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap" alt="First slide">
-                <div class="carousel-caption">
-                    First Slide
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/content/myimages/slide-four.jpg" alt="First slide">
+
+            <div class="carousel-caption col-md-3 col-sm-offset-2">
+                <a class="btn btn-block btn-warning">Bắt đầu nào</a>
+            </div>
+        </div>
+        <!--<div class="item active">
+            <img src="~/content/myimages/slide-four.jpg" alt="Second slide">
+
+            <div class="carousel-caption">
+                Second Slide
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/content/myimages/slide-four.jpg" alt="Third slide">
+
+            <div class="carousel-caption">
+                Third Slide
+            </div>
+        </div>-->
+    </div>
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="fa fa-angle-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="fa fa-angle-right"></span>
+    </a>
+</div>
+
+<section class="my-background-white">
+    <div class="row row-padded homepage-grid row-bordered p-t text-center">
+
+        <h1 class="my-home-h1 head my-home-h2-padding-bottom">
+            Con đường tương lai có phương pháp khoa học, sáng tạo
+        </h1>
+        <h4 style="font-style:italic;">
+            "Con đường tương lai" có phương pháp khoa học, từng bước rõ ràng để giúp các bạn tìm ra định hướng cho riêng mình.
+            Phù hợp với tính cách mỗi người.
+        </h4>
+        <br />
+        <br />
+
+        <div class="row" style="background-image: url('../../content/myimages/home-step-line.png');    background-repeat: no-repeat;">
+            <div class="col-sm-8">
+                <div class="col-sm-3 col-sm-offset-2 hvr-float-shadow" style="padding-bottom: 30px;padding-top: 100px;">
+                    <img class="homepage-grid-icon" src="~/content/myimages/home-line-step1.png">
+                    <h4 class="my-color-blue"><strong>PHÂN LOẠI TÍNH CÁCH</strong></h4>
+                </div>
+                <div class="col-sm-3 hvr-float-shadow" style="padding-bottom: 30px;padding-top: 100px;">
+                    <img class="homepage-grid-icon" src="~/content/myimages/home-line-step1.png">
+                    <h4 class="my-color-blue"><strong>CHỌN NGÀNH</strong></h4>
+                </div>
+                <div class="col-sm-3 hvr-float-shadow" style="padding-bottom: 30px;padding-top: 100px;">
+                    <img class="homepage-grid-icon" src="~/content/myimages/home-line-step1.png">
+                    <h4 class="my-color-blue"><strong>CHỌN TRƯỜNG</strong></h4>
                 </div>
             </div>
-            <div class="item">
-                <img src="http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap" alt="Second slide">
-                <div class="carousel-caption">
-                    Second Slide
-                </div>
-            </div>
-            <div class="item active">
-                <img src="http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap" alt="Third slide">
-                <div class="carousel-caption">
-                    Third Slide
+
+            <div class="col-sm-4 col-sm-pull-1">
+                <div class="hvr-float-shadow">
+                    <img class="homepage-grid-icon" src="~/content/myimages/home-line-step-final.png">
+                    <h4 class="my-color-blue"><strong>TƯƠNG LAI</strong></h4>
                 </div>
             </div>
         </div>
-        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-            <span class="fa fa-angle-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-            <span class="fa fa-angle-right"></span>
-        </a>
     </div>
-</div>
-<div class="row">
-  
-    <!--Slide-->
-    <div class="col-lg-6">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">Website</h3>
-            </div><!-- /.box-header -->
-            <div class="box-body">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="item">
-                            <img src="http://placehold.it/900x500/39CCCC/ffffff&amp;text=I+Love+Bootstrap" alt="First slide">
-                            <div class="carousel-caption">
-                                First Slide
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="http://placehold.it/900x500/3c8dbc/ffffff&amp;text=I+Love+Bootstrap" alt="Second slide">
-                            <div class="carousel-caption">
-                                Second Slide
-                            </div>
-                        </div>
-                        <div class="item active">
-                            <img src="http://placehold.it/900x500/f39c12/ffffff&amp;text=I+Love+Bootstrap" alt="Third slide">
-                            <div class="carousel-caption">
-                                Third Slide
-                            </div>
-                        </div>
-                    </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                        <span class="fa fa-angle-left"></span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                        <span class="fa fa-angle-right"></span>
-                    </a>
-                </div>
-            </div><!-- /.box-body -->
-        </div><!-- /.box -->
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box" style="cursor:pointer;" onclick="fredirectSearch()">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-search-strong"></i></span>
-            <div class="info-box-content">                
-                <span class="info-box-number">Tìm kiếm</span>
-                <span class="info-box-text">520 trường</span>
-            </div><!-- /.info-box-content -->
-        </div><!-- /.info-box -->
-    </div><!-- /.col -->
-
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box" style="cursor:pointer;" onclick="fredirectDeAn()">
-            <span class="info-box-icon bg-olive"><i class="ion ion-university"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-number">Môn thi-Điểm </span>
-                <span>Lựa chọn trường theo môn thi, điểm, ngành</span>
-            </div><!-- /.info-box-content -->
-        </div>
-    </div><!-- /.col -->
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box" style="cursor:pointer;" onclick="fredirectBaiViet()">
-            <span class="info-box-icon bg-red"><i class="ion ion-compose"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-number">Bài viết</span>
-                <span class="info-box-text"> >100 bài viết</span>
-            </div><!-- /.info-box-content -->
-        </div><!-- /.info-box -->
-    </div><!-- /.col -->
-  
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box" style="cursor:pointer;" onclick="fredirectQuestions()">
-            <span class="info-box-icon bg-green"><i class="ion ion-chatbubbles"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-number">Thảo luận</span>
-                <span>Trao đổi học sinh-sinh viên</span>
-            </div><!-- /.info-box-content -->
-        </div><!-- /.info-box -->
-    </div><!-- /.col -->
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box" style="cursor:pointer;" onclick="fmbti()">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-compass"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-number">MBTI</span>
-                <span>Tính cách-Ngành nghề</span>
-            </div><!-- /.info-box-content -->
-        </div><!-- /.info-box -->
-    </div><!-- /.col -->   
-
-
-</div>
-
-<section class="content-header">
-    <h1>
-        Mới
-        <small>Bài viết/thảo luận mới</small>
-    </h1>   
 </section>
-<hr />
+
+<section class="my-background-white">
+    <hr />
+    <div class="row row-padded homepage-grid row-bordered">
+        <h2 class="my-home-h1 head my-home-h2-padding-bottom text-center">
+            Đặc điểm của website
+        </h2>
+        <div class="col-md-4">
+
+            <img src="~/content/myimages/logo_big.jpg" style="max-width: 300px;">
+
+        </div>
+        <div class="col-md-4">
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Tìm kiếm</h3>
+                </div>
+                <span class="">Dữ liệu hơn 500 trường đại học, cao đẳng</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa fa-search-plus"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Tìm trường theo môn thi</h3>
+                </div>
+                <span class="">Tìm kiếm trường/ngành dựa vào tổ hợp môn</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa  fa-file-o"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Nhóm ngành</h3>
+                </div>
+                <span class="">Các bài viết về nhóm ngành/ nghề</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa  fa-university"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Thông tin trường</h3>
+                </div>
+                <span class="">Dữ liệu hơn 500 trường đại học, cao đẳng</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa  fa-newspaper-o"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Tin tức</h3>
+                </div>
+                <span class="">Thông tin tuyển sinh 2016</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa fa-group"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Phân loại tính cách</h3>
+                </div>
+                <span class="">Kết hợp phân loại tính cách để chọn ngành học</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa fa-comments-o"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Hỏi đáp - Chia sẻ</h3>
+                </div>
+                <span class="">Nơi trao đổi giữa học sinh - sinh viên</span>
+            </div>
+            <div class="user-block my-user-block">
+                <div class="username">
+                    <div class="my-circle-icon">
+                        <i class="fa fa-comments-o"></i>
+                    </div>
+                    <h3 class="my-color-blue" style="margin-bottom: 0px;">Tư vấn tuyển sinh</h3>
+                </div>
+                <span class="">Công cụ hỗ trợ cho chương trình tư vấn tuyển sinh</span>
+            </div>
+
+        </div>
 
 
-<div class="row" ng-app="homepage">
-    <div class="col-lg-12">
-        <ul class="timeline" ng-controller="indexcontroller as controller" ng-init="controller.init()" id="_home_content">
-            <!-- timeline item -->
-            <li style="cursor:pointer;" ng-repeat="post in controller.posts" ng-click="controller.postclick(post.id, post.loai)">
-                <i ng-class="post.loai === 'q'? 'ion ion-chatbubbles bg-green': 'ion ion-compose bg-red'"></i>
-                <div class="timeline-item">
-                    <span class="time"> <i class="fa fa-clock-o"></i> {{post.ngaydang}} </span>
-                    <h3 class="timeline-header">
-                        <img style="width:50px; height:50px;" ng-src="{{post.avatar}}" class="img-circle" alt="User Image">
-                        <b>{{post.tieude}}</b>
-                    </h3>
+    </div>
 
-                    <div class="timeline-body">
-                        {{post.noidung}}
+
+</section>
+
+<section class="my-background-white">
+    <hr />
+    <div class="row">
+        <h2 class="my-home-h1 head  text-center my-home-h2-padding-bottom">
+            Chương trình Tư vấn tuyển sinh
+        </h2>
+        <h4 style="font-style:italic;" class="text-center col-sm-10 col-sm-offset-1">
+            Chương trình "Con đường tương lai - Tư vấn tuyển sinh" được thực hiện bởi sinh viên, cựu sinh viên Quảng Trị
+            đến từ nhiều trường đại học. Tình nguyện, nhiệt huyết và sáng tạo,
+            các bạn sinh viên tham gia luôn luôn cố gắng mang lại thông tin bổ ích cho các em học sinh!
+        </h4>
+    </div>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-4">
+            <div class="box box-widget widget-user my-box-shadow hvr-float-shadow">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-black" style="background: url('../../content/myimages/THPT-DONGHA.jpg') center; background-size: contain;">
+                    <h3 class="widget-user-username">Trường THPT Đông Hà</h3>
+                    <h5 class="widget-user-desc">Thời gian: 6/6/2016</h5>
+                    <h5 class="widget-user-desc">Địa điểm: Tp Đông Hà</h5>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">3,200</h5>
+                                <span class="description-text">Học sinh</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">13,000</h5>
+                                <span class="description-text">Sinh viên</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="box box-widget widget-user my-box-shadow hvr-float-shadow">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-black" style="background: url('../../content/myimages/THPT-DONGHA.jpg') center; background-size: contain;">
+                    <h3 class="widget-user-username">Trường THPT Đông Hà</h3>
+                    <h5 class="widget-user-desc">Web Designer</h5>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">3,200</h5>
+                                <span class="description-text">Học sinh</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">13,000</h5>
+                                <span class="description-text">Sinh viên</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="box box-widget widget-user my-box-shadow hvr-float-shadow">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-black" style="background: url('../../content/myimages/THPT-DONGHA.jpg') center; background-size: contain;">
+                    <h3 class="widget-user-username">Trường THPT Đông Hà</h3>
+                    <h5 class="widget-user-desc">Web Designer</h5>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">3,200</h5>
+                                <span class="description-text">Học sinh</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6 border-right">
+                            <div class="description-block">
+                                <h5 class="description-header">13,000</h5>
+                                <span class="description-text">Sinh viên</span>
+                            </div>
+                            <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="my-home-h1 head  text-center my-home-h2-padding-bottom">Với sự tham gia của sinh viên các trường đại học</h2>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item helper">
+                    <img src="~/content/myimages/home-slide-truong-1.png" alt="First slide">
+                </div>
+                <div class="item">
+                    <img src="~/content/myimages/home-slide-truong-1.png" alt="Second slide">
+                </div>
+                <div class="item active">
+                    <img src="~/content/myimages/home-slide-truong-1.png" alt="Third slide">
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="fa fa-angle-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="fa fa-angle-right"></span>
+            </a>
+        </div>
+    </div>
+
+</section>
+
+<section class="my-background-white">
+    <hr />
+    <div class="row">
+        <h2 class="my-home-h1 head  text-center my-home-h2-padding-bottom">
+            Đơn vị tài trợ
+        </h2>
+        <h4 style="font-style:italic;" class="text-center col-sm-10 col-sm-offset-1">
+            Chương trình xin cám ơn các đơn vị đã tài trợ cho chương trình.
+        </h4>
+    </div>
+    <div class="row">
+        <div class="my-home-support-group-image hvr-float-shadow">
+            <img src="~/content/myimages/your-logo-here1.png" />
+            <h4 class="text-center">TÊN ĐƠN VỊ</h4>
+        </div>
+        <div class="my-home-support-group-image hvr-float-shadow">
+            <img src="~/content/myimages/your-logo-here1.png" />
+            <h4 class="text-center">TÊN ĐƠN VỊ</h4>
+        </div>
+        <div class="my-home-support-group-image hvr-float-shadow">
+            <img src="~/content/myimages/your-logo-here1.png" />
+            <h4 class="text-center">TÊN ĐƠN VỊ</h4>
+        </div>
+        <div class="my-home-support-group-image hvr-float-shadow">
+            <img src="~/content/myimages/your-logo-here1.png" />
+            <h4 class="text-center">TÊN ĐƠN VỊ</h4>
+        </div>
+
+        <div class="my-home-support-group-image hvr-float-shadow">
+            <img src="~/content/myimages/your-logo-here1.png" />
+            <h4 class="text-center">TÊN ĐƠN VỊ</h4>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="row" style="" ng-app="homepage" ng-controller="indexcontroller as controller" ng-init="controller.init()" id="_home_content">
+    <h1 class="my-home-h1 head my-home-h2-padding-bottom">
+        Bài viết - Câu hỏi
+    </h1>
+
+
+        @*<ul>
+                <!-- timeline item -->
+                <li style="cursor:pointer;" >
+                    <i ng-class="post.loai === 'q'? 'ion ion-chatbubbles bg-green': 'ion ion-compose bg-red'"></i>
+                    <div class="timeline-item">
+                        <span class="time"> <i class="fa fa-clock-o"></i>  </span>
+                        <h3 class="timeline-header">
+                            <img style="width:50px; height:50px;" ng-src="{{post.avatar}}" class="img-circle" alt="User Image">
+                            <b></b>
+                        </h3>
+
+                        <div class="timeline-body">
+
+                        </div>
+                    </div>
+                </li>
+                <!-- END timeline item -->
+                <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+            </ul>*@
+    
+    <div class="col-md-6" ng-repeat="post in controller.posts" ng-switch on="post.loai">
+        <!-- Nếu post là câu hỏi-->
+        <div ng-switch-when="q">
+            <div class="box box-widget" style="box-shadow: 1px 1px 5px #888888;">
+                <div class="box-header with-border" style="background-color: #F9FAFC;">
+                    <div class="user-block">
+                        <img class="img-circle" ng-src="{{post.avatar}}" alt="User Image">
+                        <span class="username my-mouse-hand" ng-click="controller.postclick(post.id, post.loai)"><a>{{post.tieude}}</a></span>
+                        <span class="description">{{post.ngaydang}}</span>
                     </div>
                 </div>
-            </li>
-            <!-- END timeline item -->
-            <li>
-                <i class="fa fa-clock-o bg-gray"></i>
-            </li>
-        </ul>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>{{post.noidung}}</p>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nếu post là bài viết-->
+        <div ng-switch-when="b">
+            <div class="box box-widget" style="box-shadow: 1px 1px 5px #888888;">
+                <div class="box-header with-border" style="background-color: #F9FAFC;">
+                    <div class="user-block">
+                        <h4 ng-click="controller.postclick(post.id, post.loai)" class="my-mouse-hand"><strong>{{post.tieude}}</strong></h4>
+                        <small>{{post.ngaydang}}</small>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>{{post.noidung}}</p>
+                    <img ng-click="controller.postclick(post.id, post.loai)" class="img-responsive pad my-home-post-image  my-mouse-hand" ng-src="{{post.avatar}}" alt="Photo">
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
 
 <script>
-    function questionclick(id) {
-        window.location.href = "/questions/details/" + id;
-    }
-        
-    function fredirectDeAn() {
-        window.location = "/truongnganhmonthis";
-    }
-
-    function baivietclick(id) {
-        window.location.href = "/baiviets/details/" + id;
-    }
-    function fmbti() {
-        window.location = "/mbtis";
-    }
-
-    function fredirectSearch() {
-        window.location = "/home/indexsearch";
-    }
-
-    function fredirectQuestions() {
-        window.location = "/questions";
-    }
-
-    function fredirectBaiViet() {
-        window.location = "/baiviets";
-    }
-
     // code
     var _current_page = 0;
     $(function () {
@@ -218,9 +435,7 @@
 
     // function countdown time
     var count = 5;
-
     var counter = setInterval(timer, 500); //1000 will  run it every 1 second
-
     function timer() {
         count = count - 1;
         if (count <= 0) {

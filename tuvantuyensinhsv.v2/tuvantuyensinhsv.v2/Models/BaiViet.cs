@@ -27,6 +27,7 @@ namespace tuvantuyensinhsv.v2.Models
         public System.DateTime NgayCapNhat { get; set; }
         public int Trangthai { get; set; }
         public string Tabs { get; set; }
+        public string linkImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RatePost> RatePosts { get; set; }

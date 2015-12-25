@@ -11,11 +11,6 @@ namespace tuvantuyensinhsv.v2.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            //List<Question> questions = db.Questions.OrderBy(t=>t.Ngaydang).Take(5).ToList();
-            //ViewBag.questions = questions;
-
-            //List<BaiViet> baiviets = db.BaiViets.OrderBy(t => t.NguoiDang).Take(5).ToList();
-            //ViewBag.baiviets = baiviets;
             return View();
         }
 
